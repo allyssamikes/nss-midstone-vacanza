@@ -103,6 +103,16 @@
     {
       "PutRequest": {
         "Item": {
+          "asin": { "S": "AX" },
+          "track_number": { "N": "6" },
+          "album_name": { "S": "Cancion Animal" },
+          "song_title": { "S": "De Musica Ligera" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
           "asin": { "S": "B000LP5FSG" },
           "track_number": { "N": "2" },
           "album_name": { "S": "WINCING THE NIGHT AWAY" },
@@ -126,6 +136,7 @@
         }
       }
     },
+
     {
       "PutRequest": {
         "Item": {
