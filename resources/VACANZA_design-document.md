@@ -114,8 +114,8 @@ and the sort key of type for queries like Berlin dancing or Berlin thrifting, et
 ### 7.2 `ITINERARY`
 
 ```
-String title  // partition key 
-String usernameId // sort key 
+String title  // sort key 
+String email // partition key 
 String city
 List<Activities>
 List<String> users
