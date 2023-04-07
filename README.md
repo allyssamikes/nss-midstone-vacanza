@@ -13,7 +13,7 @@ These are the required deliverables/reviews that you and your team will need to 
 
 ### Team Deliverables
 
-* **Design Document: Problem Statement** Your team’s technical design specification. Complete [this template](resources/design-document.md). This should explain the product you'll be creating and what problem it solves.
+* **Design Document: Problem Statement** Your team’s technical design specification. Complete [this template](resources/VACANZA_design-document.md). This should explain the product you'll be creating and what problem it solves.
 * **Design Document: Peer Team Review** Another team will review your technical design to help improve it. Each team will review at least one other teams design.
 * **Design Document: Instructor Review** One of the instructors will review your technical design after you've create it and reviewed it with another team.
 * **Team Charter:** Statements of how your team will work to ensure constructive collaboration, fairness, that everyone is learning and contributing. Complete [this template](resources/team-charter.md).

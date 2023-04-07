@@ -1,0 +1,128 @@
+@startuml
+
+interface Item
+
+class ItineraryPlayList {
+    - String ownerName
+    -List<String> users
+   -List<Activity> itinerary
+ }
+
+class Activity {
++ String name
++ String country
++ String city
++ String address
++ String typeOfActivity
++ Boolean kidFriendly
++ Boolean weatherPermitting
++ String rating
+}
+
+Activity --* ItineraryPlayList
+
+
+newpage
+class ActivityDao {}
+class ItineraryDao {
+}
+class createItineraryRequest {}
+class createItineraryResponse {}
+class createItineraryActivity {}
+
+class getItineraryActivity {}
+class getItineraryRequest {}
+class getItineraryResponse {}
+class addActivityToItineraryActivity {}
+class addActivityToItineraryRequest {}
+class addActivityToItineraryResponse {}
+class removeActivityToItineraryActivity {}
+class removeActivityToItineraryRequest {}
+class removeActivityToItineraryResponse {}
+class updateItineraryActivity {}
+class updateItineraryRequest {}
+class updateItineraryResponse {}
+class ModelConverter{}
+
+ItineraryDao --o createItineraryActivity
+ItineraryDao --o getItineraryActivity
+ItineraryDao --o addActivityToItineraryActivity
+ItineraryDao --o removeActivityToItineraryActivity
+ItineraryDao --o updateItineraryActivity
+
+ActivityDao --o addActivityToItineraryActivity
+ActivityDao --o removeActivityToItineraryActivity
+
+createItineraryRequest --> createItineraryActivity
+createItineraryActivity --> createItineraryResponse
+
+getItineraryRequest --> getItineraryActivity
+getItineraryActivity --> getItineraryResponse
+
+searchItineraryRequest --> searchItineraryActivity
+searchItineraryActivity --> searchItineraryResponse
+
+updateItineraryRequest --> updateItineraryActivity
+updateItineraryActivity --> updateItineraryResponse
+
+addActivityToItineraryRequest --> addActivityToItineraryActivity
+addActivityToItineraryActivity --> addActivityToItineraryResponse
+removeActivityToItineraryRequest --> removeActivityToItineraryActivity
+removeActivityToItineraryActivity --> removeActivityToItineraryResponse
+addActivityToItineraryActivity--ModelConverter
+removeActivityToItineraryActivity--ModelConverter
+searchItineraryActivity -- ModelConverter
+updateItineraryActivity -- ModelConverter
+getItineraryActivity -- ModelConverter
+createItineraryActivity -- ModelConverter
+ModelConverter --> ItineraryModel
+ItineraryModel --o createItineraryResponse
+ItineraryModel --o searchItineraryResponse
+ItineraryModel --o getItineraryResponse
+ItineraryModel --o updateItineraryResponse
+DynamoDBMapper--o ItineraryDao
+DynamoDBMapper--o ActivityDao
+
+newpage
+ActivityDao --o createActivityActivity
+ActivityDao --o getActivityActivity
+ActivityDao --o searchActivityActivity
+ActivityDao --o updateActivityActivity
+
+createActivityRequest --> createActivityActivity
+createActivityActivity --> createActivityResponse
+
+getActivityRequest --> getActivityActivity
+getActivityActivity --> getActivityResponse
+
+searchActivityRequest --> searchActivityActivity
+searchActivityActivity --> searchActivityResponse
+updateActivityRequest --> updateActivityActivity
+updateActivityActivity --> updateActivityResponse
+
+searchActivityActivity -- ModelConverter
+updateActivityActivity -- ModelConverter
+getActivityActivity -- ModelConverter
+createActivityActivity -- ModelConverter
+ModelConverter --> ActivityModel
+ActivityModel --o createItineraryResponse
+ActivityModel --o searchActivityResponse
+ActivityModel --o getActivityResponse
+ActivityModel --o updateActivityResponse
+newpage
+createItinerary.js <--> ItineraryHeader.js
+ItineraryHeader.js <--> ItineraryPlayListClient.js
+ItineraryPlayListClient.js <--> APIGatewayAWS
+APIGatewayAWS <--> createActivityActivity
+user <--> itinerary.html
+
+@enduml
+
+
+
+
+
+
+
+
+
