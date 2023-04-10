@@ -1,5 +1,6 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
+import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 import com.nashss.se.musicplaylistservice.converters.AlbumTrackLinkedListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
@@ -72,7 +73,7 @@ public class Playlist {
     }
 
     /**
-     * Returns the set of tags associated with this Playlist, null if there are none.
+     * Returns the set of tags associated with this Itinerary, null if there are none.
      *
      * @return Set of tags for this playlist
      */
@@ -89,7 +90,7 @@ public class Playlist {
     }
 
     /**
-     * Sets the tags for this Playlist as a copy of input, or null if input is null.
+     * Sets the tags for this Itinerary as a copy of input, or null if input is null.
      *
      * @param tags Set of tags for this playlist
      */
@@ -123,7 +124,7 @@ public class Playlist {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Playlist playlist = (Playlist) o;
+       Playlist playlist = (Playlist) o;
         return id.equals(playlist.id) &&
                 name.equals(playlist.name) &&
                 customerId.equals(playlist.customerId) &&

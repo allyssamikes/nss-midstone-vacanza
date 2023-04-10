@@ -1,7 +1,7 @@
 package com.nashss.se.musicplaylistservice.test.helper;
 
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -11,12 +11,12 @@ public final class PlaylistTestHelper {
     private PlaylistTestHelper() {
     }
 
-    public static Playlist generatePlaylist() {
+    public static Itinerary generatePlaylist() {
         return generatePlaylistWithNAlbumTracks(1);
     }
 
-    public static Playlist generatePlaylistWithNAlbumTracks(int numTracks) {
-        Playlist playlist = new Playlist();
+    public static Itinerary generatePlaylistWithNAlbumTracks(int numTracks) {
+        Itinerary playlist = new Itinerary();
         playlist.setId("id");
         playlist.setName("a playlist");
         playlist.setCustomerId("CustomerABC");

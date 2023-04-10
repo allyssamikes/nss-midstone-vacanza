@@ -1,6 +1,6 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class PlaylistDaoTest {
+public class ItineraryDaoTest {
     @Mock
     private DynamoDBMapper dynamoDBMapper;
     @Mock
@@ -38,14 +38,14 @@ public class PlaylistDaoTest {
     public void getPlaylist_withPlaylistId_callsMapperWithPartitionKey() {
         // GIVEN
         String playlistId = "playlistId";
-        when(dynamoDBMapper.load(Playlist.class, playlistId)).thenReturn(new Playlist());
+        when(dynamoDBMapper.load(Itinerary.class, playlistId)).thenReturn(new Itinerary());
 
         // WHEN
-        Playlist playlist = playlistDao.getPlaylist(playlistId);
+        Itinerary playlist = playlistDao.getPlaylist(playlistId);
 
         // THEN
         assertNotNull(playlist);
-        verify(dynamoDBMapper).load(Playlist.class, playlistId);
+        verify(dynamoDBMapper).load(Itinerary.class, playlistId);
         verify(metricsPublisher).addCount(eq(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT), anyDouble());
 
     }
@@ -54,7 +54,7 @@ public class PlaylistDaoTest {
     public void getPlaylist_playlistIdNotFound_throwsPlaylistNotFoundException() {
         // GIVEN
         String nonexistentPlaylistId = "NotReal";
-        when(dynamoDBMapper.load(Playlist.class, nonexistentPlaylistId)).thenReturn(null);
+        when(dynamoDBMapper.load(Itinerary.class, nonexistentPlaylistId)).thenReturn(null);
 
         // WHEN + THEN
         assertThrows(PlaylistNotFoundException.class, () -> playlistDao.getPlaylist(nonexistentPlaylistId));
@@ -64,10 +64,10 @@ public class PlaylistDaoTest {
     @Test
     public void savePlaylist_callsMapperWithPlaylist() {
         // GIVEN
-        Playlist playlist = new Playlist();
+        Itinerary playlist = new Itinerary();
 
         // WHEN
-        Playlist result = playlistDao.savePlaylist(playlist);
+        Itinerary result = playlistDao.savePlaylist(playlist);
 
         // THEN
         verify(dynamoDBMapper).save(playlist);

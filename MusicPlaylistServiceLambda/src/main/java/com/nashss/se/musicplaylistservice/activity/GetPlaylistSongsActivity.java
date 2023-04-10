@@ -4,7 +4,7 @@ import com.nashss.se.musicplaylistservice.activity.requests.GetPlaylistSongsRequ
 import com.nashss.se.musicplaylistservice.activity.results.GetPlaylistSongsResult;
 import com.nashss.se.musicplaylistservice.converters.ModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
 import com.nashss.se.musicplaylistservice.models.SongModel;
 import com.nashss.se.musicplaylistservice.models.SongOrder;
@@ -29,7 +29,7 @@ public class GetPlaylistSongsActivity {
     /**
      * Instantiates a new GetPlaylistSongsActivity object.
      *
-     * @param playlistDao PlaylistDao to access the playlist table.
+     * @param playlistDao ItineraryDao to access the playlist table.
      */
     @Inject
     public GetPlaylistSongsActivity(PlaylistDao playlistDao) {
@@ -41,7 +41,7 @@ public class GetPlaylistSongsActivity {
      * <p>
      * It then returns the playlist's song list.
      * <p>
-     * If the playlist does not exist, this should throw a PlaylistNotFoundException.
+     * If the playlist does not exist, this should throw a ActivityNotFoundException.
      *
      * @param getPlaylistSongsRequest request object containing the playlist ID
      * @return getPlaylistSongsResult result object containing the playlist's list of API defined {@link SongModel}s
@@ -51,7 +51,7 @@ public class GetPlaylistSongsActivity {
 
         String songOrder = computeSongOrder(getPlaylistSongsRequest.getOrder());
 
-        Playlist playlist = playlistDao.getPlaylist(getPlaylistSongsRequest.getId());
+        Itinerary playlist = playlistDao.getPlaylist(getPlaylistSongsRequest.getId());
         List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());
 
         if (songOrder.equals(SongOrder.REVERSED)) {

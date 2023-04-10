@@ -3,7 +3,7 @@ package com.nashss.se.musicplaylistservice.activity;
 import com.nashss.se.musicplaylistservice.activity.requests.GetPlaylistRequest;
 import com.nashss.se.musicplaylistservice.activity.results.GetPlaylistResult;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 
 import com.google.common.collect.Sets;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +37,7 @@ public class GetPlaylistActivityTest {
         int expectedSongCount = 0;
         List<String> expectedTags = List.of("tag");
 
-        Playlist playlist = new Playlist();
+        Itinerary playlist = new Itinerary();
         playlist.setId(expectedId);
         playlist.setName(expectedName);
         playlist.setCustomerId(expectedCustomerId);

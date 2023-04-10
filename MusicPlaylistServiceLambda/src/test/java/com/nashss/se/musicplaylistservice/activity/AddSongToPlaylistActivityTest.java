@@ -2,11 +2,11 @@ package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.AddSongToPlaylistRequest;
 import com.nashss.se.musicplaylistservice.activity.results.AddSongToPlaylistResult;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.models.SongModel;
 import com.nashss.se.musicplaylistservice.dynamodb.AlbumTrackDao;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.AlbumTrackNotFoundException;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.test.helper.AlbumTrackTestHelper;
@@ -41,7 +41,7 @@ public class AddSongToPlaylistActivityTest {
     void handleRequest_validRequest_addsSongToEndOfPlaylist() {
         // GIVEN
         // a non-empty playlist
-        Playlist originalPlaylist = PlaylistTestHelper.generatePlaylist();
+        Itinerary originalPlaylist = PlaylistTestHelper.generatePlaylist();
         String playlistId = originalPlaylist.getId();
         String customerId = originalPlaylist.getCustomerId();
 
@@ -91,7 +91,7 @@ public class AddSongToPlaylistActivityTest {
     @Test
     public void handleRequest_noMatchingAlbumTrack_throwsAlbumTrackNotFoundException() {
         // GIVEN
-        Playlist playlist = PlaylistTestHelper.generatePlaylist();
+        Itinerary playlist = PlaylistTestHelper.generatePlaylist();
 
         String playlistId = playlist.getId();
         String cusomerId = playlist.getCustomerId();
@@ -116,7 +116,7 @@ public class AddSongToPlaylistActivityTest {
     void handleRequest_validRequestWithQueueNextFalse_addsSongToEndOfPlaylist() {
         // GIVEN
         int startingTrackCount = 3;
-        Playlist originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingTrackCount);
+        Itinerary originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingTrackCount);
         String playlistId = originalPlaylist.getId();
         String customerId = originalPlaylist.getCustomerId();
 
@@ -152,7 +152,7 @@ public class AddSongToPlaylistActivityTest {
     void handleRequest_validRequestWithQueueNextTrue_addsSongToBeginningOfPlaylist() {
         // GIVEN
         int startingPlaylistSize = 2;
-        Playlist originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingPlaylistSize);
+        Itinerary originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingPlaylistSize);
         String playlistId = originalPlaylist.getId();
         String customerId = originalPlaylist.getCustomerId();
 

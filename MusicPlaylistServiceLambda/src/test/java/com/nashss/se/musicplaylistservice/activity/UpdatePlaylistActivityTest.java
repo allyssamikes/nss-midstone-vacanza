@@ -3,8 +3,7 @@ package com.nashss.se.musicplaylistservice.activity;
 import com.nashss.se.musicplaylistservice.activity.requests.UpdatePlaylistRequest;
 import com.nashss.se.musicplaylistservice.activity.results.UpdatePlaylistResult;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
-import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeChangeException;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
@@ -19,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 public class UpdatePlaylistActivityTest {
@@ -51,7 +49,7 @@ public class UpdatePlaylistActivityTest {
                                             .withName(expectedName)
                                             .build();
 
-        Playlist startingPlaylist = new Playlist();
+        Itinerary startingPlaylist = new Itinerary();
         startingPlaylist.setCustomerId(expectedCustomerId);
         startingPlaylist.setName("old name");
         startingPlaylist.setSongCount(expectedSongCount);
@@ -113,7 +111,7 @@ public class UpdatePlaylistActivityTest {
                                             .withCustomerId("customerId")
                                             .build();
 
-        Playlist differentCustomerIdPlaylist = new Playlist();
+        Itinerary differentCustomerIdPlaylist = new Itinerary();
         differentCustomerIdPlaylist.setCustomerId("different");
 
         when(playlistDao.getPlaylist(id)).thenReturn(differentCustomerIdPlaylist);

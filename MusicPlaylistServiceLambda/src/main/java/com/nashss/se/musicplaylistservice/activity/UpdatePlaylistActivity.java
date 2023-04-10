@@ -4,7 +4,7 @@ import com.nashss.se.musicplaylistservice.activity.requests.UpdatePlaylistReques
 import com.nashss.se.musicplaylistservice.activity.results.UpdatePlaylistResult;
 import com.nashss.se.musicplaylistservice.converters.ModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
@@ -29,7 +29,7 @@ public class UpdatePlaylistActivity {
     /**
      * Instantiates a new UpdatePlaylistActivity object.
      *
-     * @param playlistDao PlaylistDao to access the playlist table.
+     * @param playlistDao ItineraryDao to access the playlist table.
      * @param metricsPublisher MetricsPublisher to publish metrics.
      */
     @Inject
@@ -45,7 +45,7 @@ public class UpdatePlaylistActivity {
      * <p>
      * It then returns the updated playlist.
      * <p>
-     * If the playlist does not exist, this should throw a PlaylistNotFoundException.
+     * If the playlist does not exist, this should throw a ActivityNotFoundException.
      * <p>
      * If the provided playlist name or customer ID has invalid characters, throws an
      * InvalidAttributeValueException
@@ -62,11 +62,11 @@ public class UpdatePlaylistActivity {
 
         if (!MusicPlaylistServiceUtils.isValidString(updatePlaylistRequest.getName())) {
             publishExceptionMetrics(true, false);
-            throw new InvalidAttributeValueException("Playlist name [" + updatePlaylistRequest.getName() +
+            throw new InvalidAttributeValueException("Itinerary name [" + updatePlaylistRequest.getName() +
                                                      "] contains illegal characters");
         }
 
-        Playlist playlist = playlistDao.getPlaylist(updatePlaylistRequest.getId());
+        Itinerary playlist = playlistDao.getPlaylist(updatePlaylistRequest.getId());
 
         if (!playlist.getCustomerId().equals(updatePlaylistRequest.getCustomerId())) {
             publishExceptionMetrics(false, true);

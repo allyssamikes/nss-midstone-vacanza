@@ -1,6 +1,6 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Accesses data for a playlist using {@link Playlist} to represent the model in DynamoDB.
+ * Accesses data for a playlist using {@link Itinerary} to represent the model in DynamoDB.
  */
 @Singleton
 public class PlaylistDao {
@@ -25,7 +25,7 @@ public class PlaylistDao {
     private final MetricsPublisher metricsPublisher;
 
     /**
-     * Instantiates a PlaylistDao object.
+     * Instantiates a ItineraryDao object.
      *
      * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the playlists table
      * @param metricsPublisher the {@link MetricsPublisher} used to record metrics.
@@ -37,13 +37,13 @@ public class PlaylistDao {
     }
 
     /**
-     * Returns the {@link Playlist} corresponding to the specified id.
+     * Returns the {@link Itinerary} corresponding to the specified id.
      *
-     * @param id the Playlist ID
-     * @return the stored Playlist, or null if none was found.
+     * @param id the Itinerary ID
+     * @return the stored Itinerary, or null if none was found.
      */
-    public Playlist getPlaylist(String id) {
-        Playlist playlist = this.dynamoDbMapper.load(Playlist.class, id);
+    public Itinerary getPlaylist(String id) {
+        Itinerary playlist = this.dynamoDbMapper.load(Itinerary.class, id);
 
         if (playlist == null) {
             metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 1);
@@ -57,9 +57,9 @@ public class PlaylistDao {
      * Saves (creates or updates) the given playlist.
      *
      * @param playlist The playlist to save
-     * @return The Playlist object that was saved
+     * @return The Itinerary object that was saved
      */
-    public Playlist savePlaylist(Playlist playlist) {
+    public Itinerary savePlaylist(Itinerary playlist) {
         this.dynamoDbMapper.save(playlist);
         return playlist;
     }
@@ -73,9 +73,9 @@ public class PlaylistDao {
      * Searches are CASE SENSITIVE.
      *
      * @param criteria an array of String containing search criteria.
-     * @return a List of Playlist objects that match the search criteria.
+     * @return a List of Itinerary objects that match the search criteria.
      */
-    public List<Playlist> searchPlaylists(String[] criteria) {
+    public List<Itinerary> searchPlaylists(String[] criteria) {
         DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
 
         if (criteria.length > 0) {
@@ -99,7 +99,7 @@ public class PlaylistDao {
                     "(" + nameFilterExpression + ") or (" + tagsFilterExpression + ")");
         }
 
-        return this.dynamoDbMapper.scan(Playlist.class, dynamoDBScanExpression);
+        return this.dynamoDbMapper.scan(Itinerary.class, dynamoDBScanExpression);
     }
 
     private StringBuilder filterExpressionPart(String target, String valueMapNamePrefix, int position) {

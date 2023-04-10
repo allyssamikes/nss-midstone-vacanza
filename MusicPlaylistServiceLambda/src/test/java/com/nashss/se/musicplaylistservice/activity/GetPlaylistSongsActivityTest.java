@@ -2,12 +2,12 @@ package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.GetPlaylistSongsRequest;
 import com.nashss.se.musicplaylistservice.activity.results.GetPlaylistSongsResult;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.models.SongOrder;
 import com.nashss.se.musicplaylistservice.models.SongModel;
 import com.nashss.se.musicplaylistservice.converters.ModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.test.helper.AlbumTrackTestHelper;
@@ -42,7 +42,7 @@ public class GetPlaylistSongsActivityTest {
     @Test
     void handleRequest_playlistExistsWithSongs_returnsSongsInPlaylist() {
         // GIVEN
-        Playlist playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(3);
+        Itinerary playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(3);
         String playlistId = playlist.getId();
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
                                               .withId(playlistId)
@@ -59,7 +59,7 @@ public class GetPlaylistSongsActivityTest {
     @Test
     void handleRequest_playlistExistsWithoutSongs_returnsEmptyList() {
         // GIVEN
-        Playlist emptyPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(0);
+        Itinerary emptyPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(0);
         String playlistId = emptyPlaylist.getId();
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
                                               .withId(playlistId)
@@ -77,7 +77,7 @@ public class GetPlaylistSongsActivityTest {
     @Test
     void handleRequest_withDefaultSongOrder_returnsDefaultOrderedPlaylistSongs() {
         // GIVEN
-        Playlist playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(10);
+        Itinerary playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(10);
         String playlistId = playlist.getId();
 
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
@@ -96,7 +96,7 @@ public class GetPlaylistSongsActivityTest {
     @Test
     void handleRequest_withReversedSongOrder_returnsReversedPlaylistSongs() {
         // GIVEN
-        Playlist playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(9);
+        Itinerary playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(9);
         String playlistId = playlist.getId();
         List<AlbumTrack> reversedAlbumTracks = new LinkedList<>(playlist.getSongList());
         Collections.reverse(reversedAlbumTracks);
@@ -116,7 +116,7 @@ public class GetPlaylistSongsActivityTest {
 
     @Test
     void handleRequest_withShuffledSongOrder_returnsSongsInAnyOrder() {
-        Playlist playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(8);
+        Itinerary playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(8);
         String playlistId = playlist.getId();
 
         List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());
@@ -164,7 +164,7 @@ public class GetPlaylistSongsActivityTest {
     @Test
     public void handleRequest_withInvalidSongOrder_throwsException() {
         // GIVEN
-        Playlist playlist = PlaylistTestHelper.generatePlaylist();
+        Itinerary playlist = PlaylistTestHelper.generatePlaylist();
         String id = playlist.getId();
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
             .withId(id)

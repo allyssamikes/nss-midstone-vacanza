@@ -3,7 +3,7 @@ package com.nashss.se.musicplaylistservice.activity;
 import com.nashss.se.musicplaylistservice.activity.requests.SearchPlaylistsRequest;
 import com.nashss.se.musicplaylistservice.activity.results.SearchPlaylistsResult;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.models.PlaylistModel;
 
 import com.google.common.collect.Sets;
@@ -38,7 +38,7 @@ public class SearchPlyatlistsTests {
         String criteria = "good";
         String[] criteriaArray = {criteria};
 
-        List<Playlist> expected = List.of(
+        List<Itinerary> expected = List.of(
                 newPlaylist("id1", "a good playlist", List.of("tag1", "tag2")),
                 newPlaylist("id2", "another good playlist", List.of("tag1", "tag2")));
 
@@ -80,8 +80,8 @@ public class SearchPlyatlistsTests {
         assertEquals(0, criteriaArray.getValue().length, "Criteria Array should be empty");
     }
 
-    private static Playlist newPlaylist(String id, String name, List<String> tags) {
-        Playlist playlist = new Playlist();
+    private static Itinerary newPlaylist(String id, String name, List<String> tags) {
+        Itinerary playlist = new Itinerary();
 
         playlist.setId(id);
         playlist.setName(name);
