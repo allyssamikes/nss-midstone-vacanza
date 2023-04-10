@@ -1,9 +1,8 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.lambda;
 
+import VacanzaLambda.src.main.java.musicplaylistservice.dependency.VServiceComponent;
 import com.nashss.se.musicplaylistservice.dependency.DaggerServiceComponent;
-import com.nashss.se.musicplaylistservice.dependency.ServiceComponent;
 
-import com.nashss.se.musicplaylistservice.lambda.LambdaResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +10,7 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 public class LambdaActivityRunner<TRequest, TResult> {
-    private ServiceComponent service;
+    private VServiceComponent service;
     private final Logger log = LogManager.getLogger();
 
     /**
@@ -20,21 +19,21 @@ public class LambdaActivityRunner<TRequest, TResult> {
      * @param handleRequest Runs the activity and provides a response.
      * @return A LambdaResponse
      */
-    protected com.nashss.se.musicplaylistservice.lambda.LambdaResponse runActivity(
+    protected LambdaResponse runActivity(
             Supplier<TRequest> requestSupplier,
-            BiFunction<TRequest, ServiceComponent, TResult> handleRequest) {
+            BiFunction<TRequest, VServiceComponent, TResult> handleRequest) {
         log.info("runActivity");
         try {
             TRequest request = requestSupplier.get();
-            ServiceComponent serviceComponent = getService();
+            VServiceComponent serviceComponent = getService();
             TResult result = handleRequest.apply(request, serviceComponent);
-            return com.nashss.se.musicplaylistservice.lambda.LambdaResponse.success(result);
+            return LambdaResponse.success(result);
         } catch (Exception e) {
             return LambdaResponse.error(e);
         }
     }
 
-    private ServiceComponent getService() {
+    private VServiceComponent getService() {
         log.info("getService");
         if (service == null) {
             service = DaggerServiceComponent.create();

@@ -1,5 +1,6 @@
 package com.nashss.se.musicplaylistservice.activity;
 
+import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.GetItineraryRequest;
 import com.nashss.se.musicplaylistservice.activity.requests.GetPlaylistRequest;
 import com.nashss.se.musicplaylistservice.activity.results.GetPlaylistResult;
 import com.nashss.se.musicplaylistservice.converters.ModelConverter;

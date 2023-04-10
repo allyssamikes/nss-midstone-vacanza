@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Accesses data for a playlist using {@link Itinerary} to represent the model in DynamoDB.
+ * Accesses data for an itinerary using {@link Itinerary} to represent the model in DynamoDB.
  */
 @Singleton
 public class ItineraryDao {
@@ -27,7 +27,7 @@ public class ItineraryDao {
     /**
      * Instantiates a ItineraryDao object.
      *
-     * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the playlists table
+     * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the itinerary table
      * @param metricsPublisher the {@link MetricsPublisher} used to record metrics.
      */
     @Inject
@@ -39,43 +39,43 @@ public class ItineraryDao {
     /**
      * Returns the {@link Itinerary} corresponding to the specified id.
      *
-     * @param id the Itinerary ID
+     * @param email the Itinerary email
      * @return the stored Itinerary, or null if none was found.
      */
-    public Itinerary getPlaylist(String id) {
-        Itinerary playlist = this.dynamoDbMapper.load(Itinerary.class, id);
+    public Itinerary getItinerary(String email, String tripName) {
+        Itinerary itinerary = this.dynamoDbMapper.load(Itinerary.class, email, tripName);
 
-        if (playlist == null) {
+        if (itinerary == null) {
             metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 1);
-            throw new PlaylistNotFoundException("Could not find playlist with id " + id);
+            throw new PlaylistNotFoundException("Could not find itinerary wiht email" + email);
         }
         metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 0);
-        return playlist;
+        return itinerary;
     }
 
     /**
-     * Saves (creates or updates) the given playlist.
+     * Saves (creates or updates) the given itinerary
      *
-     * @param playlist The playlist to save
+     * @param itinerary The itinerary to save
      * @return The Itinerary object that was saved
      */
-    public Itinerary savePlaylist(Itinerary playlist) {
-        this.dynamoDbMapper.save(playlist);
-        return playlist;
+    public Itinerary saveItinerary(Itinerary itinerary) {
+        this.dynamoDbMapper.save(itinerary);
+        return itinerary;
     }
 
     /**
-     * Perform a search (via a "scan") of the playlist table for playlists matching the given criteria.
+     * Perform a search (via a "scan") of the itinerary table for itineraries  matching the given criteria.
      *
-     * Both "playlistName" and "tags" attributes are searched.
+     * Both "tripName" and "tags" attributes are searched.
      * The criteria are an array of Strings. Each element of the array is search individually.
-     * ALL elements of the criteria array must appear in the playlistName or the tags (or both).
+     * ALL elements of the criteria array must appear in the tripName or the tags (or both).
      * Searches are CASE SENSITIVE.
      *
      * @param criteria an array of String containing search criteria.
      * @return a List of Itinerary objects that match the search criteria.
      */
-    public List<Itinerary> searchPlaylists(String[] criteria) {
+    public List<Itinerary> searchItinerary (String[] criteria) {
         DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
 
         if (criteria.length > 0) {
