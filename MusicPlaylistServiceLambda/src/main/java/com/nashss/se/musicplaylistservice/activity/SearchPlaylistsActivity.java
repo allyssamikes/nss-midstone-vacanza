@@ -4,7 +4,7 @@ import com.nashss.se.musicplaylistservice.activity.requests.SearchPlaylistsReque
 import com.nashss.se.musicplaylistservice.activity.results.SearchPlaylistsResult;
 import com.nashss.se.musicplaylistservice.converters.ModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.models.PlaylistModel;
 
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +27,7 @@ public class SearchPlaylistsActivity {
     /**
      * Instantiates a new SearchPlaylistsActivity object.
      *
-     * @param playlistDao ItineraryDao to access the playlist table.
+     * @param playlistDao PlaylistDao to access the playlist table.
      */
     @Inject
     public SearchPlaylistsActivity(PlaylistDao playlistDao) {
@@ -49,7 +49,7 @@ public class SearchPlaylistsActivity {
         String criteria = ifNull(searchPlaylistsRequest.getCriteria(), "");
         String[] criteriaArray = criteria.isBlank() ? new String[0] : criteria.split("\\s");
 
-        List<Itinerary> results = playlistDao.searchPlaylists(criteriaArray);
+        List<Playlist> results = playlistDao.searchPlaylists(criteriaArray);
         List<PlaylistModel> playlistModels = new ModelConverter().toPlaylistModelList(results);
 
         return SearchPlaylistsResult.builder()

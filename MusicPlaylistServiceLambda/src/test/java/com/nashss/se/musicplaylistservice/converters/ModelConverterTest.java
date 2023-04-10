@@ -3,7 +3,7 @@ package com.nashss.se.musicplaylistservice.converters;
 import com.nashss.se.musicplaylistservice.models.PlaylistModel;
 import com.nashss.se.musicplaylistservice.models.SongModel;
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.test.helper.AlbumTrackTestHelper;
 
 import com.google.common.collect.Sets;
@@ -21,7 +21,7 @@ public class ModelConverterTest {
 
     @Test
     void toPlaylistModel_withTags_convertsPlaylist() {
-        Itinerary playlist = new Itinerary();
+        Playlist playlist = new Playlist();
         playlist.setId("id");
         playlist.setName("name");
         playlist.setCustomerId("customerId");
@@ -38,7 +38,7 @@ public class ModelConverterTest {
 
     @Test
     void toPlaylistModel_nullTags_convertsPlaylist() {
-        Itinerary playlist = new Itinerary();
+        Playlist playlist = new Playlist();
         playlist.setId("id");
         playlist.setName("name");
         playlist.setCustomerId("customerId");
@@ -63,11 +63,11 @@ public class ModelConverterTest {
 
         // THEN
         AlbumTrackTestHelper.assertAlbumTrackEqualsSongModel(
-            albumTrack,
-            result,
-            String.format("Expected album track %s to match song model %s",
-                          albumTrack,
-                          result)
+                albumTrack,
+                result,
+                String.format("Expected album track %s to match song model %s",
+                        albumTrack,
+                        result)
         );
     }
 

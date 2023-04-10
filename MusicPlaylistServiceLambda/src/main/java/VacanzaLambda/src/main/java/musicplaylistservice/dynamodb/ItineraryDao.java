@@ -1,6 +1,6 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb;
 
-import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
+import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;

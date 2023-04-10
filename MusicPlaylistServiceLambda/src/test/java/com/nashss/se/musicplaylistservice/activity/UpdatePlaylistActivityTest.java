@@ -1,9 +1,13 @@
+
+
+
 package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.UpdatePlaylistRequest;
 import com.nashss.se.musicplaylistservice.activity.results.UpdatePlaylistResult;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeChangeException;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
@@ -18,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 public class UpdatePlaylistActivityTest {
@@ -44,12 +49,12 @@ public class UpdatePlaylistActivityTest {
         int expectedSongCount = 10;
 
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId(id)
-                                            .withCustomerId(expectedCustomerId)
-                                            .withName(expectedName)
-                                            .build();
+                .withId(id)
+                .withCustomerId(expectedCustomerId)
+                .withName(expectedName)
+                .build();
 
-        Itinerary startingPlaylist = new Itinerary();
+        Playlist startingPlaylist = new Playlist();
         startingPlaylist.setCustomerId(expectedCustomerId);
         startingPlaylist.setName("old name");
         startingPlaylist.setSongCount(expectedSongCount);
@@ -70,10 +75,10 @@ public class UpdatePlaylistActivityTest {
     public void handleRequest_invalidName_throwsInvalidAttributeValueException() {
         // GIVEN
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId("id")
-                                            .withName("I'm illegal")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withId("id")
+                .withName("I'm illegal")
+                .withCustomerId("customerId")
+                .build();
 
         // WHEN + THEN
         try {
@@ -90,10 +95,10 @@ public class UpdatePlaylistActivityTest {
         // GIVEN
         String id = "id";
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId(id)
-                                            .withName("name")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withId(id)
+                .withName("name")
+                .withCustomerId("customerId")
+                .build();
 
         when(playlistDao.getPlaylist(id)).thenThrow(new PlaylistNotFoundException());
 
@@ -106,12 +111,12 @@ public class UpdatePlaylistActivityTest {
         // GIVEN
         String id = "id";
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId(id)
-                                            .withName("name")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withId(id)
+                .withName("name")
+                .withCustomerId("customerId")
+                .build();
 
-        Itinerary differentCustomerIdPlaylist = new Itinerary();
+        Playlist differentCustomerIdPlaylist = new Playlist();
         differentCustomerIdPlaylist.setCustomerId("different");
 
         when(playlistDao.getPlaylist(id)).thenReturn(differentCustomerIdPlaylist);

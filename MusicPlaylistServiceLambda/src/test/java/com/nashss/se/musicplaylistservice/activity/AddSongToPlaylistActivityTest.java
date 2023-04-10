@@ -2,11 +2,11 @@ package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.AddSongToPlaylistRequest;
 import com.nashss.se.musicplaylistservice.activity.results.AddSongToPlaylistResult;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
 import com.nashss.se.musicplaylistservice.models.SongModel;
 import com.nashss.se.musicplaylistservice.dynamodb.AlbumTrackDao;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.AlbumTrackNotFoundException;
 import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
 import com.nashss.se.musicplaylistservice.test.helper.AlbumTrackTestHelper;
@@ -41,7 +41,7 @@ public class AddSongToPlaylistActivityTest {
     void handleRequest_validRequest_addsSongToEndOfPlaylist() {
         // GIVEN
         // a non-empty playlist
-        Itinerary originalPlaylist = PlaylistTestHelper.generatePlaylist();
+        Playlist originalPlaylist = PlaylistTestHelper.generatePlaylist();
         String playlistId = originalPlaylist.getId();
         String customerId = originalPlaylist.getCustomerId();
 
@@ -55,11 +55,11 @@ public class AddSongToPlaylistActivityTest {
         when(albumTrackDao.getAlbumTrack(addedAsin, addedTracknumber)).thenReturn(albumTrackToAdd);
 
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-            .withId(playlistId)
-            .withAsin(addedAsin)
-            .withTrackNumber(addedTracknumber)
-            .withCustomerId(customerId)
-            .build();
+                .withId(playlistId)
+                .withAsin(addedAsin)
+                .withTrackNumber(addedTracknumber)
+                .withCustomerId(customerId)
+                .build();
 
         // WHEN
         AddSongToPlaylistResult result = addSongToPlaylistActivity.handleRequest(request);
@@ -77,11 +77,11 @@ public class AddSongToPlaylistActivityTest {
         // GIVEN
         String playlistId = "missing id";
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin("asin")
-                                               .withTrackNumber(1)
-                                               .withCustomerId("doesn't matter")
-                                               .build();
+                .withId(playlistId)
+                .withAsin("asin")
+                .withTrackNumber(1)
+                .withCustomerId("doesn't matter")
+                .build();
         when(playlistDao.getPlaylist(playlistId)).thenThrow(new PlaylistNotFoundException());
 
         // WHEN + THEN
@@ -91,18 +91,18 @@ public class AddSongToPlaylistActivityTest {
     @Test
     public void handleRequest_noMatchingAlbumTrack_throwsAlbumTrackNotFoundException() {
         // GIVEN
-        Itinerary playlist = PlaylistTestHelper.generatePlaylist();
+        Playlist playlist = PlaylistTestHelper.generatePlaylist();
 
         String playlistId = playlist.getId();
         String cusomerId = playlist.getCustomerId();
         String asin = "nonexistent asin";
         int trackNumber = -1;
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin(asin)
-                                               .withTrackNumber(trackNumber)
-                                               .withCustomerId(cusomerId)
-                                               .build();
+                .withId(playlistId)
+                .withAsin(asin)
+                .withTrackNumber(trackNumber)
+                .withCustomerId(cusomerId)
+                .build();
 
         // WHEN
         when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
@@ -116,7 +116,7 @@ public class AddSongToPlaylistActivityTest {
     void handleRequest_validRequestWithQueueNextFalse_addsSongToEndOfPlaylist() {
         // GIVEN
         int startingTrackCount = 3;
-        Itinerary originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingTrackCount);
+        Playlist originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingTrackCount);
         String playlistId = originalPlaylist.getId();
         String customerId = originalPlaylist.getCustomerId();
 
@@ -130,12 +130,12 @@ public class AddSongToPlaylistActivityTest {
         when(albumTrackDao.getAlbumTrack(addedAsin, addedTracknumber)).thenReturn(albumTrackToAdd);
 
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin(addedAsin)
-                                               .withTrackNumber(addedTracknumber)
-                                               .withQueueNext(false)
-                                               .withCustomerId(customerId)
-                                               .build();
+                .withId(playlistId)
+                .withAsin(addedAsin)
+                .withTrackNumber(addedTracknumber)
+                .withQueueNext(false)
+                .withCustomerId(customerId)
+                .build();
 
         // WHEN
         AddSongToPlaylistResult result = addSongToPlaylistActivity.handleRequest(request);
@@ -152,7 +152,7 @@ public class AddSongToPlaylistActivityTest {
     void handleRequest_validRequestWithQueueNextTrue_addsSongToBeginningOfPlaylist() {
         // GIVEN
         int startingPlaylistSize = 2;
-        Itinerary originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingPlaylistSize);
+        Playlist originalPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(startingPlaylistSize);
         String playlistId = originalPlaylist.getId();
         String customerId = originalPlaylist.getCustomerId();
 
@@ -166,12 +166,12 @@ public class AddSongToPlaylistActivityTest {
         when(albumTrackDao.getAlbumTrack(addedAsin, addedTracknumber)).thenReturn(albumTrackToAdd);
 
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin(addedAsin)
-                                               .withTrackNumber(addedTracknumber)
-                                               .withQueueNext(true)
-                                               .withCustomerId(customerId)
-                                               .build();
+                .withId(playlistId)
+                .withAsin(addedAsin)
+                .withTrackNumber(addedTracknumber)
+                .withQueueNext(true)
+                .withCustomerId(customerId)
+                .build();
 
         // WHEN
         AddSongToPlaylistResult result = addSongToPlaylistActivity.handleRequest(request);

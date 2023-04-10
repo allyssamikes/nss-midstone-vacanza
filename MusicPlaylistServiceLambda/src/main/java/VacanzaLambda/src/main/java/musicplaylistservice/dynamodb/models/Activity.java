@@ -2,7 +2,7 @@ package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
-import java.util.Objects;
+
 
 @DynamoDBTable(tableName = "activities")
 public class Activity{

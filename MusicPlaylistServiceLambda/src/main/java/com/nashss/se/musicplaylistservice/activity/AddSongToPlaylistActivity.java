@@ -6,7 +6,7 @@ import com.nashss.se.musicplaylistservice.converters.ModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.AlbumTrackDao;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.models.SongModel;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,8 +29,8 @@ public class AddSongToPlaylistActivity {
     /**
      * Instantiates a new AddSongToPlaylistActivity object.
      *
-     * @param playlistDao ItineraryDao to access the playlist table.
-     * @param albumTrackDao ActivityDao to access the album_track table.
+     * @param playlistDao PlaylistDao to access the playlist table.
+     * @param albumTrackDao AlbumTrackDao to access the album_track table.
      */
     @Inject
     public AddSongToPlaylistActivity(PlaylistDao playlistDao, AlbumTrackDao albumTrackDao) {
@@ -44,9 +44,9 @@ public class AddSongToPlaylistActivity {
      * <p>
      * It then returns the updated song list of the playlist.
      * <p>
-     * If the playlist does not exist, this should throw a ActivityNotFoundException.
+     * If the playlist does not exist, this should throw a PlaylistNotFoundException.
      * <p>
-     * If the album track does not exist, this should throw an ItineraryNotFoundException.
+     * If the album track does not exist, this should throw an AlbumTrackNotFoundException.
      *
      * @param addSongToPlaylistRequest request object containing the playlist ID and an asin and track number
      *                                 to retrieve the song data
@@ -60,7 +60,7 @@ public class AddSongToPlaylistActivity {
         // Allow NPE when unboxing Integer if track number is null (getTrackNumber returns Integer)
         int trackNumber = addSongToPlaylistRequest.getTrackNumber();
 
-        Itinerary playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getId());
+        Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getId());
 
         if (!playlist.getCustomerId().equals(addSongToPlaylistRequest.getCustomerId())) {
             throw new SecurityException("You must own a playlist to add songs to it.");

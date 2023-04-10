@@ -3,14 +3,16 @@ package com.nashss.se.musicplaylistservice.activity;
 import com.nashss.se.musicplaylistservice.activity.requests.CreatePlaylistRequest;
 import com.nashss.se.musicplaylistservice.activity.results.CreatePlaylistResult;
 import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Itinerary;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
 
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+import static org.mockito.MockitoAnnotations.initMocks;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 public class CreatePlaylistActivityTest {
@@ -41,16 +44,16 @@ public class CreatePlaylistActivityTest {
         List<String> expectedTags = List.of("tag");
 
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName(expectedName)
-                                            .withCustomerId(expectedCustomerId)
-                                            .withTags(expectedTags)
-                                            .build();
+                .withName(expectedName)
+                .withCustomerId(expectedCustomerId)
+                .withTags(expectedTags)
+                .build();
 
         // WHEN
         CreatePlaylistResult result = createPlaylistActivity.handleRequest(request);
 
         // THEN
-        verify(playlistDao).savePlaylist(any(Itinerary.class));
+        verify(playlistDao).savePlaylist(any(Playlist.class));
 
         assertNotNull(result.getPlaylist().getId());
         assertEquals(expectedName, result.getPlaylist().getName());
@@ -67,15 +70,15 @@ public class CreatePlaylistActivityTest {
         int expectedSongCount = 0;
 
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName(expectedName)
-                                            .withCustomerId(expectedCustomerId)
-                                            .build();
+                .withName(expectedName)
+                .withCustomerId(expectedCustomerId)
+                .build();
 
         // WHEN
         CreatePlaylistResult result = createPlaylistActivity.handleRequest(request);
 
         // THEN
-        verify(playlistDao).savePlaylist(any(Itinerary.class));
+        verify(playlistDao).savePlaylist(any(Playlist.class));
 
         assertNotNull(result.getPlaylist().getId());
         assertEquals(expectedName, result.getPlaylist().getName());
@@ -88,9 +91,9 @@ public class CreatePlaylistActivityTest {
     public void handleRequest_invalidName_throwsInvalidAttributeValueException() {
         // GIVEN
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName("I'm illegal")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withName("I'm illegal")
+                .withCustomerId("customerId")
+                .build();
 
         // WHEN + THEN
         assertThrows(InvalidAttributeValueException.class, () -> createPlaylistActivity.handleRequest(request));
@@ -100,9 +103,9 @@ public class CreatePlaylistActivityTest {
     public void handleRequest_invalidCustomerId_throwsInvalidAttributeValueException() {
         // GIVEN
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName("AllOK")
-                                            .withCustomerId("Jemma's \"illegal\" customer ID")
-                                            .build();
+                .withName("AllOK")
+                .withCustomerId("Jemma's \"illegal\" customer ID")
+                .build();
 
         // WHEN + THEN
         assertThrows(InvalidAttributeValueException.class, () -> createPlaylistActivity.handleRequest(request));

@@ -1,14 +1,10 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import com.nashss.se.musicplaylistservice.converters.AlbumTrackLinkedListConverter;
 
-import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+
 
 @DynamoDBTable(tableName = "itineraries")
 public class Itinerary {
