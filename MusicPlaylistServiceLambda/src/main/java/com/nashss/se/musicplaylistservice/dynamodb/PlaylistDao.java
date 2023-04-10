@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Accesses data for a playlist using {@link Playlist} to represent the model in DynamoDB.
+ * Accesses data for a playlist using {@link playlist} to represent the model in DynamoDB.
  */
 @Singleton
 public class PlaylistDao {
@@ -25,7 +25,7 @@ public class PlaylistDao {
     private final MetricsPublisher metricsPublisher;
 
     /**
-     * Instantiates a PlaylistDao object.
+     * Instantiates a ItineraryDao object.
      *
      * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the playlists table
      * @param metricsPublisher the {@link MetricsPublisher} used to record metrics.
@@ -39,8 +39,8 @@ public class PlaylistDao {
     /**
      * Returns the {@link Playlist} corresponding to the specified id.
      *
-     * @param id the Playlist ID
-     * @return the stored Playlist, or null if none was found.
+     * @param id the Itinerary ID
+     * @return the stored Itinerary, or null if none was found.
      */
     public Playlist getPlaylist(String id) {
         Playlist playlist = this.dynamoDbMapper.load(Playlist.class, id);
@@ -57,7 +57,7 @@ public class PlaylistDao {
      * Saves (creates or updates) the given playlist.
      *
      * @param playlist The playlist to save
-     * @return The Playlist object that was saved
+     * @return The Itinerary object that was saved
      */
     public Playlist savePlaylist(Playlist playlist) {
         this.dynamoDbMapper.save(playlist);
@@ -73,7 +73,7 @@ public class PlaylistDao {
      * Searches are CASE SENSITIVE.
      *
      * @param criteria an array of String containing search criteria.
-     * @return a List of Playlist objects that match the search criteria.
+     * @return a List of Itinerary objects that match the search criteria.
      */
     public List<Playlist> searchPlaylists(String[] criteria) {
         DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();

@@ -47,8 +47,8 @@ public class GetPlaylistActivityTest {
         when(playlistDao.getPlaylist(expectedId)).thenReturn(playlist);
 
         GetPlaylistRequest request = GetPlaylistRequest.builder()
-            .withId(expectedId)
-            .build();
+                .withId(expectedId)
+                .build();
 
         // WHEN
         GetPlaylistResult result = getPlaylistActivity.handleRequest(request);

@@ -16,7 +16,7 @@ public class AlbumTrackDao {
     private final DynamoDBMapper dynamoDbMapper;
 
     /**
-     * Instantiates an AlbumTrackDao object.
+     * Instantiates an ActivityDao object.
      *
      * @param dynamoDbMapper the {@link DynamoDBMapper} used to interact with the album_track table
      */
@@ -28,7 +28,7 @@ public class AlbumTrackDao {
     /**
      * Retrieves an AlbumTrack by ASIN and track number.
      *
-     * If not found, throws AlbumTrackNotFoundException.
+     * If not found, throws ItineraryNotFoundException.
      *
      * @param asin The ASIN to look up
      * @param trackNumber The track number to look up

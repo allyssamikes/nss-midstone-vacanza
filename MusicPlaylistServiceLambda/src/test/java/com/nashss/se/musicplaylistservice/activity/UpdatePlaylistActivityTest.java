@@ -1,3 +1,6 @@
+
+
+
 package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.UpdatePlaylistRequest;
@@ -46,10 +49,10 @@ public class UpdatePlaylistActivityTest {
         int expectedSongCount = 10;
 
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId(id)
-                                            .withCustomerId(expectedCustomerId)
-                                            .withName(expectedName)
-                                            .build();
+                .withId(id)
+                .withCustomerId(expectedCustomerId)
+                .withName(expectedName)
+                .build();
 
         Playlist startingPlaylist = new Playlist();
         startingPlaylist.setCustomerId(expectedCustomerId);
@@ -72,10 +75,10 @@ public class UpdatePlaylistActivityTest {
     public void handleRequest_invalidName_throwsInvalidAttributeValueException() {
         // GIVEN
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId("id")
-                                            .withName("I'm illegal")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withId("id")
+                .withName("I'm illegal")
+                .withCustomerId("customerId")
+                .build();
 
         // WHEN + THEN
         try {
@@ -92,10 +95,10 @@ public class UpdatePlaylistActivityTest {
         // GIVEN
         String id = "id";
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId(id)
-                                            .withName("name")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withId(id)
+                .withName("name")
+                .withCustomerId("customerId")
+                .build();
 
         when(playlistDao.getPlaylist(id)).thenThrow(new PlaylistNotFoundException());
 
@@ -108,10 +111,10 @@ public class UpdatePlaylistActivityTest {
         // GIVEN
         String id = "id";
         UpdatePlaylistRequest request = UpdatePlaylistRequest.builder()
-                                            .withId(id)
-                                            .withName("name")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withId(id)
+                .withName("name")
+                .withCustomerId("customerId")
+                .build();
 
         Playlist differentCustomerIdPlaylist = new Playlist();
         differentCustomerIdPlaylist.setCustomerId("different");

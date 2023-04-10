@@ -44,10 +44,10 @@ public class CreatePlaylistActivityTest {
         List<String> expectedTags = List.of("tag");
 
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName(expectedName)
-                                            .withCustomerId(expectedCustomerId)
-                                            .withTags(expectedTags)
-                                            .build();
+                .withName(expectedName)
+                .withCustomerId(expectedCustomerId)
+                .withTags(expectedTags)
+                .build();
 
         // WHEN
         CreatePlaylistResult result = createPlaylistActivity.handleRequest(request);
@@ -70,9 +70,9 @@ public class CreatePlaylistActivityTest {
         int expectedSongCount = 0;
 
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName(expectedName)
-                                            .withCustomerId(expectedCustomerId)
-                                            .build();
+                .withName(expectedName)
+                .withCustomerId(expectedCustomerId)
+                .build();
 
         // WHEN
         CreatePlaylistResult result = createPlaylistActivity.handleRequest(request);
@@ -91,9 +91,9 @@ public class CreatePlaylistActivityTest {
     public void handleRequest_invalidName_throwsInvalidAttributeValueException() {
         // GIVEN
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName("I'm illegal")
-                                            .withCustomerId("customerId")
-                                            .build();
+                .withName("I'm illegal")
+                .withCustomerId("customerId")
+                .build();
 
         // WHEN + THEN
         assertThrows(InvalidAttributeValueException.class, () -> createPlaylistActivity.handleRequest(request));
@@ -103,9 +103,9 @@ public class CreatePlaylistActivityTest {
     public void handleRequest_invalidCustomerId_throwsInvalidAttributeValueException() {
         // GIVEN
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                                            .withName("AllOK")
-                                            .withCustomerId("Jemma's \"illegal\" customer ID")
-                                            .build();
+                .withName("AllOK")
+                .withCustomerId("Jemma's \"illegal\" customer ID")
+                .build();
 
         // WHEN + THEN
         assertThrows(InvalidAttributeValueException.class, () -> createPlaylistActivity.handleRequest(request));

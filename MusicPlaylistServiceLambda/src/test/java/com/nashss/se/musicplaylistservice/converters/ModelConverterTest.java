@@ -63,11 +63,11 @@ public class ModelConverterTest {
 
         // THEN
         AlbumTrackTestHelper.assertAlbumTrackEqualsSongModel(
-            albumTrack,
-            result,
-            String.format("Expected album track %s to match song model %s",
-                          albumTrack,
-                          result)
+                albumTrack,
+                result,
+                String.format("Expected album track %s to match song model %s",
+                        albumTrack,
+                        result)
         );
     }
 

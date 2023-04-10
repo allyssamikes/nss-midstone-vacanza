@@ -45,8 +45,8 @@ public class GetPlaylistSongsActivityTest {
         Playlist playlist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(3);
         String playlistId = playlist.getId();
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-                                              .withId(playlistId)
-                                              .build();
+                .withId(playlistId)
+                .build();
         when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
 
         // WHEN
@@ -62,8 +62,8 @@ public class GetPlaylistSongsActivityTest {
         Playlist emptyPlaylist = PlaylistTestHelper.generatePlaylistWithNAlbumTracks(0);
         String playlistId = emptyPlaylist.getId();
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-                                              .withId(playlistId)
-                                              .build();
+                .withId(playlistId)
+                .build();
         when(playlistDao.getPlaylist(playlistId)).thenReturn(emptyPlaylist);
 
         // WHEN
@@ -71,7 +71,7 @@ public class GetPlaylistSongsActivityTest {
 
         // THEN
         assertTrue(result.getSongList().isEmpty(),
-                   "Expected song list to be empty but was " + result.getSongList());
+                "Expected song list to be empty but was " + result.getSongList());
     }
 
     @Test
@@ -81,9 +81,9 @@ public class GetPlaylistSongsActivityTest {
         String playlistId = playlist.getId();
 
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-                                              .withId(playlistId)
-                                              .withOrder(SongOrder.DEFAULT)
-                                              .build();
+                .withId(playlistId)
+                .withOrder(SongOrder.DEFAULT)
+                .build();
         when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
 
         // WHEN
@@ -102,9 +102,9 @@ public class GetPlaylistSongsActivityTest {
         Collections.reverse(reversedAlbumTracks);
 
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-                                              .withId(playlistId)
-                                              .withOrder(SongOrder.REVERSED)
-                                              .build();
+                .withId(playlistId)
+                .withOrder(SongOrder.REVERSED)
+                .build();
         when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
 
         // WHEN
@@ -122,9 +122,9 @@ public class GetPlaylistSongsActivityTest {
         List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());
 
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-                                              .withId(playlistId)
-                                              .withOrder(SongOrder.REVERSED)
-                                              .build();
+                .withId(playlistId)
+                .withOrder(SongOrder.REVERSED)
+                .build();
         when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
 
         // WHEN
@@ -132,18 +132,18 @@ public class GetPlaylistSongsActivityTest {
 
         // THEN
         assertEquals(playlist.getSongList().size(),
-                     result.getSongList().size(),
-                     String.format("Expected album tracks (%s) and song models (%s) to be the same length",
-                                   playlist.getSongList(),
-                                   result.getSongList()));
+                result.getSongList().size(),
+                String.format("Expected album tracks (%s) and song models (%s) to be the same length",
+                        playlist.getSongList(),
+                        result.getSongList()));
         assertTrue(
-            songModels.containsAll(result.getSongList()),
-            String.format("album list (%s) and song models (%s) are the same length, but don't contain the same " +
-                          "entries. Expected song models: %s. Returned song models: %s",
-                          playlist.getSongList(),
-                          result.getSongList(),
-                          songModels,
-                          result.getSongList()));
+                songModels.containsAll(result.getSongList()),
+                String.format("album list (%s) and song models (%s) are the same length, but don't contain the same " +
+                                "entries. Expected song models: %s. Returned song models: %s",
+                        playlist.getSongList(),
+                        result.getSongList(),
+                        songModels,
+                        result.getSongList()));
     }
 
     @Test
@@ -151,8 +151,8 @@ public class GetPlaylistSongsActivityTest {
         // GIVEN
         String id = "missingID";
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-                                              .withId(id)
-                                              .build();
+                .withId(id)
+                .build();
 
         // WHEN
         when(playlistDao.getPlaylist(id)).thenThrow(new PlaylistNotFoundException());
@@ -167,9 +167,9 @@ public class GetPlaylistSongsActivityTest {
         Playlist playlist = PlaylistTestHelper.generatePlaylist();
         String id = playlist.getId();
         GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-            .withId(id)
-            .withOrder("NOT A VALID ORDER")
-            .build();
+                .withId(id)
+                .withOrder("NOT A VALID ORDER")
+                .build();
 
         // WHEN + THEN
         assertThrows(InvalidAttributeValueException.class, () -> getPlaylistSongsActivity.handleRequest(request));

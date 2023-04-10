@@ -63,7 +63,7 @@ public class UpdatePlaylistActivity {
         if (!MusicPlaylistServiceUtils.isValidString(updatePlaylistRequest.getName())) {
             publishExceptionMetrics(true, false);
             throw new InvalidAttributeValueException("Playlist name [" + updatePlaylistRequest.getName() +
-                                                     "] contains illegal characters");
+                    "] contains illegal characters");
         }
 
         Playlist playlist = playlistDao.getPlaylist(updatePlaylistRequest.getId());
@@ -90,8 +90,8 @@ public class UpdatePlaylistActivity {
     private void publishExceptionMetrics(final boolean isInvalidAttributeValue,
                                          final boolean isInvalidAttributeChange) {
         metricsPublisher.addCount(MetricsConstants.UPDATEPLAYLIST_INVALIDATTRIBUTEVALUE_COUNT,
-            isInvalidAttributeValue ? 1 : 0);
+                isInvalidAttributeValue ? 1 : 0);
         metricsPublisher.addCount(MetricsConstants.UPDATEPLAYLIST_INVALIDATTRIBUTECHANGE_COUNT,
-            isInvalidAttributeChange ? 1 : 0);
+                isInvalidAttributeChange ? 1 : 0);
     }
 }

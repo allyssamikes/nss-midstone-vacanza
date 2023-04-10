@@ -55,11 +55,11 @@ public class AddSongToPlaylistActivityTest {
         when(albumTrackDao.getAlbumTrack(addedAsin, addedTracknumber)).thenReturn(albumTrackToAdd);
 
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-            .withId(playlistId)
-            .withAsin(addedAsin)
-            .withTrackNumber(addedTracknumber)
-            .withCustomerId(customerId)
-            .build();
+                .withId(playlistId)
+                .withAsin(addedAsin)
+                .withTrackNumber(addedTracknumber)
+                .withCustomerId(customerId)
+                .build();
 
         // WHEN
         AddSongToPlaylistResult result = addSongToPlaylistActivity.handleRequest(request);
@@ -77,11 +77,11 @@ public class AddSongToPlaylistActivityTest {
         // GIVEN
         String playlistId = "missing id";
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin("asin")
-                                               .withTrackNumber(1)
-                                               .withCustomerId("doesn't matter")
-                                               .build();
+                .withId(playlistId)
+                .withAsin("asin")
+                .withTrackNumber(1)
+                .withCustomerId("doesn't matter")
+                .build();
         when(playlistDao.getPlaylist(playlistId)).thenThrow(new PlaylistNotFoundException());
 
         // WHEN + THEN
@@ -98,11 +98,11 @@ public class AddSongToPlaylistActivityTest {
         String asin = "nonexistent asin";
         int trackNumber = -1;
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin(asin)
-                                               .withTrackNumber(trackNumber)
-                                               .withCustomerId(cusomerId)
-                                               .build();
+                .withId(playlistId)
+                .withAsin(asin)
+                .withTrackNumber(trackNumber)
+                .withCustomerId(cusomerId)
+                .build();
 
         // WHEN
         when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
@@ -130,12 +130,12 @@ public class AddSongToPlaylistActivityTest {
         when(albumTrackDao.getAlbumTrack(addedAsin, addedTracknumber)).thenReturn(albumTrackToAdd);
 
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin(addedAsin)
-                                               .withTrackNumber(addedTracknumber)
-                                               .withQueueNext(false)
-                                               .withCustomerId(customerId)
-                                               .build();
+                .withId(playlistId)
+                .withAsin(addedAsin)
+                .withTrackNumber(addedTracknumber)
+                .withQueueNext(false)
+                .withCustomerId(customerId)
+                .build();
 
         // WHEN
         AddSongToPlaylistResult result = addSongToPlaylistActivity.handleRequest(request);
@@ -166,12 +166,12 @@ public class AddSongToPlaylistActivityTest {
         when(albumTrackDao.getAlbumTrack(addedAsin, addedTracknumber)).thenReturn(albumTrackToAdd);
 
         AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
-                                               .withId(playlistId)
-                                               .withAsin(addedAsin)
-                                               .withTrackNumber(addedTracknumber)
-                                               .withQueueNext(true)
-                                               .withCustomerId(customerId)
-                                               .build();
+                .withId(playlistId)
+                .withAsin(addedAsin)
+                .withTrackNumber(addedTracknumber)
+                .withQueueNext(true)
+                .withCustomerId(customerId)
+                .build();
 
         // WHEN
         AddSongToPlaylistResult result = addSongToPlaylistActivity.handleRequest(request);

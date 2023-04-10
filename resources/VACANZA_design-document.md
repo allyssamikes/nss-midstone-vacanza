@@ -103,8 +103,8 @@ Class Diagram here:
 # 7. Tables
 ### 7.1`ACTIVITY`
 ```
-String name // partition key
-String city,country // sort key 
+String name // sort key  
+String city,country // partition key
 String address 
 ENUM typeOfActivity
 Boolean kidFriendly
