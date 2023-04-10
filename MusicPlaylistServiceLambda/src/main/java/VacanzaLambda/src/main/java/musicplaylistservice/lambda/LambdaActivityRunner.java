@@ -1,7 +1,6 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.lambda;
 
-import VacanzaLambda.src.main.java.musicplaylistservice.dependency.VServiceComponent;
-import com.nashss.se.musicplaylistservice.dependency.DaggerServiceComponent;
+import VacanzaLambda.src.main.java.musicplaylistservice.dependency.ServiceComponent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +9,7 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 public class LambdaActivityRunner<TRequest, TResult> {
-    private VServiceComponent service;
+    private ServiceComponent service;
     private final Logger log = LogManager.getLogger();
 
     /**
@@ -21,11 +20,11 @@ public class LambdaActivityRunner<TRequest, TResult> {
      */
     protected LambdaResponse runActivity(
             Supplier<TRequest> requestSupplier,
-            BiFunction<TRequest, VServiceComponent, TResult> handleRequest) {
+            BiFunction<TRequest, ServiceComponent, TResult> handleRequest) {
         log.info("runActivity");
         try {
             TRequest request = requestSupplier.get();
-            VServiceComponent serviceComponent = getService();
+            ServiceComponent serviceComponent = getService();
             TResult result = handleRequest.apply(request, serviceComponent);
             return LambdaResponse.success(result);
         } catch (Exception e) {
@@ -33,7 +32,7 @@ public class LambdaActivityRunner<TRequest, TResult> {
         }
     }
 
-    private VServiceComponent getService() {
+    private ServiceComponent getService() {
         log.info("getService");
         if (service == null) {
             service = DaggerServiceComponent.create();
