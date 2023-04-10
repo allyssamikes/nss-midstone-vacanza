@@ -79,22 +79,24 @@ Class Diagram here:
      Output: List of Activities
 ### 6.3. Accepts POST Requests of creating an Itinerary
 ```
-   Input: userId and title
-   Output: new Itinerary
+   Input: email  and title, city, List<Activity>, List<String> users
+      Output: new Itinerary
 ```
 ### 6.4. Accepts POST Requests of adding Activities to the database
    ```
-   Input: name and address
+   Input: name and city/country,  address, typeOfActivity, kidFriendly, weatherPermitting
    Output: new Activity
 ```
 ### 6.5. Accepts POST Requests of adding Activities to an Itinerary
 ```
-    Input: itinerary id; activity id of activity
+    Input: email/title, name/city,country
+    itineraryID? activtiyID?
     Output: updated itinerary – list of activities (optional, though this is what our model does)
 ```
 ### 6.6. Accepts PUT Requests to remove Activities from List in Itinerary
    ```
-     Input: itinerary id; activity id of activity to remove
+    Input: email/title, name/city,country
+    itineraryID? activtiyID?
     Output: itinerary (optional)
 ```
 
@@ -114,8 +116,8 @@ and the sort key of type for queries like Berlin dancing or Berlin thrifting, et
 ### 7.2 `ITINERARY`
 
 ```
-String title  // partition key 
-String usernameId // sort key 
+String title  // sort key 
+String email // partition key 
 String city
 List<Activities>
 List<String> users
