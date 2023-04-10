@@ -9,7 +9,7 @@ public class Activity{
     private String name;
     private String cityCountry;
     private String  address;
-    private Enum TYPE_OF_ACTIVITY;
+    private TYPE_OF_ACTIVITY type;
     private Boolean kidFriendly;
     private Boolean weatherPermitting;
 
@@ -38,12 +38,12 @@ public class Activity{
         this.address = address;
     }
     @DynamoDBAttribute(attributeName = "type_of_activity")
-    public Enum getTYPE_OF_ACTIVITY() {
-        return TYPE_OF_ACTIVITY;
+    public TYPE_OF_ACTIVITY getTYPE_OF_ACTIVITY() {
+        return type;
     }
 
-    public void setTYPE_OF_ACTIVITY(Enum TYPE_OF_ACTIVITY) {
-        this.TYPE_OF_ACTIVITY = TYPE_OF_ACTIVITY;
+    public void setTYPE_OF_ACTIVITY(TYPE_OF_ACTIVITY type) {
+        this.type = type;
     }
 
     @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
