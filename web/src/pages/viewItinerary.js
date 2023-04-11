@@ -91,33 +91,33 @@ class ViewItinerary extends BindingClass {
      * Method to run when the add activity Itinerary submit button is pressed. Call the MusicPlaylistService to add an activity to the
      * itinerary.
      */
-//    async addActivity() {
-//
-//        const errorMessageDisplay = document.getElementById('error-message');
-//        errorMessageDisplay.innerText = ``;
-//        errorMessageDisplay.classList.add('hidden');
-//
-//        const itinerary = this.dataStore.get('itinerary);
-//        if (itinerary == null) {
-//            return;
-//        }
-//
-//        document.getElementById('add-activity').innerText = 'Adding...';
-//        const name = document.getElementById('activity-name).value;
-//        const cityCountry = document.getElementById('cityCountry').value;
-//        const email = email;
-//
-//        const songList = await this.client.addSongToPlaylist(playlistId, asin, trackNumber, (error) => {
-//            errorMessageDisplay.innerText = `Error: ${error.message}`;
-//            errorMessageDisplay.classList.remove('hidden');
-//        });
-//
-//        this.dataStore.set('songs', songList);
-//
-//        document.getElementById('add-song').innerText = 'Add Song';
-//        document.getElementById("add-song-form").reset();
-//    }
-//}
+    async addActivity() {
+
+        const errorMessageDisplay = document.getElementById('error-message');
+        errorMessageDisplay.innerText = ``;
+        errorMessageDisplay.classList.add('hidden');
+
+        const itinerary = this.dataStore.get('itinerary');
+        if (itinerary == null) {
+            return;
+        }
+
+        document.getElementById('add-activity').innerText = 'Adding...';
+        const name = document.getElementById('activity-name').value;
+        const cityCountry = document.getElementById('cityCountry').value;
+        const email = email;
+
+        const songList = await this.client.addSongToPlaylist(playlistId, asin, trackNumber, (error) => {
+            errorMessageDisplay.innerText = `Error: ${error.message}`;
+            errorMessageDisplay.classList.remove('hidden');
+        });
+
+        this.dataStore.set('songs', songList);
+
+        document.getElementById('add-song').innerText = 'Add Song';
+        document.getElementById("add-song-form").reset();
+    }
+}
 
 /**
  * Main method to run when the page contents have loaded.

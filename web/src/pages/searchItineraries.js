@@ -117,7 +117,7 @@ class SearchItineraries extends BindingClass {
             html += `
             <tr>
                 <td>
-                    <a href="itinerary.html?id=${res.id}">${res.name}</a>
+                    <a href="itinerary.html?email=${res.email}">${res.name}</a>
                 </td>
                 <td>${res.songCount}</td>
                 <td>${res.tags?.join(', ')}</td>
