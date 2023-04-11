@@ -1,7 +1,7 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Itinerary;
-import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
+import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ItineraryNotFoundException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
 
@@ -47,7 +47,7 @@ public class ItineraryDao {
 
         if (itinerary == null) {
             metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 1);
-            throw new PlaylistNotFoundException("Could not find itinerary wiht email" + email);
+            throw new ItineraryNotFoundException("Could not find itinerary with email" + email);
         }
         metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 0);
         return itinerary;

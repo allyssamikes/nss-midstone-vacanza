@@ -5,6 +5,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.GetIti
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.GetItineraryResult;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.nashss.se.musicplaylistservice.lambda.LambdaRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

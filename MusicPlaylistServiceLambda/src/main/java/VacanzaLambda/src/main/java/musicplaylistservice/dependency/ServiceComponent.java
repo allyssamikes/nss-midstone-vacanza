@@ -33,23 +33,4 @@ public interface ServiceComponent {
      * @return GetItineraryActivity
      */
     GetItineraryActivity provideGetItineraryActivity();
-//
-//    /**
-//     * Provides the relevant activity.
-//     * @return SearchItinerariesActivity
-//     */
-//    SearchItinerariesActivity provideSearchItinerariesActivity();
-//
-//    /**
-//     * Provides the relevant activity.
-//     * @return GetItineraryActivitiesActivity
-//     */
-//    GetItineraryActivitiesActivity provideGetItineraryActivitiesActivity();
-//
-//    /**
-//     * Provides the relevant activity.
-//     * @return UpdateItineraryActivity
-//     */
-//    UpdateItineraryActivity provideUpdateItineraryActivity();
-//
 }
