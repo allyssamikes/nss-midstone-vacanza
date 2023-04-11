@@ -22,11 +22,11 @@ class ViewItinerary extends BindingClass {
      */
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
-        const playlistId = urlParams.get('id');
-        document.getElementById('playlist-name').innerText = "Loading Itinerary...";
-        const playlist = await this.client.getPlaylist(playlistId);
-        this.dataStore.set('playlist', playlist);
-        document.getElementById('songs').innerText = "(loading songs...)";
+        const email = urlParams.get('email');
+        document.getElementById('itinerary-email').innerText = "Loading Itinerary...";
+        const itinerary = await this.client.getItinerary(email);
+        this.dataStore.set('itinerary', itinerary);
+        document.getElementById('activities').innerText = "(loading activities...)";
         const songs = await this.client.getPlaylistSongs(playlistId);
         this.dataStore.set('songs', songs);
     }
@@ -47,7 +47,7 @@ class ViewItinerary extends BindingClass {
      * When the itinerary  is updated in the datastore, update the itinerary metadata on the page.
      */
     addItineraryToPage() {
-        const itinerary = this.dataStore.get('itinerary"');
+        const itinerary = this.dataStore.get('itinerary');
         if (itinerary == null) {
             return;
         }
@@ -114,8 +114,8 @@ class ViewItinerary extends BindingClass {
 
         this.dataStore.set('songs', songList);
 
-        document.getElementById('add-song').innerText = 'Add Song';
-        document.getElementById("add-song-form").reset();
+        document.getElementById('add-activity').innerText = 'Add Activity';
+        document.getElementById("add-activity-form").reset();
     }
 }
 

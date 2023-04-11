@@ -23,7 +23,7 @@ const EMPTY_DATASTORE_STATE = {
 
 
 /**
- * Logic needed for the view playlist page of the website.
+ * Logic needed for the view itinerary  page of the website.
  */
 class SearchItineraries extends BindingClass {
     constructor() {
@@ -112,15 +112,13 @@ class SearchItineraries extends BindingClass {
             return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
+        let html = '<table><tr><th>Name</th><th>Email</th></tr>';
         for (const res of searchResults) {
             html += `
             <tr>
                 <td>
                     <a href="itinerary.html?email=${res.email}">${res.name}</a>
                 </td>
-                <td>${res.songCount}</td>
-                <td>${res.tags?.join(', ')}</td>
             </tr>`;
         }
         html += '</table>';

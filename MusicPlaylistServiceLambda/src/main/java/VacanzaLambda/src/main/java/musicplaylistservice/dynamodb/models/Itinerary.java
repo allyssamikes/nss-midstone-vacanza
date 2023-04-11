@@ -73,4 +73,15 @@ public class  Itinerary {
     public int hashCode() {
         return Objects.hash(tripName, email, cities, activities, users);
     }
+
+    @Override
+    public String toString() {
+        return "Itinerary{" +
+                "tripName='" + tripName + '\'' +
+                ", email='" + email + '\'' +
+                ", cities=" + cities +
+                ", activities=" + activities +
+                ", users=" + users +
+                '}';
+    }
 }

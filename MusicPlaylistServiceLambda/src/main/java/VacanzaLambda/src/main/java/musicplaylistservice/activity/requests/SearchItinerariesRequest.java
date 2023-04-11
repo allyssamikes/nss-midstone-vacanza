@@ -1,7 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity.requests;
 
-import com.nashss.se.musicplaylistservice.activity.requests.SearchPlaylistsRequest;
-
 public class SearchItinerariesRequest {
     private final String criteria;
 
