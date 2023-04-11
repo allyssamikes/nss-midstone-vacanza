@@ -1,13 +1,12 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity;
 
 
+import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.SearchItinerariesRequest;
+import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.SearchItinerariesResult;
+import VacanzaLambda.src.main.java.musicplaylistservice.converters.VModelConverter;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ItineraryDao;
-import com.nashss.se.musicplaylistservice.activity.requests.SearchPlaylistsRequest;
-import com.nashss.se.musicplaylistservice.activity.results.SearchPlaylistsResult;
-import com.nashss.se.musicplaylistservice.converters.ModelConverter;
-import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
-import com.nashss.se.musicplaylistservice.models.PlaylistModel;
+import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Itinerary;
+import VacanzaLambda.src.main.java.musicplaylistservice.models.ItineraryModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +16,6 @@ import java.util.List;
 import static com.nashss.se.musicplaylistservice.utils.NullUtils.ifNull;
 
 public class SearchItinerariesActivity {
-
     private final Logger log = LogManager.getLogger();
     private final ItineraryDao itineraryDao;
 
@@ -37,23 +35,21 @@ public class SearchItinerariesActivity {
      * <p>
      * It then returns the matching itineraries, or an empty result list if none are found.
      *
-     * @param searchItineraryRequest request object containing the search criteria
+     * @param searchItinerariesRequest request object containing the search criteria
      * @return searchItinerariesResult result object containing the playlists that match the
      * search criteria.
      */
-    public SearchPlaylistsResult handleRequest(final SearchPlaylistsRequest searchPlaylistsRequest) {
-        log.info("Received SearchPlaylistsRequest {}", searchPlaylistsRequest);
+    public SearchItinerariesResult handleRequest(final SearchItinerariesRequest searchItinerariesRequest) {
+        log.info("Received SearchItinerariesRequest {}", searchItinerariesRequest);
 
-        String criteria = ifNull(searchPlaylistsRequest.getCriteria(), "");
+        String criteria = ifNull(searchItinerariesRequest.getCriteria(), "");
         String[] criteriaArray = criteria.isBlank() ? new String[0] : criteria.split("\\s");
 
-        List<Playlist> results = playlistDao.searchPlaylists(criteriaArray);
-        List<PlaylistModel> playlistModels = new ModelConverter().toPlaylistModelList(results);
+        List<Itinerary> results = itineraryDao.searchItinerary(criteriaArray);
+        List<ItineraryModel> itineraryModels = new VModelConverter().toItineraryModelList(results);
 
-        return SearchPlaylistsResult.builder()
-                .withPlaylists(playlistModels)
+        return SearchItinerariesResult.builder()
+                .withItineraries(itineraryModels)
                 .build();
     }
-}
-
 }

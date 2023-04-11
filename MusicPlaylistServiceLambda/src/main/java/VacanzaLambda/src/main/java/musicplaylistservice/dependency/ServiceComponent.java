@@ -14,23 +14,16 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules = {DaoModule.class, MetricsModule.class})
 public interface ServiceComponent {
-//
-//    /**
-//     * Provides the relevant activity.
-//     * @return AddActivityToItineraryActivity
-//     */
-//    AddActivityToItineraryActivity provideAddActivityToItineraryActivity();
-//
-//    /**
-//     * Provides the relevant activity.
-//     * @return CreateItineraryActivity
-//     */
-//    CreateItineraryActivity provideCreateItineraryActivity();
-
     /**
      * Provides the relevant activity.
      *
      * @return GetItineraryActivity
      */
     GetItineraryActivity provideGetItineraryActivity();
+    /**
+     * Provides the relevant activity.
+     *
+     * @return SearchItinerariesActivity
+     */
+    SearchItinerariesActivity provideSearchItinerariesActivity();
 }

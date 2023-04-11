@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 @DynamoDBTable(tableName = "itineraries")
-public class Itinerary {
+public class  Itinerary {
     private String tripName;
     private String email;
     private List<String> cities;
