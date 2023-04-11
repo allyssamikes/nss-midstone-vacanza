@@ -89,9 +89,9 @@ public class ItineraryDao {
                 valueMap.put(valueMapNamePrefix + i,
                         new AttributeValue().withS(criteria[i]));
                 nameFilterExpression.append(
-                        filterExpressionPart("playlistName", valueMapNamePrefix, i));
+                        filterExpressionPart("tripName", valueMapNamePrefix, i));
                 tagsFilterExpression.append(
-                        filterExpressionPart("tags", valueMapNamePrefix, i));
+                        filterExpressionPart("cities", valueMapNamePrefix, i));
             }
 
             dynamoDBScanExpression.setExpressionAttributeValues(valueMap);
