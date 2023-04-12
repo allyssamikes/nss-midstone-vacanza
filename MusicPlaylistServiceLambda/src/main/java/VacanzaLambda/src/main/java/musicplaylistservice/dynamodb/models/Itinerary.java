@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-@DynamoDBTable(tableName = "itineraries")
+@DynamoDBTable(tableName = "Itineraries")
 public class  Itinerary {
     private String tripName;
     private String email;
@@ -17,7 +17,7 @@ public class  Itinerary {
     private List<String> users;
 
 
-    @DynamoDBRangeKey(attributeName = "trip_name")
+    @DynamoDBRangeKey(attributeName = "tripName")
     public String getTripName() {
         return tripName;
     }

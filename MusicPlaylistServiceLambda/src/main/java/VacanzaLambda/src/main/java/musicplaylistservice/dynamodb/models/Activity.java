@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 
 
-@DynamoDBTable(tableName = "activities")
+@DynamoDBTable(tableName = "Activities")
 public class Activity{
     private String name;
     private String cityCountry;
