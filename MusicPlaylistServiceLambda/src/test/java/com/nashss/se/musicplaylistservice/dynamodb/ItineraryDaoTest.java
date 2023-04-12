@@ -40,14 +40,14 @@ public class ItineraryDaoTest {
         // GIVEN
         String email = "email";
         String tripName = "tripName";
-        when(dynamoDBMapper.load(Itinerary.class, email)).thenReturn(new Itinerary());
+        when(dynamoDBMapper.load(Itinerary.class, email, tripName)).thenReturn(new Itinerary());
 
         // WHEN
-        Itinerary itinerary= itineraryDao.getItinerary(email);
+        Itinerary itinerary= itineraryDao.getItinerary(email, tripName);
 
         // THEN
         assertNotNull(itinerary);
-        verify(dynamoDBMapper).load(Itinerary.class, email);
+        verify(dynamoDBMapper).load(Itinerary.class, email, tripName);
         verify(metricsPublisher).addCount(eq(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT), anyDouble());
 
     }
@@ -59,7 +59,7 @@ public class ItineraryDaoTest {
         when(dynamoDBMapper.load(Itinerary.class, nonexistentItinerary)).thenReturn(null);
 
         // WHEN + THEN
-        assertThrows(ItineraryNotFoundException.class, () ->itineraryDao.getItinerary(nonexistentItinerary));
+        assertThrows(ItineraryNotFoundException.class, () ->itineraryDao.getItinerary(nonexistentItinerary, nonexistentItinerary));
 
         verify(metricsPublisher).addCount(eq(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT), anyDouble());
     }

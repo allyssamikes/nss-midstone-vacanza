@@ -3,24 +3,25 @@ package VacanzaLambda.src.main.java.musicplaylistservice.activity.requests;
 public class GetItineraryRequest {
 
     private final String email;
-//    private final String tripName;
+    private final String tripName;
 
-    private GetItineraryRequest(String email) {
+    private GetItineraryRequest(String email, String tripName) {
         this.email = email;
+        this.tripName = tripName;
     }
 
     public String getEmail() {
         return email;
     }
-//    public String getTripName() {
-//        return tripName;
-//    }
+    public String getTripName() {
+        return tripName;
+    }
 
     @Override
     public String toString() {
         return "GetItineraryRequest{" +
                 "email='" + email + '\'' +
-//                "tripName=" + tripName +  '\'' +
+                "tripName=" + tripName +  '\'' +
                 '}';
     }
 
@@ -45,7 +46,7 @@ public class GetItineraryRequest {
         }
 
         public GetItineraryRequest build() {
-            return new GetItineraryRequest(email);
+            return new GetItineraryRequest(email, tripName);
         }
     }
 }

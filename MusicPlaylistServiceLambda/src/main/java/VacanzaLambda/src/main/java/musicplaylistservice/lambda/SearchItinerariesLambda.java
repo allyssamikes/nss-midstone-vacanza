@@ -6,7 +6,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.SearchI
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import com.nashss.se.musicplaylistservice.lambda.LambdaRequest;
+import VacanzaLambda.src.main.java.musicplaylistservice.lambda.LambdaRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,4 +30,3 @@ public class SearchItinerariesLambda
         );
     }
 }
-

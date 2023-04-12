@@ -91,11 +91,11 @@ paths:
         "500":
           description: "Invalid input parameters"
 
-  /itineraries/{email}:
-    get:
+  /itineraries/{email}/{tripName}:
+  get:
       tags:
         - Itineraries
-      summary: Get an itinerary
+      summary: Get an itinerary (GetItineraryLambda)
       parameters:
         - name: email
           in: path
@@ -116,7 +116,7 @@ paths:
         "500":
           description: "Invalid input parameters"
 
-    put:
+  put:
       tags:
         - Playlists
       summary: Update the name of an existing playlist (UpdatePlaylistLambda)

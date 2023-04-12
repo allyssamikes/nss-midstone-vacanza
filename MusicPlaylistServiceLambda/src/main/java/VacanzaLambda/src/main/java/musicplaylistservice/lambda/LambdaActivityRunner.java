@@ -1,5 +1,6 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.lambda;
 
+import VacanzaLambda.src.main.java.musicplaylistservice.dependency.DaggerServiceComponent;
 import VacanzaLambda.src.main.java.musicplaylistservice.dependency.ServiceComponent;
 
 import org.apache.logging.log4j.LogManager;
@@ -35,8 +36,7 @@ public class LambdaActivityRunner<TRequest, TResult> {
     private ServiceComponent getService() {
         log.info("getService");
         if (service == null) {
-            service = null;
-                 //   DaggerServiceComponent.create();
+            service = DaggerServiceComponent.create();
         }
         return service;
     }

@@ -42,8 +42,10 @@ public class ItineraryDao {
      * @param email the Itinerary email
      * @return the stored Itinerary, or null if none was found.
      */
-    public Itinerary getItinerary(String email) {
-        Itinerary itinerary = this.dynamoDbMapper.load(Itinerary.class, email);
+    public Itinerary getItinerary(String email, String tripName) {
+        System.out.println("ITINERARYDAO46");
+        Itinerary itinerary = this.dynamoDbMapper.load(Itinerary.class, email, tripName);
+        System.out.println("ITINERARYDAO48");
 
         if (itinerary == null) {
             metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 1);
