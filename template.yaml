@@ -399,12 +399,12 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "city_country"
+        - AttributeName: "cityCountry"
           AttributeType: "S"
         - AttributeName: "name"
           AttributeType: "S"
       KeySchema:
-          - AttributeName: "city_country"
+          - AttributeName: "cityCountry"
             KeyType: "HASH"
           - AttributeName: "name"
             KeyType: "RANGE"
