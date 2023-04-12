@@ -14,15 +14,16 @@ export default class MusicPlaylistClient extends BindingClass {
 
     constructor(props = {}) {
         super();
-
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getItinerary', 'getItineraryActivities', 'createItinerary'];
+ console.log("client 0");
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow', 'getItinerary', 'getItineraryActivities', 'createItinerary', 'addSongToPlaylist'];
         this.bindClassMethods(methodsToBind, this);
-
-        this.authenticator = new Authenticator();;
+     console.log("client 1");
+        this.authenticator = new Authenticator();
         this.props = props;
-
+  console.log("client 2");
         axios.defaults.baseURL = process.env.API_BASE_URL;
         this.axiosClient = axios;
+          console.log("client 3"+  axios.defaults.baseURL);
         this.clientLoaded();
     }
 
@@ -92,7 +93,7 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The list of songs on a playlist.
      */
-    async getPlaylistSongs(id, errorCallback) {
+    async getItineraryActivities(email, errorCallback) {
         try {
             const response = await this.axiosClient.get(`playlists/${id}/songs`);
             return response.data.songList;

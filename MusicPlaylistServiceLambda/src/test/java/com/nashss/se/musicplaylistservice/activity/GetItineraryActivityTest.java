@@ -38,7 +38,7 @@ public class GetItineraryActivityTest {
         itinerary.setTripName(expectedTripName);
 
 
-        when(itineraryDao.getItinerary(expectedEmail, expectedTripName)).thenReturn(itinerary);
+        when(itineraryDao.getItinerary(expectedEmail)).thenReturn(itinerary);
 
         GetItineraryRequest request = GetItineraryRequest.builder()
                 .withEmail(expectedEmail)

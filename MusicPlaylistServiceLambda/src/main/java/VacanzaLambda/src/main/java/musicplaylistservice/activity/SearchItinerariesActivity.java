@@ -41,7 +41,7 @@ public class SearchItinerariesActivity {
      */
     public SearchItinerariesResult handleRequest(final SearchItinerariesRequest searchItinerariesRequest) {
         log.info("Received SearchItinerariesRequest {}", searchItinerariesRequest);
-
+        System.out.println("ACTIVITY");
         String criteria = ifNull(searchItinerariesRequest.getCriteria(), "");
         String[] criteriaArray = criteria.isBlank() ? new String[0] : criteria.split("\\s");
 

@@ -40,9 +40,9 @@ public class GetItineraryActivity {
     public GetItineraryResult handleRequest(final GetItineraryRequest getItineraryRequest) {
         log.info("Received GetItineraryRequest {}", getItineraryRequest);
         String email = getItineraryRequest.getEmail();
-        String tripName = getItineraryRequest.getTripName();
+       // String tripName = getItineraryRequest.getTripName();
         // TODO: figure out how to partial search for tripName
-        Itinerary itinerary = itineraryDao.getItinerary(email, tripName);
+        Itinerary itinerary = itineraryDao.getItinerary(email);
         ItineraryModel itineraryModel = new VModelConverter().toItineraryModel(itinerary);
 
         return GetItineraryResult.builder()

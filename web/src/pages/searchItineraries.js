@@ -28,12 +28,14 @@ const EMPTY_DATASTORE_STATE = {
 class SearchItineraries extends BindingClass {
     constructor() {
         super();
-
+    console.log("here 1");
         this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults'], this);
-
+   console.log("here 2");
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
+         console.log("here 3");
         this.header = new Header(this.dataStore);
+         console.log("here 4");
         this.dataStore.addChangeListener(this.displaySearchResults);
         console.log("searchItineraries constructor");
     }
