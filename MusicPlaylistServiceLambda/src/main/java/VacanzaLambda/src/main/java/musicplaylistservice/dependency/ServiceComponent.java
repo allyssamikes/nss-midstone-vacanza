@@ -9,20 +9,13 @@ import dagger.Component;
 import javax.inject.Singleton;
 
 /**
- * Dagger component for providing dependency injection in the Music Itinerary Service.
+ * Dagger component for providing dependency injection in the Vacanza Service.
  */
 @Singleton
 @Component(modules = {DaoModule.class, MetricsModule.class})
 public interface ServiceComponent {
-    /**
-     * Provides the relevant activity.
-     * @return AddSongToPlaylistActivity
-     */
+
     CreateItineraryActivity provideCreateItineraryActivity();
 
-    /**
-     * Provides the relevant activity.
-     * @return AddSongToPlaylistActivity
-     */
 
 }

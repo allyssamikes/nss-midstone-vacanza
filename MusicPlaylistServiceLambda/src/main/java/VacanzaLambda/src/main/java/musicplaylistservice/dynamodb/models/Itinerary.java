@@ -62,25 +62,9 @@ public class Itinerary {
         this.users = users;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Itinerary itinerary = (Itinerary) o;
-        return Objects.equals(tripName, itinerary.tripName) && Objects.equals(email, itinerary.email) && Objects.equals(cities, itinerary.cities) && Objects.equals(activities, itinerary.activities) && Objects.equals(users, itinerary.users);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(tripName, email, cities, activities, users);
-    }
-
-
     @DynamoDBAttribute(attributeName = "tags")
     public List<String> getTags() {
-        // normally, we would prefer to return an empty Set if there are no
-        // tags, but DynamoDB doesn't represent empty Sets...needs to be null
-        // instead
+
         if (null == tags) {
             return null;
         }
@@ -103,4 +87,16 @@ public class Itinerary {
 
         this.tags = tags;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Itinerary itinerary = (Itinerary) o;
+        return Objects.equals(tripName, itinerary.tripName) && Objects.equals(email, itinerary.email) && Objects.equals(cities, itinerary.cities) && Objects.equals(activities, itinerary.activities) && Objects.equals(users, itinerary.users);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(tripName, email, cities, activities, users);
+    }
+
 }
