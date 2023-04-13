@@ -5,7 +5,7 @@ import com.amazonaws.services.cloudwatch.model.Dimension;
 import com.amazonaws.services.cloudwatch.model.MetricDatum;
 import com.amazonaws.services.cloudwatch.model.PutMetricDataRequest;
 import com.amazonaws.services.cloudwatch.model.StandardUnit;
-import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
+
 
 import javax.inject.Inject;
 
@@ -69,8 +69,8 @@ public class MetricsPublisher {
                                                         final StandardUnit unit) {
 
         final Dimension service = new Dimension()
-            .withName(com.nashss.se.musicplaylistservice.metrics.MetricsConstants.SERVICE)
-            .withValue(com.nashss.se.musicplaylistservice.metrics.MetricsConstants.SERVICE_NAME);
+            .withName(MetricsConstants.SERVICE)
+            .withValue(MetricsConstants.SERVICE_NAME);
 
         final MetricDatum datum = new MetricDatum()
             .withMetricName(metricName)

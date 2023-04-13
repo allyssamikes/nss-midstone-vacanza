@@ -5,13 +5,11 @@ import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.GetItin
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.nashss.se.musicplaylistservice.lambda.LambdaActivityRunner;
-import com.nashss.se.musicplaylistservice.lambda.LambdaRequest;
-import com.nashss.se.musicplaylistservice.lambda.LambdaResponse;
+
 
 public class GetItineraryActivitiesLambda
         extends LambdaActivityRunner<GetItineraryActivitiesRequest, GetItineraryActivitiesResult>
-        implements RequestHandler<com.nashss.se.musicplaylistservice.lambda.LambdaRequest<GetItineraryActivitiesRequest>, com.nashss.se.musicplaylistservice.lambda.LambdaResponse> {
+        implements RequestHandler<LambdaRequest<GetItineraryActivitiesRequest>, LambdaResponse> {
 
     /**
      * Handles a Lambda Function request

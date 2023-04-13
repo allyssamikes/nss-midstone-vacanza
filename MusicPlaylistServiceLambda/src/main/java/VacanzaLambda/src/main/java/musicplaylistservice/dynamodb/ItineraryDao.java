@@ -1,9 +1,9 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Itinerary;
-import com.nashss.se.musicplaylistservice.exceptions.PlaylistNotFoundException;
-import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
-import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
+import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ItineraryNotFoundException;
+import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants;
+import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
@@ -46,22 +46,22 @@ public class ItineraryDao {
         Itinerary playlist = this.dynamoDbMapper.load(Itinerary.class, id);
 
         if (playlist == null) {
-            metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 1);
-            throw new PlaylistNotFoundException("Could not find playlist with id " + id);
+            metricsPublisher.addCount(MetricsConstants.GETINTERARY_PLAYLISTNOTFOUND_COUNT, 1);
+            throw new ItineraryNotFoundException("Could not find playlist with id " + id);
         }
-        metricsPublisher.addCount(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT, 0);
+        metricsPublisher.addCount(MetricsConstants.GETINTERARY_PLAYLISTNOTFOUND_COUNT, 0);
         return playlist;
     }
 
     /**
      * Saves (creates or updates) the given playlist.
      *
-     * @param playlist The playlist to save
+     * @param itinerary to save
      * @return The Itinerary object that was saved
      */
-    public Itinerary savePlaylist(Itinerary playlist) {
-        this.dynamoDbMapper.save(playlist);
-        return playlist;
+    public Itinerary saveItinerary(Itinerary itinerary) {
+        this.dynamoDbMapper.save(itinerary);
+        return itinerary;
     }
 
     /**

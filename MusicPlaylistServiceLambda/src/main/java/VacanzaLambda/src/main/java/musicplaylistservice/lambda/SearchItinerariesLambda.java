@@ -7,14 +7,11 @@ import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.SearchI
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import com.nashss.se.musicplaylistservice.lambda.LambdaActivityRunner;
-import com.nashss.se.musicplaylistservice.lambda.LambdaRequest;
-import com.nashss.se.musicplaylistservice.lambda.LambdaResponse;
 
 
 public class SearchItinerariesLambda
         extends LambdaActivityRunner<SearchItinerariesRequest, SearchItinerariesResult>
-        implements RequestHandler<com.nashss.se.musicplaylistservice.lambda.LambdaRequest<SearchItinerariesRequest>, com.nashss.se.musicplaylistservice.lambda.LambdaResponse> {
+        implements RequestHandler<LambdaRequest<SearchItinerariesRequest>, LambdaResponse> {
 
     /**
      * Handles a Lambda Function request

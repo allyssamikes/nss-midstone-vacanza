@@ -2,6 +2,7 @@ package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,9 +16,9 @@ public class Itinerary {
     private List<Activity> activities;
 
     private List<String> users;
+    private List<String> tags;
 
-
-    @DynamoDBRangeKey(attributeName = "triName")
+    @DynamoDBRangeKey(attributeName = "tripName")
     public String getTripName() {
         return tripName;
     }
@@ -72,5 +73,34 @@ public class Itinerary {
     @Override
     public int hashCode() {
         return Objects.hash(tripName, email, cities, activities, users);
+    }
+
+
+    @DynamoDBAttribute(attributeName = "tags")
+    public List<String> getTags() {
+        // normally, we would prefer to return an empty Set if there are no
+        // tags, but DynamoDB doesn't represent empty Sets...needs to be null
+        // instead
+        if (null == tags) {
+            return null;
+        }
+
+        return new ArrayList<>(tags);
+    }
+
+    /**
+     * Sets the tags for this Playlist as a copy of input, or null if input is null.
+     *
+     * @param tags Set of tags for this playlist
+     */
+    public void setTags(List<String> tags) {
+        // see comment in getTags()
+        if (null == tags) {
+            this.tags = null;
+        } else {
+            this.tags = new ArrayList<>(tags);
+        }
+
+        this.tags = tags;
     }
 }

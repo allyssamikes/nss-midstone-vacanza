@@ -6,13 +6,11 @@ import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.UpdateI
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.nashss.se.musicplaylistservice.lambda.AuthenticatedLambdaRequest;
-import com.nashss.se.musicplaylistservice.lambda.LambdaActivityRunner;
-import com.nashss.se.musicplaylistservice.lambda.LambdaResponse;
+
 
 public class UpdateItineraryLambda
         extends LambdaActivityRunner<UpdateItineraryRequest, UpdateItineraryResult>
-        implements RequestHandler<com.nashss.se.musicplaylistservice.lambda.AuthenticatedLambdaRequest<UpdateItineraryRequest>, com.nashss.se.musicplaylistservice.lambda.LambdaResponse> {
+        implements RequestHandler<AuthenticatedLambdaRequest<UpdateItineraryRequest>, LambdaResponse> {
 
     /**
      * Handles a Lambda Function request
