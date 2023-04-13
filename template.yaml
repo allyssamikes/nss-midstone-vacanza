@@ -201,21 +201,7 @@ Resources:
                 - logs:PutLogEvents
                 - cloudwatch:PutMetricData
               Resource: '*'
-        - PolicyName: 'AccessItinerariesTable'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-            - Effect: Allow
-              Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Itineraries"
-                
-        - PolicyName: 'AccessActivitiesTable'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-            - Effect: Allow
-              Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Activities"
+
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -393,7 +379,7 @@ Resources:
         - AttributeName: "tripName"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Itineraries"
+      TableName: "itineraries"
 
   ActivitiesTable:
     Type: AWS::DynamoDB::Table
@@ -409,7 +395,7 @@ Resources:
           - AttributeName: "name"
             KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Activities"
+      TableName: "activities"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
