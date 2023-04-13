@@ -3,8 +3,8 @@ package com.nashss.se.musicplaylistservice.dynamodb;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ItineraryDao;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Itinerary;
 import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ItineraryNotFoundException;
-import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
-import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
+import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants;
+import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +48,7 @@ public class ItineraryDaoTest {
         // THEN
         assertNotNull(itinerary);
         verify(dynamoDBMapper).load(Itinerary.class, email, tripName);
-        verify(metricsPublisher).addCount(eq(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT), anyDouble());
+        verify(metricsPublisher).addCount(eq(MetricsConstants.GETINTERARY_ITINERARYNOTFOUND_COUNT), anyDouble());
 
     }
 
@@ -61,7 +61,7 @@ public class ItineraryDaoTest {
         // WHEN + THEN
         assertThrows(ItineraryNotFoundException.class, () ->itineraryDao.getItinerary(nonexistentItinerary, nonexistentItinerary));
 
-        verify(metricsPublisher).addCount(eq(MetricsConstants.GETPLAYLIST_PLAYLISTNOTFOUND_COUNT), anyDouble());
+        verify(metricsPublisher).addCount(eq(MetricsConstants.GETINTERARY_ITINERARYNOTFOUND_COUNT), anyDouble());
     }
 
     @Test

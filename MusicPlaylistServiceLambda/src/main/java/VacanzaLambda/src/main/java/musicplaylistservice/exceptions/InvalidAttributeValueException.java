@@ -1,6 +1,6 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.exceptions;
 
-import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeException;
+import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.InvalidAttributeException;
 
 /**
  * Exception to throw when a provided value has invalid attribute values.

@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.nashss.se.musicplaylistservice.utils.NullUtils.ifNotNull;
+import static VacanzaLambda.src.main.java.musicplaylistservice.utils.NullUtils.ifNotNull;
 
 /**
  * Various helpful utilities for converting collections.

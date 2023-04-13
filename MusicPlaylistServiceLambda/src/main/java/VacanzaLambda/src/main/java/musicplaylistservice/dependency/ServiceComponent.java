@@ -2,8 +2,8 @@ package VacanzaLambda.src.main.java.musicplaylistservice.dependency;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.*;
 
-import com.nashss.se.musicplaylistservice.dependency.DaoModule;
-import com.nashss.se.musicplaylistservice.dependency.MetricsModule;
+import VacanzaLambda.src.main.java.musicplaylistservice.dependency.DaoModule;
+import VacanzaLambda.src.main.java.musicplaylistservice.dependency.MetricsModule;
 import dagger.Component;
 
 import javax.inject.Singleton;

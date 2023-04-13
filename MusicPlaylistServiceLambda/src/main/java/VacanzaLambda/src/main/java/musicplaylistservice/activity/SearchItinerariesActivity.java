@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 import java.util.List;
 
-import static com.nashss.se.musicplaylistservice.utils.NullUtils.ifNull;
+import static VacanzaLambda.src.main.java.musicplaylistservice.utils.NullUtils.ifNull;
 
 public class SearchItinerariesActivity {
     private final Logger log = LogManager.getLogger();
