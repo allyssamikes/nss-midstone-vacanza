@@ -7,14 +7,16 @@ import BindingClass from "../util/bindingClass";
 export default class Header extends BindingClass {
     constructor() {
         super();
-
+        console.log("header 1");
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
             'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
+         console.log("header 2");
         this.bindClassMethods(methodsToBind, this);
-
+ console.log("header 3");
         this.client = new MusicPlaylistClient();
+         console.log("header 4");
     }
 
     /**
@@ -35,7 +37,7 @@ export default class Header extends BindingClass {
         const homeButton = document.createElement('a');
         homeButton.classList.add('header_home');
         homeButton.href = 'index.html';
-        homeButton.innerText = 'Playlists';
+        homeButton.innerText = 'Vacanza';
 
         const siteTitle = document.createElement('div');
         siteTitle.classList.add('site-title');

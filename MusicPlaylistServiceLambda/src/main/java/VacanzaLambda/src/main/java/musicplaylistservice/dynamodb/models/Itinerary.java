@@ -7,7 +7,7 @@ import java.util.Objects;
 
 
 @DynamoDBTable(tableName = "itineraries")
-public class Itinerary {
+public class  Itinerary {
     private String tripName;
     private String email;
     private List<String> cities;
@@ -17,7 +17,7 @@ public class Itinerary {
     private List<String> users;
 
 
-    @DynamoDBRangeKey(attributeName = "trip_name")
+    @DynamoDBRangeKey(attributeName = "tripName")
     public String getTripName() {
         return tripName;
     }
@@ -72,5 +72,16 @@ public class Itinerary {
     @Override
     public int hashCode() {
         return Objects.hash(tripName, email, cities, activities, users);
+    }
+
+    @Override
+    public String toString() {
+        return "Itinerary{" +
+                "tripName='" + tripName + '\'' +
+                ", email='" + email + '\'' +
+                ", cities=" + cities +
+                ", activities=" + activities +
+                ", users=" + users +
+                '}';
     }
 }

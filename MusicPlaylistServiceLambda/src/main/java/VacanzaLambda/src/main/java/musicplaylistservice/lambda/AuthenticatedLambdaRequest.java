@@ -2,7 +2,7 @@ package VacanzaLambda.src.main.java.musicplaylistservice.lambda;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.nashss.se.musicplaylistservice.lambda.LambdaRequest;
+import VacanzaLambda.src.main.java.musicplaylistservice.lambda.LambdaRequest;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -53,5 +53,4 @@ public class AuthenticatedLambdaRequest<T> extends LambdaRequest<T> {
 
         return super.MAPPER.readValue(payload, new TypeReference<HashMap<String, String>>() {
         });
-    }
-}
+    }}

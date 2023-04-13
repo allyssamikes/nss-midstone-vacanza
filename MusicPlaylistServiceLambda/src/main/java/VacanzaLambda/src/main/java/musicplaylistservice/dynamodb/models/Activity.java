@@ -21,7 +21,7 @@ public class Activity{
     public void setName(String name) {
         this.name = name;
     }
-    @DynamoDBHashKey(attributeName = "city_country")
+    @DynamoDBHashKey(attributeName = "cityCountry")
     public String getCityCountry() {
         return cityCountry;
     }
