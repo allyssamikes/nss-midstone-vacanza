@@ -26,4 +26,6 @@ public interface ServiceComponent {
      * @return SearchItinerariesActivity
      */
     SearchItinerariesActivity provideSearchItinerariesActivity();
+
+    CreateActivityActivity provideCreateActivityActivity();
 }
