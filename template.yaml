@@ -404,10 +404,10 @@ Resources:
         - AttributeName: "name"
           AttributeType: "S"
       KeySchema:
-          - AttributeName: "cityCountry"
-            KeyType: "HASH"
-          - AttributeName: "name"
-            KeyType: "RANGE"
+        - AttributeName: "cityCountry"
+          KeyType: "HASH"
+        - AttributeName: "name"
+          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "activities"
 
