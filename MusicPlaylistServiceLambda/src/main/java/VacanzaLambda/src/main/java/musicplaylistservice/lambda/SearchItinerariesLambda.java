@@ -19,7 +19,7 @@ public class SearchItinerariesLambda
     @Override
     public LambdaResponse handleRequest(LambdaRequest<SearchItinerariesRequest> input, Context context) {
         log.info("handleRequest");
-        System.out.println("Search Itinerries LAMBDA HANDLE REQUEST");
+        System.out.println("Search Itineraries LAMBDA HANDLE REQUEST");
         return super.runActivity(
             () -> input.fromQuery(query ->
                     SearchItinerariesRequest.builder()

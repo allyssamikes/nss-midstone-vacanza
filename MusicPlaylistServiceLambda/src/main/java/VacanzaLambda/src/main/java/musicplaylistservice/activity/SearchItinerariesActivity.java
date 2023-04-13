@@ -36,7 +36,7 @@ public class SearchItinerariesActivity {
      * It then returns the matching itineraries, or an empty result list if none are found.
      *
      * @param searchItinerariesRequest request object containing the search criteria
-     * @return searchItinerariesResult result object containing the playlists that match the
+     * @return searchItinerariesResult result object containing the itineraries that match the
      * search criteria.
      */
     public SearchItinerariesResult handleRequest(final SearchItinerariesRequest searchItinerariesRequest) {

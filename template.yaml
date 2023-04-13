@@ -305,6 +305,8 @@ Resources:
           Properties:
             Path: /itineraries/search
             Method: get
+            Auth:
+              Authorizer: 'NONE'
 
   GetPlaylistSongsLambda:
     Type: AWS::Serverless::Function

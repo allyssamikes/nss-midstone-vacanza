@@ -69,9 +69,9 @@ public class ItineraryDao {
     /**
      * Perform a search (via a "scan") of the itinerary table for itineraries  matching the given criteria.
      *
-     * Both "tripName" and "tags" attributes are searched.
+     * Both "tripName" and "cities" attributes are searched.
      * The criteria are an array of Strings. Each element of the array is search individually.
-     * ALL elements of the criteria array must appear in the tripName or the tags (or both).
+     * ALL elements of the criteria array must appear in the tripName or the cities (or both).
      * Searches are CASE SENSITIVE.
      *
      * @param criteria an array of String containing search criteria.
@@ -85,20 +85,20 @@ public class ItineraryDao {
             String valueMapNamePrefix = ":c";
 
             StringBuilder nameFilterExpression = new StringBuilder();
-            StringBuilder tagsFilterExpression = new StringBuilder();
+            StringBuilder citiesFilterExpression = new StringBuilder();
 
             for (int i = 0; i < criteria.length; i++) {
                 valueMap.put(valueMapNamePrefix + i,
                         new AttributeValue().withS(criteria[i]));
                 nameFilterExpression.append(
                         filterExpressionPart("tripName", valueMapNamePrefix, i));
-                tagsFilterExpression.append(
+                citiesFilterExpression.append(
                         filterExpressionPart("cities", valueMapNamePrefix, i));
             }
 
             dynamoDBScanExpression.setExpressionAttributeValues(valueMap);
             dynamoDBScanExpression.setFilterExpression(
-                    "(" + nameFilterExpression + ") or (" + tagsFilterExpression + ")");
+                    "(" + nameFilterExpression + ") or (" + citiesFilterExpression + ")");
         }
 
         return this.dynamoDbMapper.scan(Itinerary.class, dynamoDBScanExpression);
