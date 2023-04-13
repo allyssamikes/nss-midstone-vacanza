@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-@DynamoDBTable(tableName = "Itineraries")
+@DynamoDBTable(tableName = "itineraries")
 public class  Itinerary {
     private String tripName;
     private String email;

@@ -3,7 +3,6 @@ package VacanzaLambda.src.main.java.musicplaylistservice.lambda;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.GetItineraryRequest;
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.GetItineraryResult;
-import VacanzaLambda.src.main.java.musicplaylistservice.lambda.LambdaRequest;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
