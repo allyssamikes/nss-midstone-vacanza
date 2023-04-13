@@ -17,7 +17,7 @@ public class Itinerary {
     private List<String> users;
 
 
-    @DynamoDBRangeKey(attributeName = "trip_name")
+    @DynamoDBRangeKey(attributeName = "triName")
     public String getTripName() {
         return tripName;
     }
