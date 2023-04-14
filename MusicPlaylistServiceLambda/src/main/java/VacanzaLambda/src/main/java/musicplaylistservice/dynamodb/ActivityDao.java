@@ -27,7 +27,6 @@ public class ActivityDao {
         this.dynamoDbMapper = dynamoDbMapper;
         this.metricsPublisher = metricsPublisher;
     }
-
     /**
      * Retrieves an AlbumTrack by ASIN and track number.
      *
@@ -46,10 +45,12 @@ public class ActivityDao {
         }
         metricsPublisher.addCount(MetricsConstants.GETACTIVITY_ACTIVITYNOTFOUND_COUNT, 0);
         return activity;
+
     }
     public Activity saveActivity(Activity activity) {
         this.dynamoDbMapper.save(activity);
         return activity;
     }
 }
+
 

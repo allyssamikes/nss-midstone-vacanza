@@ -16,5 +16,6 @@ public class MetricsConstants {
     public static final String SERVICE_NAME = "VACANZA";
     public static final String NAMESPACE_NAME = "U5MIDSTONE/VACANZA";
 
+
 }
 

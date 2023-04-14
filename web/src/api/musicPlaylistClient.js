@@ -14,22 +14,14 @@ export default class MusicPlaylistClient extends BindingClass {
 
     constructor(props = {}) {
         super();
-<<<<<<< HEAD
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getPlaylist', 'getPlaylistSongs',
-        'createPlaylist', 'createItinerary', 'getTokenOrThrow'];
-=======
- console.log("client 0");
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow', 'getItinerary', 'getItineraryActivities', 'createItinerary', 'addSongToPlaylist'];
->>>>>>> main
+
         this.bindClassMethods(methodsToBind, this);
-     console.log("client 1");
         this.authenticator = new Authenticator();
         this.props = props;
-  console.log("client 2");
         axios.defaults.baseURL = process.env.API_BASE_URL;
         this.axiosClient = axios;
-          console.log("client 3"+  axios.defaults.baseURL);
         this.clientLoaded();
     }
 

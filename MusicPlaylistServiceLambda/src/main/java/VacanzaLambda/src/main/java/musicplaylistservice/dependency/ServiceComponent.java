@@ -1,9 +1,9 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dependency;
 
+
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.CreateItineraryActivity;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.*;
-
 
 import VacanzaLambda.src.main.java.musicplaylistservice.dependency.DaoModule;
 import VacanzaLambda.src.main.java.musicplaylistservice.dependency.MetricsModule;
@@ -19,9 +19,8 @@ import javax.inject.Singleton;
 public interface ServiceComponent {
 
 
+
     CreateItineraryActivity provideCreateItineraryActivity();
-
-
 
     /**
      * Provides the relevant activity.
@@ -35,5 +34,6 @@ public interface ServiceComponent {
      * @return SearchItinerariesActivity
      */
     SearchItinerariesActivity provideSearchItinerariesActivity();
+
 }
 

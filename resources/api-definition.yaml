@@ -25,6 +25,33 @@
         "500":
           description: "Invalid input parameters"
 
+
+  /itineraries/{email}/{tripName}:
+  get:
+      tags:
+        - Itineraries
+      summary: Get an itinerary (GetItineraryLambda)
+      parameters:
+        - name: email
+          in: path
+          description: email of itinerary
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ItineraryResponse
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        "500":
+          description: "Invalid input parameters"
+
+
   put:
       tags:
         - Playlists

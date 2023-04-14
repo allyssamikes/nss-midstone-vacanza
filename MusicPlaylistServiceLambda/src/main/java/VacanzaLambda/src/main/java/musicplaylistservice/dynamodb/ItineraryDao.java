@@ -43,9 +43,9 @@ public class ItineraryDao {
      * @return the stored Itinerary, or null if none was found.
      */
     public Itinerary getItinerary(String email, String tripName) {
+<
 
         Itinerary itinerary = this.dynamoDbMapper.load(Itinerary.class, email, tripName);
-
 
 
         if (itinerary == null) {

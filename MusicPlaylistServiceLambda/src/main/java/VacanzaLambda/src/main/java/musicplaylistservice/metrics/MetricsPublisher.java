@@ -6,7 +6,6 @@ import com.amazonaws.services.cloudwatch.model.MetricDatum;
 import com.amazonaws.services.cloudwatch.model.PutMetricDataRequest;
 import com.amazonaws.services.cloudwatch.model.StandardUnit;
 
-
 import javax.inject.Inject;
 
 /**
@@ -70,8 +69,10 @@ public class MetricsPublisher {
 
         final Dimension service = new Dimension()
 
+
             .withName(MetricsConstants.SERVICE)
             .withValue(MetricsConstants.SERVICE_NAME);
+
 
 
         final MetricDatum datum = new MetricDatum()
