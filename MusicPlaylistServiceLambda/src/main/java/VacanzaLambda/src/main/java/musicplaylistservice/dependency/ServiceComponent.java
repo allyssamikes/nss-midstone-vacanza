@@ -39,5 +39,5 @@ public interface ServiceComponent {
      */
     SearchItinerariesActivity provideSearchItinerariesActivity();
 
+    CreateActivityActivity provideCreateActivityActivity();
 }
-
