@@ -56,7 +56,8 @@ class CreateItinerary extends BindingClass {
                 errorMessageDisplay.classList.remove('hidden');
             });
             this.dataStore.set('itinerary', itinerary);
-            //can't really see this, is there a way to add a couple milliseconds?
+            createButton.innerText = 'Complete';
+            createButton.innerText = 'Complete';
             createButton.innerText = 'Complete';
             createButton.innerText = 'Create New Vacation Plan';
         }
