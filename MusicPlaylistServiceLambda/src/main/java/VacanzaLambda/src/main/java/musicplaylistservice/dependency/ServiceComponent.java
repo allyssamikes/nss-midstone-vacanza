@@ -1,5 +1,8 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dependency;
 
+
+import VacanzaLambda.src.main.java.musicplaylistservice.activity.CreateItineraryActivity;
+
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.*;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.dependency.DaoModule;
@@ -9,11 +12,16 @@ import dagger.Component;
 import javax.inject.Singleton;
 
 /**
- * Dagger component for providing dependency injection in the Music Itinerary Service.
+ * Dagger component for providing dependency injection in the Vacanza Service.
  */
 @Singleton
 @Component(modules = {DaoModule.class, MetricsModule.class})
 public interface ServiceComponent {
+
+
+
+    CreateItineraryActivity provideCreateItineraryActivity();
+
     /**
      * Provides the relevant activity.
      *
@@ -26,4 +34,6 @@ public interface ServiceComponent {
      * @return SearchItinerariesActivity
      */
     SearchItinerariesActivity provideSearchItinerariesActivity();
+
 }
+

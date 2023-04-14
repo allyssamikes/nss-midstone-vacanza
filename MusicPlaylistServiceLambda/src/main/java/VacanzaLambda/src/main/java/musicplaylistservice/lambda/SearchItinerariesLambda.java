@@ -10,6 +10,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.lambda.LambdaRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 public class SearchItinerariesLambda
         extends LambdaActivityRunner<SearchItinerariesRequest, SearchItinerariesResult>
         implements RequestHandler<LambdaRequest<SearchItinerariesRequest>, LambdaResponse> {

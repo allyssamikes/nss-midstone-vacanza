@@ -13,13 +13,15 @@ public class ItineraryModel {
     private List<Activity> activities;
 
     private List<String> users;
+    private List<String> tags;
 
-    public ItineraryModel(String tripName, String email, List<String> cities, List<Activity> activities, List<String> users) {
+    public ItineraryModel(String tripName, String email, List<String> cities, List<Activity> activities, List<String> users, List<String> tags) {
         this.tripName = tripName;
         this.email = email;
         this.cities = cities;
         this.activities = activities;
         this.users = users;
+        this.tags = tags;
     }
 
 
@@ -55,12 +57,12 @@ public class ItineraryModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItineraryModel that = (ItineraryModel) o;
-        return Objects.equals(tripName, that.tripName) && Objects.equals(email, that.email) && Objects.equals(cities, that.cities) && Objects.equals(activities, that.activities) && Objects.equals(users, that.users);
+        return Objects.equals(tripName, that.tripName) && Objects.equals(email, that.email) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tripName, email, cities, activities, users);
+        return Objects.hash(tripName, email);
     }
 
     public static class Builder {
@@ -71,6 +73,7 @@ public class ItineraryModel {
         private List<Activity> activities;
 
         private List<String> users;
+        private List<String> tags;
 
         public Builder withTripName(String tripName) {
             this.tripName = tripName;
@@ -96,9 +99,13 @@ public class ItineraryModel {
             this.users = users;
             return this;
         }
+        public Builder withTags(List<String> tags){
+            this.tags = tags;
+            return this;
+        }
 
         public ItineraryModel build() {
-            return new ItineraryModel(tripName, email, cities, activities, users);
+            return new ItineraryModel(tripName, email, cities, activities, users, tags);
         }
     }
 }

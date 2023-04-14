@@ -1,13 +1,17 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb;
+
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ActivityNotFoundException;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 /**
+
  * Accesses data for an activity using {@link Activity} to represent the model in DynamoDB.
+
  */
 @Singleton
 public class ActivityDao {
@@ -41,9 +45,12 @@ public class ActivityDao {
         }
         metricsPublisher.addCount(MetricsConstants.GETACTIVITY_ACTIVITYNOTFOUND_COUNT, 0);
         return activity;
+
     }
     public Activity saveActivity(Activity activity) {
         this.dynamoDbMapper.save(activity);
         return activity;
     }
 }
+
+
