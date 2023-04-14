@@ -450,7 +450,7 @@ Resources:
           MusicPlaylistService:
             Type: Api
             Properties:
-              Path: /itineraries/{email}/{tripName}/activities
+              Path: /itineraries/{tripName}/{email}/activities
               Method: get
 
   #-----------------------------------------------------

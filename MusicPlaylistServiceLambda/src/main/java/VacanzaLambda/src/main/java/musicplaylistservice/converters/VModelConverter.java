@@ -66,4 +66,14 @@ public class VModelConverter {
 
         return itineraryModels;
     }
+
+    public List<ActivityModel> toActivityModelList(List<Activity> activities) {
+        List<ActivityModel> activitiesModels = new ArrayList<>();
+
+        for (Activity a : activities) {
+            activitiesModels.add(toActivityModel(a));
+        }
+
+        return activitiesModels;
+    }
 }
