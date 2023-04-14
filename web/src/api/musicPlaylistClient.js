@@ -16,7 +16,7 @@ export default class MusicPlaylistClient extends BindingClass {
         super();
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
-        'getItinerary', 'getItineraryActivities', 'createItinerary', 'addSongToPlaylist', 'search'];
+        'getItinerary', 'getItineraryActivities', 'createItinerary', 'search'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -108,22 +108,23 @@ export default class MusicPlaylistClient extends BindingClass {
          * @param errorCallback (Optional) A function to execute if the call fails.
          * @returns The itinerary that has been created.
          */
-        async createItinerary(tripName, tags, errorCallback) {
-            try {
-                const token = await this.getTokenOrThrow("Only authenticated users can create itineraries.");
-                const response = await this.axiosClient.post(`itineraries`, {
-                    tripName: tripName,
-                    tags: tags
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                return response.data.itinerary;
-            } catch (error) {
-                this.handleError(error, errorCallback)
-            }
+    async createItinerary(tripName, tags, errorCallback) {
+
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can create itineraries.");
+            const response = await this.axiosClient.post(`itineraries`, {
+                tripName: tripName,
+                tags: tags
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.itinerary;
+        } catch (error) {
+            this.handleError(error, errorCallback)
         }
+    }
 
     /**
      * Add a song to a playlist.
