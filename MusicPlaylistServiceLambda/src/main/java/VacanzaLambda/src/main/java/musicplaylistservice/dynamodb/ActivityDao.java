@@ -1,6 +1,8 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb;
+
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ActivityNotFoundException;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
@@ -24,7 +26,7 @@ public class ActivityDao {
         this.metricsPublisher = metricsPublisher;
     }
     /**
-     * Retrieves an AlbumTrack by ASIN and track number.
+     * Retrieves an Activity by city and name.
      *
      * If not found, throws ItineraryNotFoundException.
      *
@@ -41,9 +43,12 @@ public class ActivityDao {
         }
         metricsPublisher.addCount(MetricsConstants.GETACTIVITY_ACTIVITYNOTFOUND_COUNT, 0);
         return activity;
+
     }
     public Activity saveActivity(Activity activity) {
         this.dynamoDbMapper.save(activity);
         return activity;
     }
 }
+
+

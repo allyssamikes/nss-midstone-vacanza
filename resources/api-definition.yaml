@@ -15,7 +15,41 @@ tags:
     description: View and add songs to playlists
 
 paths:
-
+  /itineraries:
+    post:
+      tags:
+        - Itineraries
+      summary: Create a new itineraries (CreateLambda)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tripName:
+                  type: string
+                email:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: An itineraries object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tripName:
+                    type: string
+                  email:
+                    type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
   /playlists:
     post:
       tags:
@@ -49,8 +83,6 @@ paths:
                     type: string
                   customerId:
                     type: string
-                  songCount:
-                    type: integer
                   tags:
                     type: array
                     items:
@@ -91,32 +123,7 @@ paths:
         "500":
           description: "Invalid input parameters"
 
-  /itineraries/{email}/{tripName}:
-  get:
-      tags:
-        - Itineraries
-      summary: Get an itinerary (GetItineraryLambda)
-      parameters:
-        - name: email
-          in: path
-          description: email of itinerary
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: ItineraryResponse
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-        "500":
-          description: "Invalid input parameters"
-
-  put:
+    put:
       tags:
         - Playlists
       summary: Update the name of an existing playlist (UpdatePlaylistLambda)

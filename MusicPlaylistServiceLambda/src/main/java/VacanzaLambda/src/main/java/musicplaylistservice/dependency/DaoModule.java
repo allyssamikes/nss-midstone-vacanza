@@ -1,6 +1,7 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dependency;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.DynamoDbClientProvider;
+
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import dagger.Module;
