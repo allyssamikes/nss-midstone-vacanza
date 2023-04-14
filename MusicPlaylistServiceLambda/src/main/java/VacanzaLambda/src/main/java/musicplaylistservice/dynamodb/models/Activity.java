@@ -35,6 +35,7 @@ public class Activity{
     public void setAddress(String address) {
         this.address = address;
     }
+    @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "type_of_activity")
     public TYPE_OF_ACTIVITY getTYPE_OF_ACTIVITY() {
         return type;
