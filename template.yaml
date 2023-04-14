@@ -8,7 +8,7 @@ Parameters:
   CognitoDomain:
     Type: String
     Description: A name for the cognito Domain
-    Default: "midstoneprojectteamfive.auth.us-east-2.amazoncognito.com"
+    Default: "midstoneprojectteamfive"
 
   S3Bucket:
     Type: String
