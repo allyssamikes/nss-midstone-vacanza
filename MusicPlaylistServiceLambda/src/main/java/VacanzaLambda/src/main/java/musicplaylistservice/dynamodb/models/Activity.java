@@ -65,4 +65,15 @@ public class Activity{
         this.weatherPermitting = weatherPermitting;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "name='" + name + '\'' +
+                ", cityCountry='" + cityCountry + '\'' +
+                ", address='" + address + '\'' +
+                ", type=" + type +
+                ", kidFriendly=" + kidFriendly +
+                ", weatherPermitting=" + weatherPermitting +
+                '}';
+    }
 }
