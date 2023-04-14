@@ -11,12 +11,9 @@ public class  Itinerary {
     private String tripName;
     private String email;
     private List<String> cities;
-
     private List<Activity> activities;
     private List<String> users;
     private List<String> tags;
-
-
     @DynamoDBRangeKey(attributeName = "tripName")
     public String getTripName() {
         return tripName;
