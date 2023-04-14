@@ -43,10 +43,7 @@ public class ItineraryDao {
      * @return the stored Itinerary, or null if none was found.
      */
     public Itinerary getItinerary(String email, String tripName) {
-<
-
         Itinerary itinerary = this.dynamoDbMapper.load(Itinerary.class, email, tripName);
-
 
         if (itinerary == null) {
             metricsPublisher.addCount(MetricsConstants.GETINTERARY_ITINERARYNOTFOUND_COUNT, 1);
@@ -54,21 +51,17 @@ public class ItineraryDao {
         }
         metricsPublisher.addCount(MetricsConstants.GETINTERARY_ITINERARYNOTFOUND_COUNT, 0);
         return itinerary;
-
     }
 
     /**
      * Saves (creates or updates) the given itinerary
-     *
      * @param itinerary The itinerary to save
-
      * @return The Itinerary object that was saved
      */
     public Itinerary saveItinerary(Itinerary itinerary) {
         this.dynamoDbMapper.save(itinerary);
         return itinerary;
     }
-
     /**
      * Perform a search (via a "scan") of the itinerary table for itineraries  matching the given criteria.
      *
