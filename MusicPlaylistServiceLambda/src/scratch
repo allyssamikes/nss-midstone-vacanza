@@ -5,3 +5,9 @@ curl -v -X GET http://localhost:3000/itineraries/amikes520@gmail.com/Spain2023 -
 
 
 curl localhost:3000/itineraries/{erin.geier@gmail.com}/{PuertoRicoJan2023}
+
+COGNITO_USER_POOL_ID="us-east-2_qExRfR88G"
+COGNITO_USER_POOL_CLIENT_ID="42i1j67l6uo9a4mm69giia1q71"
+
+API_BASE_URL="https://5jay4yx7c0.execute-api.us-east-2.amazonaws.com/Prod/"
+https://yul54w96n3.execute-api.us-east-2.amazonaws.com/Prod/

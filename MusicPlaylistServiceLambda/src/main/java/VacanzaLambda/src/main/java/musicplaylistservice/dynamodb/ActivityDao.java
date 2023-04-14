@@ -9,9 +9,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher
 import javax.inject.Inject;
 import javax.inject.Singleton;
 /**
-
  * Accesses data for an activity using {@link Activity} to represent the model in DynamoDB.
-
  */
 @Singleton
 public class ActivityDao {
@@ -28,7 +26,7 @@ public class ActivityDao {
         this.metricsPublisher = metricsPublisher;
     }
     /**
-     * Retrieves an AlbumTrack by ASIN and track number.
+     * Retrieves an Activity by city and name.
      *
      * If not found, throws ItineraryNotFoundException.
      *

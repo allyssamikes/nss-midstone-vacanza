@@ -9,7 +9,6 @@ import static VacanzaLambda.src.main.java.musicplaylistservice.utils.CollectionU
 @JsonDeserialize(builder = CreateItineraryRequest.Builder.class)
 public class CreateItineraryRequest {
     private final String name;
-
     private final String email;
     private final List<String> tags;
 

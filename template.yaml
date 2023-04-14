@@ -203,21 +203,21 @@ Resources:
               Resource: '*'
 
 
-        - PolicyName: 'AccessPlaylistsTable'
+        - PolicyName: 'AccessItinerariesTable'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
             - Effect: Allow
               Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/playlists"
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/itineraries"
                 
-        - PolicyName: 'AccessAlbum_TracksTable'
+        - PolicyName: 'ActivitiesTable'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
             - Effect: Allow
               Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/album_tracks"
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/activities"
 
 
   #-----------------------------------------------------
