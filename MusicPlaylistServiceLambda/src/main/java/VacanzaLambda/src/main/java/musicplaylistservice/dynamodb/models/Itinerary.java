@@ -6,15 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 @DynamoDBTable(tableName = "itineraries")
-public class Itinerary {
+public class  Itinerary {
     private String tripName;
     private String email;
     private List<String> cities;
 
     private List<Activity> activities;
-
     private List<String> users;
     private List<String> tags;
 
@@ -97,6 +95,17 @@ public class Itinerary {
     @Override
     public int hashCode() {
         return Objects.hash(tripName, email, cities, activities, users);
+    }
+
+    @Override
+    public String toString() {
+        return "Itinerary{" +
+                "tripName='" + tripName + '\'' +
+                ", email='" + email + '\'' +
+                ", cities=" + cities +
+                ", activities=" + activities +
+                ", users=" + users +
+                '}';
     }
 
 }

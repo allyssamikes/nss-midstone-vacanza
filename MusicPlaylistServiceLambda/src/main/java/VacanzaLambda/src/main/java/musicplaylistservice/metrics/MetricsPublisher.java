@@ -69,8 +69,10 @@ public class MetricsPublisher {
                                                         final StandardUnit unit) {
 
         final Dimension service = new Dimension()
+
             .withName(MetricsConstants.SERVICE)
             .withValue(MetricsConstants.SERVICE_NAME);
+
 
         final MetricDatum datum = new MetricDatum()
             .withMetricName(metricName)

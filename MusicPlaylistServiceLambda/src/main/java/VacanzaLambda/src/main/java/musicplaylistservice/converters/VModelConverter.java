@@ -5,6 +5,9 @@ import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Itinerar
 import VacanzaLambda.src.main.java.musicplaylistservice.models.ActivityModel;
 import VacanzaLambda.src.main.java.musicplaylistservice.models.ItineraryModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Converts between Data and API models.
  */
@@ -48,19 +51,19 @@ public class VModelConverter {
 //        return songModels;
 //    }
 //
-//    /**
-//     * Converts a list of Playlists to a list of PlaylistModels.
-//     *
-//     * @param playlists The Playlists to convert to PlaylistModels
-//     * @return The converted list of PlaylistModels
-//     */
-//    public List<PlaylistModel> toPlaylistModelList(List<Itinerary> playlists) {
-//        List<PlaylistModel> playlistModels = new ArrayList<>();
-//
-//        for (Itinerary playlist : playlists) {
-//            playlistModels.add(toPlaylistModel(playlist));
-//        }
-//
-//        return playlistModels;
-//    }
+    /**
+     * Converts a list of Itineraries to a list of ItineraryModels.
+     *
+     * @param itineraries The Itinerary to convert to ItineraryModels
+     * @return The converted list of ItineraryModels
+     */
+    public List<ItineraryModel> toItineraryModelList(List<Itinerary> itineraries) {
+        List<ItineraryModel> itineraryModels = new ArrayList<>();
+
+        for (Itinerary i : itineraries) {
+            itineraryModels.add(toItineraryModel(i));
+        }
+
+        return itineraryModels;
+    }
 }

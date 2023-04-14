@@ -202,6 +202,22 @@ Resources:
                 - cloudwatch:PutMetricData
               Resource: '*'
 
+        - PolicyName: 'AccessPlaylistsTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action: dynamodb:*
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/playlists"
+                
+        - PolicyName: 'AccessAlbum_TracksTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action: dynamodb:*
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/album_tracks"
+
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -229,6 +245,27 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+  GetItineraryLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: MusicPlaylistServiceLambda
+      Handler: VacanzaLambda.src.main.java.musicplaylistservice.lambda.GetItineraryLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /itineraries/{email}/{tripName}
+            Method: get
+
+
   SearchPlaylistsLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -247,6 +284,28 @@ Resources:
           Type: Api
           Properties:
             Path: /playlists/search
+            Method: get
+            Auth:
+              Authorizer: 'NONE'
+
+  SearchItinerariesLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: MusicPlaylistServiceLambda
+      Handler: VacanzaLambda.src.main.java.musicplaylistservice.lambda.SearchItinerariesLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /itineraries/search
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -409,10 +468,10 @@ Resources:
         - AttributeName: "name"
           AttributeType: "S"
       KeySchema:
-          - AttributeName: "cityCountry"
-            KeyType: "HASH"
-          - AttributeName: "name"
-            KeyType: "RANGE"
+        - AttributeName: "cityCountry"
+          KeyType: "HASH"
+        - AttributeName: "name"
+          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "activities"
 

@@ -14,16 +14,22 @@ export default class MusicPlaylistClient extends BindingClass {
 
     constructor(props = {}) {
         super();
+<<<<<<< HEAD
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getPlaylist', 'getPlaylistSongs',
         'createPlaylist', 'createItinerary', 'getTokenOrThrow'];
+=======
+ console.log("client 0");
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow', 'getItinerary', 'getItineraryActivities', 'createItinerary', 'addSongToPlaylist'];
+>>>>>>> main
         this.bindClassMethods(methodsToBind, this);
-
-        this.authenticator = new Authenticator();;
+     console.log("client 1");
+        this.authenticator = new Authenticator();
         this.props = props;
-
+  console.log("client 2");
         axios.defaults.baseURL = process.env.API_BASE_URL;
         this.axiosClient = axios;
+          console.log("client 3"+  axios.defaults.baseURL);
         this.clientLoaded();
     }
 
@@ -78,10 +84,10 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The playlist's metadata.
      */
-    async getPlaylist(id, errorCallback) {
+    async getItinerary(email, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`playlists/${id}`);
-            return response.data.playlist;
+            const response = await this.axiosClient.get(`itineraries/${email}`);
+            return response.data.itinerary;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
@@ -93,7 +99,7 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The list of songs on a playlist.
      */
-    async getPlaylistSongs(id, errorCallback) {
+    async getItineraryActivities(email, errorCallback) {
         try {
             const response = await this.axiosClient.get(`playlists/${id}/songs`);
             return response.data.songList;
@@ -109,7 +115,7 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The playlist that has been created.
      */
-    async createPlaylist(name, tags, errorCallback) {
+    async createItinerary(name, tags, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create playlists.");
             const response = await this.axiosClient.post(`playlists`, {
@@ -184,9 +190,9 @@ export default class MusicPlaylistClient extends BindingClass {
             const queryParams = new URLSearchParams({ q: criteria })
             const queryString = queryParams.toString();
 
-            const response = await this.axiosClient.get(`playlists/search?${queryString}`);
+            const response = await this.axiosClient.get(`itineraries/search?${queryString}`);
 
-            return response.data.playlists;
+            return response.data.itineraries;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
