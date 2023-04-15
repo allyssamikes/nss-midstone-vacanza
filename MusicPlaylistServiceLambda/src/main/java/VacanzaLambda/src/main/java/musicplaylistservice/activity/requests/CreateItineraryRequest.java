@@ -11,11 +11,13 @@ public class CreateItineraryRequest {
     private final String name;
     private final String email;
     private final List<String> tags;
+    private final List<String> users;
 
-    private CreateItineraryRequest(String name, String email, List<String> tags) {
+    private CreateItineraryRequest(String name, String email, List<String> tags, List<String> users) {
         this.name = name;
         this.email = email;
         this.tags = tags;
+        this.users = users;
     }
     public String getTripName() {
         return name;
@@ -26,6 +28,7 @@ public class CreateItineraryRequest {
     public List<String> getTags() {
         return copyToList(tags);
     }
+    public List<String> getUsers() {return copyToList(users);}
     @Override
     public String toString() {
         return "CreatePlaylistRequest{" +
@@ -45,6 +48,7 @@ public class CreateItineraryRequest {
         private String name;
         private String email;
         private List<String> tags;
+        private List<String> users;
 
         public Builder withTripName(String name) {
             this.name = name;
@@ -61,9 +65,12 @@ public class CreateItineraryRequest {
             this.tags = copyToList(tags);
             return this;
         }
-
+        public Builder withUsers(List<String> users) {
+            this.users = copyToList(users);
+            return this;
+        }
         public CreateItineraryRequest build() {
-            return new CreateItineraryRequest(name, email, tags);
+            return new CreateItineraryRequest(name, email, tags, users);
         }
     }
 }

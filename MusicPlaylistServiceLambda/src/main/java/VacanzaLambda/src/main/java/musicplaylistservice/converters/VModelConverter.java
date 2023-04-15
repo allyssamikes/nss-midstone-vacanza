@@ -21,6 +21,7 @@ public class VModelConverter {
                 .withActivities(itinerary.getActivities())
                 .withCities(itinerary.getCities())
                 .withUsers(itinerary.getUsers())
+                .withTags(itinerary.getTags())
                 .build();
     }
 

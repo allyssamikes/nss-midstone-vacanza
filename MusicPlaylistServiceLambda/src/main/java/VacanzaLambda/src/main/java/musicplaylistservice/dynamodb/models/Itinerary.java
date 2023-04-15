@@ -53,7 +53,11 @@ public class  Itinerary {
 
     @DynamoDBAttribute(attributeName = "users")
     public List<String> getUsers() {
-        return users;
+
+        if (null == users) {
+            return null;
+        }
+        return new ArrayList<>(users);
     }
 
     public void setUsers(List<String> users) {
