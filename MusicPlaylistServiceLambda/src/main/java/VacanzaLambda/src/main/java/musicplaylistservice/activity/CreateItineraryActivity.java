@@ -64,9 +64,13 @@ public class CreateItineraryActivity {
                     "] contains illegal characters");
         }
 
-        List<String> playlistTags = null;
+        List<String> itineraryTags = null;
         if (createItineraryRequest.getTags() != null) {
-            playlistTags = new ArrayList<>(createItineraryRequest.getTags());
+            itineraryTags = new ArrayList<>(createItineraryRequest.getTags());
+        }
+        List<String> itineraryUsers = null;
+        if (createItineraryRequest.getUsers() != null) {
+            itineraryUsers = new ArrayList<>(createItineraryRequest.getUsers());
         }
 
         Itinerary newItinerary = new Itinerary();
@@ -74,7 +78,8 @@ public class CreateItineraryActivity {
         newItinerary.setTripName(createItineraryRequest.getTripName());
         newItinerary.setEmail(createItineraryRequest.getEmail());
 
-        newItinerary.setTags(playlistTags);
+        newItinerary.setTags(itineraryTags);
+        newItinerary.setUsers(new ArrayList<>(itineraryUsers));
         newItinerary.setActivities(new ArrayList<>());
 
         itineraryDao.saveItinerary(newItinerary);
