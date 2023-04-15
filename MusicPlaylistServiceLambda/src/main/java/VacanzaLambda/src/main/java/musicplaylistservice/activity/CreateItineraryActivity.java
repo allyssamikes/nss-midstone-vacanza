@@ -79,7 +79,7 @@ public class CreateItineraryActivity {
         newItinerary.setEmail(createItineraryRequest.getEmail());
 
         newItinerary.setTags(itineraryTags);
-        newItinerary.setUsers(itineraryUsers);
+        newItinerary.setUsers(new ArrayList<>(itineraryUsers));
         newItinerary.setActivities(new ArrayList<>());
 
         itineraryDao.saveItinerary(newItinerary);

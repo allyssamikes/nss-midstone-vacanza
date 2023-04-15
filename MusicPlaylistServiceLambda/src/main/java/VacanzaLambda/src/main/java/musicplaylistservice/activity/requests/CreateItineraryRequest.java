@@ -35,6 +35,7 @@ public class CreateItineraryRequest {
                 "Itinerary name='" + name + '\'' +
                 ", customerEmail='" + email + '\'' +
                 ", tags=" + tags +
+                ", users=" + users +
                 '}';
     }
 
