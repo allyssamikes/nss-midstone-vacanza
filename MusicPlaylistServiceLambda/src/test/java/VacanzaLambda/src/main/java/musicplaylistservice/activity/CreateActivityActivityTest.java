@@ -1,4 +1,4 @@
-package com.nashss.se.musicplaylistservice.activity;
+package VacanzaLambda.src.main.java.musicplaylistservice.activity;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.CreateActivityActivity;
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.CreateActivityRequest;

@@ -19,7 +19,7 @@ paths:
     post:
       tags:
         - Itineraries
-      summary: Create a new itineraries (CreateLambda)
+      summary: Create a new itinerary (CreateItineraryLambda)
       requestBody:
         content:
           application/json:
@@ -31,6 +31,14 @@ paths:
                 email:
                   type: string
                 tags:
+                  type: array
+                  items:
+                    type: string
+                users:
+                  type: array
+                  items:
+                    type: string
+                cities:
                   type: array
                   items:
                     type: string
@@ -47,6 +55,14 @@ paths:
                   email:
                     type: string
                   tags:
+                    type: array
+                    items:
+                      type: string
+                  users:
+                    type: array
+                    items:
+                      type: string
+                  cities:
                     type: array
                     items:
                       type: string

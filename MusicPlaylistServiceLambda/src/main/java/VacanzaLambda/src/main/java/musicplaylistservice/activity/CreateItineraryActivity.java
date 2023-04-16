@@ -72,14 +72,18 @@ public class CreateItineraryActivity {
         if (createItineraryRequest.getUsers() != null) {
             itineraryUsers = new ArrayList<>(createItineraryRequest.getUsers());
         }
+        List<String> itineraryCities = null;
+        if (createItineraryRequest.getCities() != null) {
+            itineraryCities = new ArrayList<>(createItineraryRequest.getCities());
+        }
 
         Itinerary newItinerary = new Itinerary();
 
         newItinerary.setTripName(createItineraryRequest.getTripName());
         newItinerary.setEmail(createItineraryRequest.getEmail());
-
         newItinerary.setTags(itineraryTags);
-        newItinerary.setUsers(new ArrayList<>(itineraryUsers));
+        newItinerary.setUsers(itineraryUsers);
+        newItinerary.setCities(itineraryCities);
         newItinerary.setActivities(new ArrayList<>());
 
         itineraryDao.saveItinerary(newItinerary);

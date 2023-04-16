@@ -1,4 +1,4 @@
-package com.nashss.se.musicplaylistservice.dynamodb;
+package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ActivityDao;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;

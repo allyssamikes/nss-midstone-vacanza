@@ -17,8 +17,8 @@ public class CreateItineraryResult {
 
     @Override
     public String toString() {
-        return "CreatePlaylistResult{" +
-                "playlist=" + itineraryModel +
+        return "CreateItineraryResult{" +
+                "itinerary=" + itineraryModel +
                 '}';
     }
 
@@ -28,15 +28,15 @@ public class CreateItineraryResult {
     }
 
     public static class Builder {
-        private ItineraryModel playlist;
+        private ItineraryModel itineraryModel;
 
         public Builder withItineraryModel(ItineraryModel playlist) {
-            this.playlist = playlist;
+            this.itineraryModel = playlist;
             return this;
         }
 
         public CreateItineraryResult build() {
-            return new CreateItineraryResult(playlist);
+            return new CreateItineraryResult(itineraryModel);
         }
     }
 }
