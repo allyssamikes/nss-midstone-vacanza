@@ -108,7 +108,7 @@ export default class MusicPlaylistClient extends BindingClass {
          * @param errorCallback (Optional) A function to execute if the call fails.
          * @returns The itinerary that has been created.
          */
-    async createItinerary(tripName, tags, users, errorCallback) {
+    async createItinerary(tripName, tags, users, cities, errorCallback) {
 
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create itineraries.");
@@ -116,6 +116,7 @@ export default class MusicPlaylistClient extends BindingClass {
                 tripName: tripName,
                 tags: tags,
                 users: users,
+                cities: cities,
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`

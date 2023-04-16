@@ -43,6 +43,8 @@ class CreateItinerary extends BindingClass {
             const tripName = document.getElementById('itinerary-name').value;
             const tagsText = document.getElementById('tags').value;
             const usersText = document.getElementById('users').value;
+            const citiesText = document.getElementById('cities').value;
+
             let tags;
             if (tagsText.length < 1) {
                 tags = null;
@@ -55,8 +57,14 @@ class CreateItinerary extends BindingClass {
             } else {
                 users = usersText.split(/\s*,\s*/);
             }
+            let cities;
+            if (citiesText.length < 1) {
+                cities = null;
+            } else {
+                cities = citiesText.split(/\s*,\s*/);
+            }
 
-            const itinerary = await this.client.createItinerary(tripName, tags, users, (error) => {
+            const itinerary = await this.client.createItinerary(tripName, tags, users, cities, (error) => {
                 createButton.innerText = origButtonText;
                 errorMessageDisplay.innerText = `Error: ${error.message}`;
                 errorMessageDisplay.classList.remove('hidden');
