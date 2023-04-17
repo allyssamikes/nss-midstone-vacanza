@@ -94,8 +94,10 @@ export default class MusicPlaylistClient extends BindingClass {
      * @returns The list of songs on a playlist.
      */
     async getItineraryActivities(email, tripName, errorCallback) {
+        //const id = ${email}+${tripName};
         try {
-            const response = await this.axiosClient.get(`itineraries/${id}/activities`);
+           // const response = await this.axiosClient.get(`itineraries/${id}/activities`);
+           const response = await this.axiosClient.get(`itineraries/${email}/${email}/activities`);
             //return response.data.songList;
             return response.data.activities;
         } catch (error) {
@@ -129,17 +131,17 @@ export default class MusicPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
-        async createActivity(cityCountry, name, errorCallback) {
+    async createActivity(cityCountry, name, errorCallback) {
 
-            try {
-                const token = await this.getTokenOrThrow("Only authenticated users can create itineraries.");
+        try {
+               // const token = await this.getTokenOrThrow("Only authenticated users can create itineraries.");
                 const response = await this.axiosClient.post(`activities`, {
                     cityCountry: cityCountry,
                     name: name,
                 }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+//                    headers: {
+//                        Authorization: `Bearer ${token}`
+//                    }
                 });
                 return response.data.activity;
             } catch (error) {
