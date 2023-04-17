@@ -21,7 +21,7 @@ const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
     [SEARCH_CRITERIA_EMAIL]: '',
     [SEARCH_CRITERIA_TRIP_NAME]: '',
-    [SEARCH_RESULTS_KEY]: [],
+   [SEARCH_RESULTS_KEY]: [],
 };
 
 
