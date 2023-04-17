@@ -12,12 +12,14 @@ public class CreateItineraryRequest {
     private final String email;
     private final List<String> tags;
     private final List<String> users;
+    private final List<String> cities;
 
-    private CreateItineraryRequest(String name, String email, List<String> tags, List<String> users) {
+    private CreateItineraryRequest(String name, String email, List<String> tags, List<String> users, List<String> cities) {
         this.name = name;
         this.email = email;
         this.tags = tags;
         this.users = users;
+        this.cities = cities;
     }
     public String getTripName() {
         return name;
@@ -29,13 +31,16 @@ public class CreateItineraryRequest {
         return copyToList(tags);
     }
     public List<String> getUsers() {return copyToList(users);}
+    public List<String> getCities() {return copyToList(cities);}
+
     @Override
     public String toString() {
         return "CreatePlaylistRequest{" +
                 "Itinerary name='" + name + '\'' +
                 ", customerEmail='" + email + '\'' +
-                ", tags=" + tags +
-                ", users=" + users +
+                ", tags=" + tags + '\'' +
+                ", users=" + users + '\'' +
+                ", cities=" + cities +
                 '}';
     }
 
@@ -50,6 +55,7 @@ public class CreateItineraryRequest {
         private String email;
         private List<String> tags;
         private List<String> users;
+        private List<String> cities;
 
         public Builder withTripName(String name) {
             this.name = name;
@@ -70,8 +76,12 @@ public class CreateItineraryRequest {
             this.users = copyToList(users);
             return this;
         }
+        public Builder withCities(List<String> cities) {
+            this.cities = copyToList(cities);
+            return this;
+        }
         public CreateItineraryRequest build() {
-            return new CreateItineraryRequest(name, email, tags, users);
+            return new CreateItineraryRequest(name, email, tags, users, cities);
         }
     }
 }

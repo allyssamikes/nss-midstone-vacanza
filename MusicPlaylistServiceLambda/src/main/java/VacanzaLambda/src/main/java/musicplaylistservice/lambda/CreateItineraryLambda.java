@@ -20,6 +20,7 @@ public class CreateItineraryLambda
                                     .withTags(unauthenticatedRequest.getTags())
                                     .withEmail(claims.get("email"))
                                     .withUsers(unauthenticatedRequest.getUsers())
+                                    .withCities(unauthenticatedRequest.getCities())
                                     .build());
                 },
                 (request, serviceComponent) ->
