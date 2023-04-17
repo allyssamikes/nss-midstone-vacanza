@@ -130,7 +130,7 @@ export default class MusicPlaylistClient extends BindingClass {
         async createActivity(cityCountry, name, errorCallback) {
 
             try {
-                const token = await this.getTokenOrThrow("Only authenticated users can create itineraries.");
+                const token = await this.getTokenOrThrow("Only authenticated users can create activities.");
                 const response = await this.axiosClient.post(`activities`, {
                     cityCountry: cityCountry,
                     name: name,
