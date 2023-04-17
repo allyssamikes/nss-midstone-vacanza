@@ -2,6 +2,7 @@ import MusicPlaylistClient from '../api/musicPlaylistClient';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
+import Authenticator from "../api/authenticator";
 
 /*
 The code below this comment is equivalent to...
@@ -64,7 +65,6 @@ class SearchItineraries extends BindingClass {
         const email = document.getElementById('email').value;
         const tripName = document.getElementById('tripName').value;
 
-
         if (email && tripName) {
             const results = await this.client.getItinerary(email, tripName);
 
@@ -111,16 +111,15 @@ class SearchItineraries extends BindingClass {
         if (searchResults.length === 0) {
             return '<h4>No results found</h4>';
         }
-
-        let html = '<table><tr><th>Name</th><th>Email</th><th>Tags</th></tr>';
-        for (const res of searchResults) {
+        let html = '<table><tr><th>Email</th><th>TripName</th><th>Cities</th></tr>';
+          if (searchResults.length === 1){
             html += `
             <tr>
                 <td>
-                    <a href="itinerary.html?email=${res.email}">${res.tripName}</a>
+                    <a href="itinerary.html?email=${res.email}">${res.email}</a>
                 </td>
                 <td>${res.tripName}</td>
-                <td>${res.tags?.join(', ')}</td>
+                <td>${res.cities?.join(', ')}</td>
             </tr>`;
         }
         html += '</table>';

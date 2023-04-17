@@ -43,9 +43,7 @@ public class ItineraryDao {
      * @return the stored Itinerary, or null if none was found.
      */
     public Itinerary getItinerary(String email, String tripName) {
-        System.out.println("ITINERARYDAO46");
         Itinerary itinerary = this.dynamoDbMapper.load(Itinerary.class, email, tripName);
-        System.out.println("ITINERARYDAO48");
 
         if (itinerary == null) {
             metricsPublisher.addCount(MetricsConstants.GETINTERARY_ITINERARYNOTFOUND_COUNT, 1);

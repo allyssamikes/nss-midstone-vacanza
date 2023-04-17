@@ -240,8 +240,6 @@ Resources:
           Properties:
             Path: /playlists/{id}
             Method: get
-            Auth:
-              Authorizer: 'NONE'
 
   GetItineraryLambda:
     Type: AWS::Serverless::Function
@@ -305,8 +303,6 @@ Resources:
           Properties:
             Path: /itineraries/search
             Method: get
-            Auth:
-              Authorizer: 'NONE'
 
   GetPlaylistSongsLambda:
     Type: AWS::Serverless::Function
