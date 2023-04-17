@@ -35,8 +35,8 @@ module.exports = {
  //   searchItineraries: path.resolve(--__dirname, 'src', 'pages','searchItineraries.js'),
  //   viewItinerary: path.resolve(__dirname, 'src','pages','viewItinerary.js'),
  //The following lines work fine for running npm run run-local:
- //    viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
-  //   searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
+     viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
+     searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
