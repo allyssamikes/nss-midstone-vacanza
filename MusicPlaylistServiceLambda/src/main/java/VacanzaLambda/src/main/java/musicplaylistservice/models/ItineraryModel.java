@@ -15,7 +15,8 @@ public class ItineraryModel {
     private List<String> users;
     private List<String> tags;
 
-    public ItineraryModel(String tripName, String email, List<String> cities, List<Activity> activities, List<String> users, List<String> tags) {
+    public ItineraryModel(String tripName, String email, List<String> cities, List<Activity> activities,
+                          List<String> users, List<String> tags) {
         this.tripName = tripName;
         this.email = email;
         this.cities = cities;
@@ -39,6 +40,9 @@ public class ItineraryModel {
 
     public List<Activity> getActivities() {
         return activities;
+    }
+    public List<String> getTags() {
+        return tags;
     }
 
 

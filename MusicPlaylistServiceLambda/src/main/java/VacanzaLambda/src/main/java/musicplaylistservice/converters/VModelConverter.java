@@ -21,6 +21,7 @@ public class VModelConverter {
                 .withActivities(itinerary.getActivities())
                 .withCities(itinerary.getCities())
                 .withUsers(itinerary.getUsers())
+                .withTags(itinerary.getTags())
                 .build();
     }
 
@@ -65,5 +66,15 @@ public class VModelConverter {
         }
 
         return itineraryModels;
+    }
+
+    public List<ActivityModel> toActivityModelList(List<Activity> activities) {
+        List<ActivityModel> activitiesModels = new ArrayList<>();
+
+        for (Activity a : activities) {
+            activitiesModels.add(toActivityModel(a));
+        }
+
+        return activitiesModels;
     }
 }

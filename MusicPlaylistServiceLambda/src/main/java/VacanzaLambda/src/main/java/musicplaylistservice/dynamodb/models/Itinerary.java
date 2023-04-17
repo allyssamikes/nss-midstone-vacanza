@@ -1,5 +1,6 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
+import VacanzaLambda.src.main.java.musicplaylistservice.converters.ActivitiesLinkedListConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class  Itinerary {
         this.cities = cities;
     }
 
+    //@DynamoDBTypeConverted(converter = ActivitiesLinkedListConverter.class)
     @DynamoDBAttribute(attributeName = "activities")
     public List<Activity> getActivities() {
         return activities;
@@ -51,7 +53,10 @@ public class  Itinerary {
 
     @DynamoDBAttribute(attributeName = "users")
     public List<String> getUsers() {
-        return users;
+        if (null == users) {
+            return null;
+        }
+        return new ArrayList<>(users);
     }
 
     public void setUsers(List<String> users) {

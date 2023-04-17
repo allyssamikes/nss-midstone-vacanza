@@ -19,6 +19,8 @@ public class CreateItineraryLambda
                                     .withTripName(unauthenticatedRequest.getTripName())
                                     .withTags(unauthenticatedRequest.getTags())
                                     .withEmail(claims.get("email"))
+                                    .withUsers(unauthenticatedRequest.getUsers())
+                                    .withCities(unauthenticatedRequest.getCities())
                                     .build());
                 },
                 (request, serviceComponent) ->

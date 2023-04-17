@@ -42,6 +42,8 @@ class CreateItinerary extends BindingClass {
 
             const tripName = document.getElementById('itinerary-name').value;
             const tagsText = document.getElementById('tags').value;
+            const usersText = document.getElementById('users').value;
+            const citiesText = document.getElementById('cities').value;
 
             let tags;
             if (tagsText.length < 1) {
@@ -49,14 +51,27 @@ class CreateItinerary extends BindingClass {
             } else {
                 tags = tagsText.split(/\s*,\s*/);
             }
+            let users;
+            if (usersText.length < 1) {
+                users = null;
+            } else {
+                users = usersText.split(/\s*,\s*/);
+            }
+            let cities;
+            if (citiesText.length < 1) {
+                cities = null;
+            } else {
+                cities = citiesText.split(/\s*,\s*/);
+            }
 
-            const itinerary = await this.client.createItinerary(tripName, tags, (error) => {
+            const itinerary = await this.client.createItinerary(tripName, tags, users, cities, (error) => {
                 createButton.innerText = origButtonText;
                 errorMessageDisplay.innerText = `Error: ${error.message}`;
                 errorMessageDisplay.classList.remove('hidden');
             });
             this.dataStore.set('itinerary', itinerary);
-            //can't really see this, is there a way to add a couple milliseconds?
+            createButton.innerText = 'Complete';
+            createButton.innerText = 'Complete';
             createButton.innerText = 'Complete';
             createButton.innerText = 'Create New Vacation Plan';
         }
