@@ -41,7 +41,9 @@ public class  Itinerary {
         this.cities = cities;
     }
 
+
     @DynamoDBTypeConverted(converter = ActivitiesListConverter.class)
+
     @DynamoDBAttribute(attributeName = "activities")
     public List<Activity> getActivities() {
         return activities;

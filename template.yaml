@@ -330,8 +330,6 @@ Resources:
           Properties:
             Path: /activities
             Method: post
-            Auth:
-              Authorizer: 'NONE'
 
   GetPlaylistSongsLambda:
     Type: AWS::Serverless::Function
