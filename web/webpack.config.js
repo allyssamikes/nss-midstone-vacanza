@@ -37,6 +37,8 @@ module.exports = {
  //The following lines work fine for running npm run run-local:
      viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
      searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
+     createActivity: path.resolve(__dirname, 'src','pages', 'createActivity.js'),
+
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
