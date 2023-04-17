@@ -7,16 +7,12 @@ import BindingClass from "../util/bindingClass";
 export default class Header extends BindingClass {
     constructor() {
         super();
-        console.log("header 1");
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
             'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
-         console.log("header 2");
         this.bindClassMethods(methodsToBind, this);
- console.log("header 3");
         this.client = new MusicPlaylistClient();
-         console.log("header 4");
     }
 
     /**

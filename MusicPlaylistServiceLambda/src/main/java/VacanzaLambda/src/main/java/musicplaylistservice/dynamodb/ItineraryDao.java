@@ -49,7 +49,7 @@ public class ItineraryDao {
 
         if (itinerary == null) {
             metricsPublisher.addCount(MetricsConstants.GETINTERARY_ITINERARYNOTFOUND_COUNT, 1);
-            throw new ItineraryNotFoundException("Could not find itinerary with email" + email);
+            throw new ItineraryNotFoundException("Could not find itinerary with email: " + email);
         }
         metricsPublisher.addCount(MetricsConstants.GETINTERARY_ITINERARYNOTFOUND_COUNT, 0);
         return itinerary;

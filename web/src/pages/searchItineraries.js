@@ -14,30 +14,29 @@ const EMPTY_DATASTORE_STATE = {
 The "KEY" constants will be reused a few times below.
 */
 
-const SEARCH_CRITERIA_KEY = 'search-criteria';
+const SEARCH_CRITERIA_EMAIL = 'email';
+const SEARCH_CRITERIA_TRIP_NAME = 'tripName';
 const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
-    [SEARCH_CRITERIA_KEY]: '',
+    [SEARCH_CRITERIA_EMAIL]: '',
+    [SEARCH_CRITERIA_TRIP_NAME]: '',
     [SEARCH_RESULTS_KEY]: [],
 };
 
 
 /**
- * Logic needed for the view itinerary  page of the website.
+ * Logic needed for the view itinerary page of the website.
  */
 class SearchItineraries extends BindingClass {
     constructor() {
         super();
-    console.log("here 1");
+
         this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults'], this);
-   console.log("here 2");
+
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
-         console.log("here 3");
         this.header = new Header(this.dataStore);
-         console.log("here 4");
         this.dataStore.addChangeListener(this.displaySearchResults);
-        console.log("searchItineraries constructor");
     }
 
     /**
@@ -62,19 +61,16 @@ class SearchItineraries extends BindingClass {
         // Prevent submitting the from from reloading the page.
         evt.preventDefault();
 
-        const searchCriteria = document.getElementById('search-criteria').value;
-        const previousSearchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
+        const email = document.getElementById('email').value;
+        const tripName = document.getElementById('tripName').value;
 
-        // If the user didn't change the search criteria, do nothing
-        if (previousSearchCriteria === searchCriteria) {
-            return;
-        }
 
-        if (searchCriteria) {
-            const results = await this.client.search(searchCriteria);
+        if (email && tripName) {
+            const results = await this.client.getItinerary(email, tripName);
 
             this.dataStore.setState({
-                [SEARCH_CRITERIA_KEY]: searchCriteria,
+                [SEARCH_CRITERIA_EMAIL]: email,
+                  [SEARCH_CRITERIA_TRIP_NAME]: tripName,
                 [SEARCH_RESULTS_KEY]: results,
             });
         } else {
@@ -86,20 +82,22 @@ class SearchItineraries extends BindingClass {
      * Pulls search results from the datastore and displays them on the html page.
      */
     displaySearchResults() {
-        const searchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
+        const email = this.dataStore.get(SEARCH_CRITERIA_EMAIL);
+        const tripName = this.dataStore.get(SEARCH_CRITERIA_TRIP_NAME);
         const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
         const searchResultsDisplay = document.getElementById('search-results-display');
 
-        if (searchCriteria === '') {
+        if (email && tripName === '') {
             searchResultsContainer.classList.add('hidden');
             searchCriteriaDisplay.innerHTML = '';
             searchResultsDisplay.innerHTML = '';
         } else {
             searchResultsContainer.classList.remove('hidden');
-            searchCriteriaDisplay.innerHTML = `"${searchCriteria}"`;
+            searchCriteriaDisplay.innerHTML = `"${email}"`;
+            searchCriteriaDisplay.innerHTML = `"${tripName}"`;
             searchResultsDisplay.innerHTML = this.getHTMLForSearchResults(searchResults);
         }
     }
@@ -114,13 +112,15 @@ class SearchItineraries extends BindingClass {
             return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Email</th></tr>';
+        let html = '<table><tr><th>Name</th><th>Email</th><th>Tags</th></tr>';
         for (const res of searchResults) {
             html += `
             <tr>
                 <td>
-                    <a href="itinerary.html?email=${res.email}">${res.name}</a>
+                    <a href="itinerary.html?email=${res.email}">${res.tripName}</a>
                 </td>
+                <td>${res.tripName}</td>
+                <td>${res.tags?.join(', ')}</td>
             </tr>`;
         }
         html += '</table>';

@@ -78,9 +78,9 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The playlist's metadata.
      */
-    async getItinerary(email, errorCallback) {
+    async getItinerary(email, tripName, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`itineraries/${email}`);
+            const response = await this.axiosClient.get(`itineraries/${email}/${tripName}`);
             return response.data.itinerary;
         } catch (error) {
             this.handleError(error, errorCallback)
