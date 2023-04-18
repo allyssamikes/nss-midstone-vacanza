@@ -62,14 +62,45 @@ console.log("submit");
                 if (itinerary == null) {
                     return;
                 }
-           document.getElementById('tripName').innerText = itinerary.tripName;
-                let tagHtml = '';
-                let activity;
-                for (activity of itinerary.activities) {
-                    tagHtml += '<div class="activities">' + activity + '</div>';
-                }
-                document.getElementById('activities').innerHTML = tagHtml;
+                document.getElementById('tripName').innerText = itinerary.tripName;
+
+           console.log(itinerary.tripName);
+           console.log(itinerary.activities);
+
+            const submitResultsContainer = document.getElementById('submit-results-container');
+            const submitCriteriaDisplay  =   document.getElementById('submit-results-display');
+             const submitResultsDisplay  =   document.getElementById('submit-results-display');
+             const activitiesContainer = document.getElementById('activities-container');
+
+             activitiesContainer.classList.remove('hidden');
+             document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities.name, null, 4);
+             document.getElementById('submit-results-display').innerHTML = JSON.stringify(itinerary.activities);
+
+
+                submitResultsContainer.classList.remove('hidden');
+                submitResultsDisplay.innerHTML = JSON.stringify(itinerary.cities);
+                submitCriteriaDisplay.innerHTML = itinerary.cities;
+
             }
+//               addSongsToPage() {
+//                    const activities = itinerary.activities;
+//
+//                    if (activities == null) {
+//                        return;
+//                    }
+//
+//                    let activityHtml = '';
+//                    let activity;
+//                    for (activity of activities) {
+//                        activityHtml += `
+//                            <li class="activity">
+//                                <span class="name">${activity.tripName}</span>
+//                                <span class="place">${activity.cityCountry}</span>
+//                            </li>
+//                        `;
+//                    }
+//                    document.getElementById('songs').innerHTML = songHtml;
+//                }
 }
 /**
  * Main method to run when the page contents have loaded.
