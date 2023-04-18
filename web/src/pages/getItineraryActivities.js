@@ -79,15 +79,17 @@ console.log(activities);
 
              const activitiesContainer = document.getElementById('activities-container');
              activitiesContainer.classList.remove('hidden');
-             document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities);
+             //document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities);
              document.getElementById('submit-results-display').innerHTML = itinerary.activities;
 console.log(itinerary.cities);
-
+                activitiesContainer.classList.remove('hidden');
                 submitResultsContainer.classList.remove('hidden');
                 submitResultsDisplay.innerHTML = JSON.stringify(itinerary.cities);
                 submitCriteriaDisplay.innerHTML = itinerary.cities;
-                           const activities = this.dataStore.get('activities');
+                          // const activities = this.dataStore.get('activities');
+                          const activities = itinerary.activities
                            console.log(activities);
+
                           if (activities == null) {
                                 return;
                           }
@@ -96,14 +98,16 @@ console.log(itinerary.cities);
                           let activity;
                               for (activity of activities) {
                               console.log(activity);
+                              console.log(activity.name);
+                              console.log(activity.cityCountry);
                                  activityHtml += `
                                 <li class="activity">
-                                 <span class="name">${activity.tripName}</span>
+                                 <span class="name">${activity.name}</span>
                                  <span class="place">${activity.cityCountry}</span>
                                   </li>
                                         `;
                               }
-                          document.getElementById('activities-table').innerHTML = activityHtml;
+                          document.getElementById('activities').innerHTML = activityHtml;
             }
 
 
