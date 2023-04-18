@@ -78,9 +78,9 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The playlist's metadata.
      */
-    async getItinerary(email, errorCallback) {
+    async getItinerary(email, tripName, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`itineraries/${email}`);
+            const response = await this.axiosClient.get(`itineraries/${email}/${tripName}`);
             return response.data.itinerary;
         } catch (error) {
             this.handleError(error, errorCallback)
@@ -91,13 +91,13 @@ export default class MusicPlaylistClient extends BindingClass {
      * Get the songs on a given playlist by the playlist's identifier.
      * @param id Unique identifier for a playlist
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The list of songs on a playlist.
+     * @returns The list of activities in an itinerary.
      */
     async getItineraryActivities(email, tripName, errorCallback) {
         //const id = ${email}+${tripName};
         try {
            // const response = await this.axiosClient.get(`itineraries/${id}/activities`);
-           const response = await this.axiosClient.get(`itineraries/${email}/${email}/activities`);
+           const response = await this.axiosClient.get(`itineraries/${email}/${tripName}/activities`);
             //return response.data.songList;
             return response.data.activities;
         } catch (error) {

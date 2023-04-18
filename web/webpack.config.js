@@ -38,7 +38,9 @@ module.exports = {
      viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
      searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
      createActivity: path.resolve(__dirname, 'src','pages', 'createActivity.js'),
-
+     getItineraryActivities: path.resolve(__dirname, 'src', 'pages', 'getItineraryActivities.js'),
+    // viewItineraryActivities: path.resolve(__dirname, 'src','pages','viewItineraryActivities.js'),
+     viewActivitiesItinerary: path.resolve(__dirname, 'src','pages','viewActivitiesItinerary.js'),
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

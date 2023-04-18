@@ -23,6 +23,7 @@ class ViewPlaylist extends BindingClass {
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
         const playlistId = urlParams.get('id');
+        console.log(playlistId);
         document.getElementById('playlist-name').innerText = "Loading Playlist ...";
         const playlist = await this.client.getPlaylist(playlistId);
         this.dataStore.set('playlist', playlist);

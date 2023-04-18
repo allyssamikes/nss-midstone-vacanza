@@ -450,7 +450,8 @@ Resources:
             Properties:
               Path: /itineraries/{tripName}/{email}/activities
               Method: get
-
+              Auth:
+                Authorizer: 'NONE'
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------

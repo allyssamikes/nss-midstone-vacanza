@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="assets/viewItineraryActivities.js"></script>
+    <script type="text/javascript" src="assets/getItineraryActivities.js"></script>
     <link rel="stylesheet" type="text/css" href="css/erinStyle.css">
 </head>
 
@@ -11,13 +11,14 @@
 <div class="card">
     <h2>View Activities of An Itinerary</h2>
     <form class="card-content" id="view-itinerary-activities-form">
+        <p class="hidden error" id="error-message"> </p>
         <p class="form-field">
             <label>Enter trip creator's email</label>
-            <input type="text" class="validated-field" id="email" placeholder="john.smith@gmail.com" autofocus>
+            <input type="text" class="email" id="email" placeholder="john.smith@gmail.com" autofocus>
         </p>
         <p class="form-field">
             <label>Enter trip name</label>
-            <input type="text" class="validated-field" id="tripName" placeholder="Spain2023" autofocus>
+            <input type="text" class="tripName" id="tripName" placeholder="Spain2023" autofocus>
         </p>
     </form>
     <p class="button-group">
@@ -25,14 +26,20 @@
 
     </p>
     <p class="button-group">
-        <a href="#" class="button" id="search-btn">Search Activities</a>
+        <a href="searchPlaylists.html" class="button" id="search-btn">Search Activities</a>
         <a href="createActivity.html" class="button">Create New Activity</a>
         <a href="createItinerary.html" class="button">New Itinerary</a>
     </p>
 </div>
-<div class="card hidden" id='search-results-container'>
-    <h3>Results for <span id="search-criteria-display"></span></h3>
-    <div id="search-results-display">
+<div class="card">
+    <h3>Activities </h3>
+    <h2 class="itinerary-name"></h2>
+    <div class="tags" id="tags"></div>
+    <ol class="activities" id ="activities"></ol>
+</div>
+<div class="card hidden" id='submit-results-container'>
+    <h3>Results for <span id="submit-criteria-display"></span></h3>
+    <div id="submit-results-display">
     </div>
 </div>
 </body>

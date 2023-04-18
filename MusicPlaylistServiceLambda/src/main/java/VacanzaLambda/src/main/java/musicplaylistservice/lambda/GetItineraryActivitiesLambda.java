@@ -18,6 +18,11 @@ public class GetItineraryActivitiesLambda
                                 .withEmail(path.get("email"))
                                 .withTripName(query.get("tripName"))
                                 .build()),
+//                () -> input.fromPath((path1, path2) ->
+//                        GetItineraryActivitiesRequest.builder()
+//                                .withEmail(path1.get("email"))
+//                                .withTripName(path2.get("tripName"))
+//                                .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetItineraryActivitiesActivity().handleRequest(request)
         );

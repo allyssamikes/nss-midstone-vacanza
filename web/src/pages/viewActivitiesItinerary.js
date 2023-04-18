@@ -6,10 +6,10 @@ import DataStore from "../util/DataStore";
 /**
 * Logic needed for the view playlist page of the website.
 */
-class ViewActivities extends BindingClass {
+class ViewActivitiesItinerary extends BindingClass {
 constructor() {
 super();
-this.bindClassMethods(['clientLoaded', 'mount', 'addItineraryToPage'], this);
+this.bindClassMethods(['clientLoaded', 'mount', 'addItineraryToPage', 'addActivitiesToPage'], this);
 this.dataStore = new DataStore();
 this.dataStore.addChangeListener(this.addItineraryToPage);
 this.dataStore.addChangeListener(this.addActivitiesToPage);
@@ -25,12 +25,12 @@ async clientLoaded() {
 const urlParams = new URLSearchParams(window.location.search);
 const playlistId = urlParams.get('id');
 
-document.getElementById('itinerary-tripName').innerText = "Loading Playlist ...";
+document.getElementById('tripName').innerText = "Loading Itinerary ...";
 const playlist = await this.client.getItinerary(email, tripName);
-this.dataStore.set('playlist', playlist);
-document.getElementById('songs').innerText = "(loading songs...)";
+this.dataStore.set('itinerary', itinerary);
+document.getElementById('activities').innerText = "(loading activities...)";
 //check this name
-const songs = await this.client.getItineraryActivities(email, tripName);
+const activities = await this.client.getItineraryActivities(email, tripName);
 this.dataStore.set('activities', activities);
 }
 
@@ -49,44 +49,44 @@ this.clientLoaded();
 /**
 * When the playlist is updated in the datastore, update the playlist metadata on the page.
 */
-addPlaylistToPage() {
-const playlist = this.dataStore.get('playlist');
-if (playlist == null) {
+addItineraryToPage() {
+const itinerary = this.dataStore.get('itinerary');
+if (itinerary == null) {
 return;
 }
 
-document.getElementById('playlist-name').innerText = playlist.name;
-document.getElementById('playlist-owner').innerText = playlist.customerName;
+document.getElementById('tripName').innerText = itinerary.tripName;
+document.getElementById('email').innerText = itinerary.email;
 
 let tagHtml = '';
 let tag;
-for (tag of playlist.tags) {
-tagHtml += '<div class="tag">' + tag + '</div>';
+for (tag of itinerary.activities) {
+tagHtml += '<div class="activities">' + tag + '</div>';
 }
-document.getElementById('tags').innerHTML = tagHtml;
+document.getElementById('activities').innerHTML = tagHtml;
 }
 
 /**
 * When the songs are updated in the datastore, update the list of songs on the page.
 */
-addSongsToPage() {
-const songs = this.dataStore.get('songs')
+addActivitiesToPage() {
+const activities = this.dataStore.get('activities')
 
 if (songs == null) {
 return;
 }
 
 let songHtml = '';
-let song;
-for (song of songs) {
+let activity;
+for (activity of activities) {
 songHtml += `
-<li class="song">
-  <span class="title">${song.title}</span>
-  <span class="album">${song.album}</span>
+<li class="activity">
+  <span class="title">${activity.name}</span>
+  <span class="album">${activity.cityCountry}</span>
 </li>
 `;
 }
-document.getElementById('songs').innerHTML = songHtml;
+document.getElementById('activities').innerHTML = songHtml;
 }
 
 /**
@@ -125,8 +125,8 @@ document.getElementById("add-song-form").reset();
 * Main method to run when the page contents have loaded.
 */
 const main = async () => {
-const viewPlaylist = new ViewPlaylist();
-viewPlaylist.mount();
+const viewActivitiesItinerary = new ViewActivitiesItinerary();
+viewActivitiesItinerary.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
