@@ -80,7 +80,9 @@ console.log("submit");
                 submitResultsContainer.classList.remove('hidden');
                 submitResultsDisplay.innerHTML = JSON.stringify(itinerary.cities);
                 submitCriteriaDisplay.innerHTML = itinerary.cities;
-
+            for (activity of activities) {
+            console.log(activity);
+            }
 
 
             }
