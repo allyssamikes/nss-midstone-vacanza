@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.List;
 
 public class GetItineraryActivitiesActivity {
@@ -23,10 +24,8 @@ public class GetItineraryActivitiesActivity {
 
     public GetItineraryActivitiesResult handleRequest(final GetItineraryActivitiesRequest getItineraryActivitiesRequest){
         log.info("Received GetItinerarayActivitiesRequest {}", getItineraryActivitiesRequest);
-
-        Itinerary itinerary = itineraryDao.getItinerary(getItineraryActivitiesRequest.getEmail(), getItineraryActivitiesRequest.getTripName());
-        List<ActivityModel> activityModels = new VModelConverter().toActivityModelList(itinerary.getActivities());
-        return GetItineraryActivitiesResult.builder().withActivityList(activityModels).build();
+        return GetItineraryActivitiesResult.builder().withActivityList(Collections.singletonList(ActivityModel.builder().build()))
+                .build();
     }
 
 }
