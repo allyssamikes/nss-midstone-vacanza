@@ -9,7 +9,7 @@ import DataStore from '../util/DataStore';
 class GetItineraryActivities extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'addItineraryToPage'], this);
+        this.bindClassMethods(['mount', 'submit', 'addItineraryToPage', 'getHTMLForResults'], this);
         this.dataStore = new DataStore();
         //this.dataStore.addChangeListener(this.addActivitiesToPage);
         //listener is not a function error with a dud listener as above and with out this?
@@ -73,7 +73,7 @@ console.log("submit");
              const activitiesContainer = document.getElementById('activities-container');
 
              activitiesContainer.classList.remove('hidden');
-             document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities.name, null, 4);
+             document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities, null, 4);
              document.getElementById('submit-results-display').innerHTML = JSON.stringify(itinerary.activities);
 
 
@@ -81,7 +81,34 @@ console.log("submit");
                 submitResultsDisplay.innerHTML = JSON.stringify(itinerary.cities);
                 submitCriteriaDisplay.innerHTML = itinerary.cities;
 
+
+
             }
+            getHTMLForResults() {
+            const activities = itinerary.activities;
+                    if (activities === undefined){
+                                 return '<h4>No results found</h4>';
+                     }
+
+                    let html = '<table><tr><th>Name</th><th>Address</th><th>City</th><th>Description</th></tr>';
+                   for(activity of activities){
+                                       html += `
+                                       <tr>
+                                           <td>
+                                               <a href="itinerary.html/email=${itinerary.email}/tripName=
+                                               ${itinerary.tripName}">${itinerary.email}${itinerary.tripName}</a>
+                                           </td>
+                                            <td>${activities.name}</td>
+                                           <td>${activities.cityCountry?.join(', ')}</td>
+                                           <td>${activities.address?.join(', ')}</td>
+                                       </tr>`;
+                                   }
+                                   html += '</table>';
+
+                                   return html;
+                   }
+            }
+
 //               addSongsToPage() {
 //                    const activities = itinerary.activities;
 //
@@ -101,7 +128,7 @@ console.log("submit");
 //                    }
 //                    document.getElementById('songs').innerHTML = songHtml;
 //                }
-}
+
 /**
  * Main method to run when the page contents have loaded.
  */
