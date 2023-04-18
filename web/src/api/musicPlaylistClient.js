@@ -94,7 +94,7 @@ export default class MusicPlaylistClient extends BindingClass {
      * @returns The list of activities in an itinerary.
      */
     async getItineraryActivities(email, tripName, errorCallback) {
-        //const id = ${email}+${tripName};
+
         try {
            // const response = await this.axiosClient.get(`itineraries/${id}/activities`);
            const response = await this.axiosClient.get(`itineraries/${email}/${tripName}/activities`);
