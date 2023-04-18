@@ -14,7 +14,10 @@ export default class MusicPlaylistClient extends BindingClass {
 
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow', 'getItinerary', 'getItineraryActivities', 'createItinerary', 'addSongToPlaylist'];
+
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
+        'getItinerary', 'getItineraryActivities', 'createItinerary', 'search', 'createActivity'];
+
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
         this.props = props;
@@ -98,29 +101,49 @@ export default class MusicPlaylistClient extends BindingClass {
         }
     }
 
-    /**
-     * Create a new playlist owned by the current user.
-     * @param name The name of the playlist to create.
-     * @param tags Metadata tags to associate with a playlist.
-     * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The playlist that has been created.
-     */
-    async createItinerary(name, tags, errorCallback) {
+        /**
+         * Create a new itinerary owned by the current user.
+         * @param name The name of the itinerary to create.
+         * @param tags Metadata tags to associate with a itinerary.
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The itinerary that has been created.
+         */
+    async createItinerary(tripName, tags, users, cities, errorCallback) {
+
         try {
-            const token = await this.getTokenOrThrow("Only authenticated users can create playlists.");
-            const response = await this.axiosClient.post(`playlists`, {
-                name: name,
-                tags: tags
+            const token = await this.getTokenOrThrow("Only authenticated users can create itineraries.");
+            const response = await this.axiosClient.post(`itineraries`, {
+                tripName: tripName,
+                tags: tags,
+                users: users,
+                cities: cities,
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return response.data.playlist;
+            return response.data.itinerary;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
     }
+        async createActivity(cityCountry, name, errorCallback) {
+
+            try {
+                const token = await this.getTokenOrThrow("Only authenticated users can create activities.");
+                const response = await this.axiosClient.post(`activities`, {
+                    cityCountry: cityCountry,
+                    name: name,
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                return response.data.activity;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
 
     /**
      * Add a song to a playlist.

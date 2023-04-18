@@ -55,7 +55,6 @@ public class ItineraryDao {
 
     /**
      * Saves (creates or updates) the given itinerary
-     *
      * @param itinerary The itinerary to save
      * @return The Itinerary object that was saved
      */
@@ -63,7 +62,6 @@ public class ItineraryDao {
         this.dynamoDbMapper.save(itinerary);
         return itinerary;
     }
-
     /**
      * Perform a search (via a "scan") of the itinerary table for itineraries  matching the given criteria.
      *

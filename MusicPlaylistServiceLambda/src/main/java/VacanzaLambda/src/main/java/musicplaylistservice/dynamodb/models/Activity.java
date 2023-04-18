@@ -1,9 +1,7 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-
-
-
+@DynamoDBDocument
 @DynamoDBTable(tableName = "activities")
 public class Activity{
     private String name;
@@ -37,6 +35,7 @@ public class Activity{
     public void setAddress(String address) {
         this.address = address;
     }
+    @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "type_of_activity")
     public TYPE_OF_ACTIVITY getTYPE_OF_ACTIVITY() {
         return type;
@@ -66,4 +65,15 @@ public class Activity{
         this.weatherPermitting = weatherPermitting;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "name='" + name + '\'' +
+                ", cityCountry='" + cityCountry + '\'' +
+                ", address='" + address + '\'' +
+                ", type=" + type +
+                ", kidFriendly=" + kidFriendly +
+                ", weatherPermitting=" + weatherPermitting +
+                '}';
+    }
 }

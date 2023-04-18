@@ -1,22 +1,20 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
+import VacanzaLambda.src.main.java.musicplaylistservice.converters.ActivitiesLinkedListConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 
 @DynamoDBTable(tableName = "itineraries")
 public class  Itinerary {
     private String tripName;
     private String email;
     private List<String> cities;
-
     private List<Activity> activities;
-
     private List<String> users;
-
-
+    private List<String> tags;
     @DynamoDBRangeKey(attributeName = "tripName")
     public String getTripName() {
         return tripName;
@@ -43,6 +41,7 @@ public class  Itinerary {
         this.cities = cities;
     }
 
+    @DynamoDBTypeConverted(converter = ActivitiesLinkedListConverter.class)
     @DynamoDBAttribute(attributeName = "activities")
     public List<Activity> getActivities() {
         return activities;
@@ -54,13 +53,41 @@ public class  Itinerary {
 
     @DynamoDBAttribute(attributeName = "users")
     public List<String> getUsers() {
-        return users;
+        if (null == users) {
+            return null;
+        }
+        return new ArrayList<>(users);
     }
 
     public void setUsers(List<String> users) {
         this.users = users;
     }
 
+    @DynamoDBAttribute(attributeName = "tags")
+    public List<String> getTags() {
+
+        if (null == tags) {
+            return null;
+        }
+
+        return new ArrayList<>(tags);
+    }
+
+    /**
+     * Sets the tags for this Playlist as a copy of input, or null if input is null.
+     *
+     * @param tags Set of tags for this playlist
+     */
+    public void setTags(List<String> tags) {
+        // see comment in getTags()
+        if (null == tags) {
+            this.tags = null;
+        } else {
+            this.tags = new ArrayList<>(tags);
+        }
+
+        this.tags = tags;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,7 +95,6 @@ public class  Itinerary {
         Itinerary itinerary = (Itinerary) o;
         return Objects.equals(tripName, itinerary.tripName) && Objects.equals(email, itinerary.email) && Objects.equals(cities, itinerary.cities) && Objects.equals(activities, itinerary.activities) && Objects.equals(users, itinerary.users);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(tripName, email, cities, activities, users);
@@ -84,4 +110,5 @@ public class  Itinerary {
                 ", users=" + users +
                 '}';
     }
+
 }

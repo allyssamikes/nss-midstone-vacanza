@@ -7,12 +7,16 @@ import BindingClass from "../util/bindingClass";
 export default class Header extends BindingClass {
     constructor() {
         super();
+
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton','createItinerarySiteTitle'
         ];
+
         this.bindClassMethods(methodsToBind, this);
+
         this.client = new MusicPlaylistClient();
+
     }
 
     /**
@@ -40,6 +44,18 @@ export default class Header extends BindingClass {
         siteTitle.appendChild(homeButton);
 
         return siteTitle;
+    }
+    createItinerarySiteTitle() {
+            const homeButton = document.createElement('a');
+            homeButton.classList.add('header_home');
+            homeButton.href = 'createItinerary.html';
+            homeButton.innerText = 'Vacanza';
+
+            const siteTitle = document.createElement('div');
+            siteTitle.classList.add('site-title');
+            siteTitle.appendChild(homeButton);
+
+            return siteTitle;
     }
 
     createUserInfoForHeader(currentUser) {

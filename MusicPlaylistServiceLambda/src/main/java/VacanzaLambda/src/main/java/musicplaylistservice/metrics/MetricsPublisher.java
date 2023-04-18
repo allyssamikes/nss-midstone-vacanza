@@ -68,8 +68,12 @@ public class MetricsPublisher {
                                                         final StandardUnit unit) {
 
         final Dimension service = new Dimension()
-            .withName( VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants.SERVICE)
-            .withValue( VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants.SERVICE_NAME);
+
+
+            .withName(MetricsConstants.SERVICE)
+            .withValue(MetricsConstants.SERVICE_NAME);
+
+
 
         final MetricDatum datum = new MetricDatum()
             .withMetricName(metricName)
