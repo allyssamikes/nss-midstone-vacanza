@@ -46,7 +46,7 @@ class SearchItineraries extends BindingClass {
     mount() {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
         document.getElementById('search-itineraries-form').addEventListener('submit', this.search);
-        document.getElementById('search-btn').addEventListener('click', this.search);
+        document.getElementById('search-button').addEventListener('click', this.search);
 
         this.header.addHeaderToPage();
 

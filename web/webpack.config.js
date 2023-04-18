@@ -24,10 +24,6 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
-    viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
-    searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
-
     createItinerary: path.resolve(__dirname, 'src','pages', 'createItinerary.js'),
     //[webpack-cli] Failed to load '/Users/eringeier/workspace/midstone-project-team5/u5-project-group-5/web/webpack.config.js' config
     //  [webpack-cli] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received type number (NaN)
