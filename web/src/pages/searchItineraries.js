@@ -21,7 +21,7 @@ const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
     [SEARCH_CRITERIA_EMAIL]: '',
     [SEARCH_CRITERIA_TRIP_NAME]: '',
-   [SEARCH_RESULTS_KEY]: [],
+   [SEARCH_RESULTS_KEY]: '',
 };
 
 
@@ -90,7 +90,7 @@ class SearchItineraries extends BindingClass {
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
         const searchResultsDisplay = document.getElementById('search-results-display');
 
-        if (email && tripName === '') {
+        if (email === '' && tripName === '') {
             searchResultsContainer.classList.add('hidden');
             searchCriteriaDisplay.innerHTML = '';
             searchResultsDisplay.innerHTML = '';
@@ -108,26 +108,28 @@ class SearchItineraries extends BindingClass {
      * @returns A string of HTML suitable for being dropped on the page.
      */
     getHTMLForSearchResults(searchResults) {
-        if (searchResults.length === 0) {
-            return '<h4>No results found</h4>';
-        }
-        let html = '<table><tr><th>Email</th><th>TripName</th><th>Cities</th></tr>';
-          if (searchResults.length === 1){
-            html += `
-            <tr>
-                <td>
-                    <a href="itinerary.html?email=${res.email}">${res.email}</a>
-                </td>
-                <td>${res.tripName}</td>
-                <td>${res.cities?.join(', ')}</td>
-            </tr>`;
-        }
-        html += '</table>';
+            if (searchResults === undefined){
+                         return '<h4>No results found</h4>';
+             }
 
-        return html;
+            let html = '<table><tr><th>Email</th><th>TripName</th><th>Cities</th><th>Activities</th></tr>';
+           if ((searchResults.email != email) || (searchResults.tripName != tripName)) {
+                               html += `
+                               <tr>
+                                   <td>
+                                       <a href="itinerary.html/email=${searchResults.email}">${searchResults.email}</a>
+                                   </td>
+                                    <td>${searchResults.tripName}</td>
+                                   <td>${searchResults.cities?.join(', ')}</td>
+                                   <td>${searchResults.activities?.join(', ')}</td>
+                               </tr>`;
+                           }
+                           html += '</table>';
+
+                           return html;
+           }
     }
 
-}
 
 /**
  * Main method to run when the page contents have loaded.
