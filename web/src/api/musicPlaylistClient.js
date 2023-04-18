@@ -17,7 +17,7 @@ export default class MusicPlaylistClient extends BindingClass {
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
         'getItinerary', 'getItineraryActivities', 'createItinerary',
-        'search', 'createActivity', 'getItineraryActivities'];
+        'search', 'createActivity'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();

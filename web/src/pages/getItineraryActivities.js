@@ -11,7 +11,9 @@ class GetItineraryActivities extends BindingClass {
         super();
         this.bindClassMethods(['mount', 'submit', 'addItineraryToPage'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.addActivitiesToPage);
+        //this.dataStore.addChangeListener(this.addActivitiesToPage);
+        //listener is not a function error with a dud listener as above and with out this?
+        this.dataStore.addChangeListener(this.addItineraryToPage);
         this.header = new Header(this.dataStore);
     }
     /**
@@ -45,7 +47,7 @@ console.log("submit");
  console.log(email);
  console.log(tripName);
             const itinerary = await this.client.getItinerary(email, tripName, (error) => {
-                createButton.innerText = origButtonText;
+                getButton.innerText = origButtonText;
                 const errorMessageDisplay = document.getElementById('error-message');
                 errorMessageDisplay.innerText = `Error: ${error.message}`;
                 errorMessageDisplay.classList.remove('hidden');
