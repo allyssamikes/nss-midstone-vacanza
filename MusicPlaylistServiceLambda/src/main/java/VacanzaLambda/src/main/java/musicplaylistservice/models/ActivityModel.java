@@ -10,10 +10,10 @@ public class ActivityModel {
     private String cityCountry;
     private String  address;
     private TYPE_OF_ACTIVITY type;
-    private Boolean kidFriendly;
-    private Boolean weatherPermitting;
+    private String kidFriendly;
+    private String weatherPermitting;
 
-    public ActivityModel(String name, String cityCountry, String address, TYPE_OF_ACTIVITY type, Boolean kidFriendly, Boolean weatherPermitting) {
+    public ActivityModel(String name, String cityCountry, String address, TYPE_OF_ACTIVITY type, String kidFriendly, String weatherPermitting) {
         this.name = name;
         this.cityCountry = cityCountry;
         this.address = address;
@@ -39,11 +39,11 @@ public class ActivityModel {
         return type;
     }
 
-    public Boolean getKidFriendly() {
+    public String getKidFriendly() {
         return kidFriendly;
     }
 
-    public Boolean getWeatherPermitting() {
+    public String getWeatherPermitting() {
         return weatherPermitting;
     }
 
@@ -70,8 +70,8 @@ public class ActivityModel {
         private String cityCountry;
         private String address;
         private TYPE_OF_ACTIVITY type;
-        private Boolean kidFriendly;
-        private Boolean weatherPermitting;
+        private String kidFriendly;
+        private String weatherPermitting;
 
         public Builder withName(String name) {
             this.name = name;
@@ -94,12 +94,12 @@ public class ActivityModel {
             return this;
         }
 
-        public Builder withKidFriendly(Boolean kidFriendly) {
+        public Builder withKidFriendly(String kidFriendly) {
             this.kidFriendly = kidFriendly;
             return this;
         }
 
-        public Builder withWeatherPermitting(Boolean weatherPermitting) {
+        public Builder withWeatherPermitting(String weatherPermitting) {
             this.weatherPermitting = weatherPermitting;
             return this;
         }

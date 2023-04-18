@@ -127,7 +127,7 @@ export default class MusicPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
-        async createActivity(cityCountry, name, address, type, errorCallback) {
+        async createActivity(cityCountry, name, address, type, kid_friendly, weather_permitting, errorCallback) {
 
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can create activities.");
@@ -136,6 +136,8 @@ export default class MusicPlaylistClient extends BindingClass {
                     name: name,
                     address: address,
                     type: type,
+                    kid_friendly: kid_friendly,
+                    weather_permitting: weather_permitting,
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`

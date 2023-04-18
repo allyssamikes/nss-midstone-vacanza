@@ -39,8 +39,8 @@ public class CreateActivityActivityTest {
         String expectedCityCountry = "expectedCityCountry";
         String expectedAddress = "expectedAddress";
         TYPE_OF_ACTIVITY expectedType = MUSEUM;
-        Boolean expectedKidFriendly = true;
-        Boolean expectedWeatherPermitting = false;
+        String expectedKidFriendly = "True";
+        String expectedWeatherPermitting = "False";
 
 
         CreateActivityRequest request = CreateActivityRequest.builder()
