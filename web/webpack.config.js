@@ -24,17 +24,10 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    createItinerary: path.resolve(__dirname, 'src','pages', 'createItinerary.js'),
-    //[webpack-cli] Failed to load '/Users/eringeier/workspace/midstone-project-team5/u5-project-group-5/web/webpack.config.js' config
-    //  [webpack-cli] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received type number (NaN)
-//The following lines produce this error when running webpack
- //   searchItineraries: path.resolve(--__dirname, 'src', 'pages','searchItineraries.js'),
- //   viewItinerary: path.resolve(__dirname, 'src','pages','viewItinerary.js'),
- //The following lines work fine for running npm run run-local:
+     createItinerary: path.resolve(__dirname, 'src','pages', 'createItinerary.js'),
      viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
      searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
      createActivity: path.resolve(__dirname, 'src','pages', 'createActivity.js'),
-
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
