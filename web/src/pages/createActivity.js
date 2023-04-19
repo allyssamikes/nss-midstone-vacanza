@@ -44,10 +44,10 @@ class CreateActivity extends BindingClass {
             const name = document.getElementById('activity-name').value;
             const address = document.getElementById('activity-address').value;
             const type = document.getElementById("activity-type").value;
-            const kid_friendly = document.getElementById("activity-kid_friendly").value;
-            const weather_permitting = document.getElementById("activity-weather_permitting").value;
+            const kidFriendly = document.getElementById("activity-kidFriendly").value;
+            const weatherPermitting = document.getElementById("activity-weatherPermitting").value;
 
-            const activity = await this.client.createActivity(cityCountry, name, address, type, kid_friendly, weather_permitting);
+            const activity = await this.client.createActivity(cityCountry, name, address, type, kidFriendly, weatherPermitting);
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
