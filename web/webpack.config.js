@@ -24,12 +24,12 @@ module.exports = {
   },
   entry: {
 
-    createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
-    viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
-    searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
-
+    createActivity: path.resolve(__dirname, 'src', 'pages', 'createActivity.js'),
     createItinerary: path.resolve(__dirname, 'src','pages', 'createItinerary.js'),
     getItineraryActivities: path.resolve(__dirname, 'src','pages', 'getItineraryActivities.js'),
+    searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
+    viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
+
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
