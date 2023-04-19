@@ -110,10 +110,8 @@ class SearchItineraries extends BindingClass {
             if (searchResults === undefined){
                          return '<h4>No results found</h4>';
              }
-
+            const activities = searchResults.activities
            if ((searchResults.email != email) || (searchResults.tripName != tripName)) {
-                     let activities = searchResults.activities
-
                      let html = '<table><tr><th>Email</th><th>TripName</th><th>Cities</th><th>Activities</th></tr>';
                                html += `
                                <tr>
@@ -122,20 +120,18 @@ class SearchItineraries extends BindingClass {
                                    </td>
                                    <td>${searchResults.tripName}</td>
                                    <td>
-                                    let activity;
-                                      for (activity of activities) {
-                                      <li class="activity">
+                                     for (const activity of activities) {
+                                      <li>
                                       <span>${activity.name}</span>
-                                       <span>${" : "}</span>
+                                      <span>{" : "}</span>
                                       <span>${activity.cityCountry}</span>
-                                       </li> }
-                                   </td>
-                               </tr> `; }
-                      document.getElementById('activities').innerHTML = activityHtml;
+                                      </li> }
+                                      </td>
+                               </tr> `;
+                     }
+                     html += '</table>';
 
-                           html += '</table>';
-
-                           return html;
+                     return html;
            }
     }
 
