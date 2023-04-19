@@ -23,12 +23,9 @@ public class GetItineraryActivitiesActivity {
     }
 
     public GetItineraryActivitiesResult handleRequest(final GetItineraryActivitiesRequest getItineraryActivitiesRequest){
-        log.info("Received GetItineraryActivitiesRequest {}", getItineraryActivitiesRequest);
 
-//        Itinerary itinerary = itineraryDao.getItinerary(getItineraryActivitiesRequest.getEmail(),
-//                getItineraryActivitiesRequest.getTripName());
+        log.info("Received GetItinerarayActivitiesRequest {}", getItineraryActivitiesRequest);
 
-     //   List<ActivityModel> activityModels = new VModelConverter().toActivityModelList(itinerary.getActivities());
         return GetItineraryActivitiesResult.builder().withActivityList(Collections.singletonList(ActivityModel.builder().build()))
                 .build();
     }

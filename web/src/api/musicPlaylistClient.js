@@ -79,13 +79,14 @@ export default class MusicPlaylistClient extends BindingClass {
      * @returns The playlist's metadata.
      */
     async getItinerary(email, tripName, errorCallback) {
-        try {
-            const response = await this.axiosClient.get(`itineraries/${email}/${tripName}`);
-            return response.data.itinerary;
-        } catch (error) {
-            this.handleError(error, errorCallback)
-        }
-    }
+
+          try {
+              const response = await this.axiosClient.get(`itineraries/${email}/${tripName}`);
+              return response.data.itinerary;
+          } catch (error) {
+              this.handleError(error, errorCallback)
+          }
+      }
 
     /**
      * Get the songs on a given playlist by the playlist's identifier.
