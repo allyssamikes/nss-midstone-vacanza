@@ -82,6 +82,7 @@ console.log(activities);
              //document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities);
              document.getElementById('submit-results-display').innerHTML = itinerary.activities;
 console.log(itinerary.cities);
+console.log(itinerary.users);
                 activitiesContainer.classList.remove('hidden');
                 submitResultsContainer.classList.remove('hidden');
                 submitResultsDisplay.innerHTML = JSON.stringify(itinerary.cities);
