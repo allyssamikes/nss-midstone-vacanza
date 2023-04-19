@@ -99,7 +99,6 @@ export default class MusicPlaylistClient extends BindingClass {
         try {
            // const response = await this.axiosClient.get(`itineraries/${id}/activities`);
            const response = await this.axiosClient.get(`itineraries/${email}/${tripName}/activities`);
-            //return response.data.songList;
             return response.data.activities;
         } catch (error) {
             this.handleError(error, errorCallback)

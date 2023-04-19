@@ -74,19 +74,20 @@ console.log(activities);
  console.log(itinerary.activities);
 
             const submitResultsContainer = document.getElementById('submit-results-container');
-            const submitCriteriaDisplay  =   document.getElementById('submit-results-display');
+            const submitCriteriaDisplay  =   document.getElementById('submit-criteria-display');
              const submitResultsDisplay  =   document.getElementById('submit-results-display');
-
+            const submitUsersDisplay  =   document.getElementById('users-display');
              const activitiesContainer = document.getElementById('activities-container');
              activitiesContainer.classList.remove('hidden');
              //document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities);
              document.getElementById('submit-results-display').innerHTML = itinerary.activities;
-console.log(itinerary.cities);
+
 console.log(itinerary.users);
                 activitiesContainer.classList.remove('hidden');
                 submitResultsContainer.classList.remove('hidden');
-                submitResultsDisplay.innerHTML = JSON.stringify(itinerary.cities);
-                submitCriteriaDisplay.innerHTML = itinerary.cities;
+                submitResultsDisplay.innerHTML = itinerary.cities;
+                //submitCriteriaDisplay.innerHTML = itinerary.cities;
+                submitUsersDisplay.innerHTML = itinerary.users;
                           // const activities = this.dataStore.get('activities');
                           const activities = itinerary.activities
                            console.log(activities);
@@ -104,6 +105,7 @@ console.log(itinerary.users);
                                  activityHtml += `
                                 <li class="activity">
                                  <span class="name">${activity.name}</span>
+                                 <span class="space">${" : "}</span>
                                  <span class="place">${activity.cityCountry}</span>
                                   </li>
                                         `;
