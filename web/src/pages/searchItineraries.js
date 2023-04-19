@@ -111,18 +111,28 @@ class SearchItineraries extends BindingClass {
                          return '<h4>No results found</h4>';
              }
 
-            let html = '<table><tr><th>Email</th><th>TripName</th><th>Cities</th><th>Activities</th></tr>';
            if ((searchResults.email != email) || (searchResults.tripName != tripName)) {
+                     let activities = searchResults.activities
+
+                     let html = '<table><tr><th>Email</th><th>TripName</th><th>Cities</th><th>Activities</th></tr>';
                                html += `
                                <tr>
                                    <td>
                                        <a href="itinerary.html/email=${searchResults.email}">${searchResults.email}</a>
                                    </td>
-                                    <td>${searchResults.tripName}</td>
-                                   <td>${searchResults.cities?.join(', ')}</td>
-                                   <td>${searchResults.activities?.join(', ')}</td>
-                               </tr>`;
-                           }
+                                   <td>${searchResults.tripName}</td>
+                                   <td>
+                                    let activity;
+                                      for (activity of activities) {
+                                      <li class="activity">
+                                      <span>${activity.name}</span>
+                                       <span>${" : "}</span>
+                                      <span>${activity.cityCountry}</span>
+                                       </li> }
+                                   </td>
+                               </tr> `; }
+                      document.getElementById('activities').innerHTML = activityHtml;
+
                            html += '</table>';
 
                            return html;
