@@ -131,7 +131,8 @@ export default class MusicPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
-    async createActivity(cityCountry, name, errorCallback) {
+
+        async createActivity(cityCountry, name, address, type, kidFriendly, weatherPermitting, errorCallback) {
 
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can create activities.");
@@ -139,6 +140,10 @@ export default class MusicPlaylistClient extends BindingClass {
                 const response = await this.axiosClient.post(`activities`, {
                     cityCountry: cityCountry,
                     name: name,
+                    address: address,
+                    type: type,
+                    kidFriendly: kidFriendly,
+                    weatherPermitting: weatherPermitting,
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`
