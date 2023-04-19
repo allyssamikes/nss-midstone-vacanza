@@ -11,10 +11,10 @@ public class CreateActivityRequest {
     private final String cityCountry;
     private final String address;
     private final TYPE_OF_ACTIVITY type;
-    private final Boolean kidFriendly;
-    private final Boolean weatherPermitting;
+    private final String kidFriendly;
+    private final String weatherPermitting;
 
-    private CreateActivityRequest(String name, String cityCountry, String address, TYPE_OF_ACTIVITY type, Boolean kidFriendly, Boolean weatherPermitting) {
+    private CreateActivityRequest(String name, String cityCountry, String address, TYPE_OF_ACTIVITY type, String kidFriendly, String weatherPermitting) {
         this.name = name;
         this.cityCountry = cityCountry;
         this.address = address;
@@ -38,8 +38,8 @@ public class CreateActivityRequest {
     public TYPE_OF_ACTIVITY getType() {
         return type;
     }
-    public Boolean getKidFriendly() { return kidFriendly; }
-    public Boolean getWeatherPermitting() { return weatherPermitting; }
+    public String getKidFriendly() { return kidFriendly; }
+    public String getWeatherPermitting() { return weatherPermitting; }
 
     @Override
     public String toString() {
@@ -64,8 +64,8 @@ public class CreateActivityRequest {
         private  String cityCountry;
         private  String address;
         private  TYPE_OF_ACTIVITY type;
-        private  Boolean kidFriendly;
-        private  Boolean weatherPermitting;
+        private  String kidFriendly;
+        private  String weatherPermitting;
 
         public Builder withName(String name) {
             this.name = name;
@@ -87,12 +87,12 @@ public class CreateActivityRequest {
             return this;
         }
 
-        public Builder withKidFriendly(Boolean kidFriendly) {
+        public Builder withKidFriendly(String kidFriendly) {
             this.kidFriendly = kidFriendly;
             return this;
         }
 
-        public Builder withWeatherPermitting(Boolean weatherPermitting) {
+        public Builder withWeatherPermitting(String weatherPermitting) {
             this.weatherPermitting = weatherPermitting;
             return this;
         }

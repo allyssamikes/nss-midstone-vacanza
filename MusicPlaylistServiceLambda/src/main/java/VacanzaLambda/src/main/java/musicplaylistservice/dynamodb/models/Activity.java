@@ -8,8 +8,8 @@ public class Activity{
     private String cityCountry;
     private String  address;
     private TYPE_OF_ACTIVITY type;
-    private Boolean kidFriendly;
-    private Boolean weatherPermitting;
+    private String kidFriendly;
+    private String weatherPermitting;
 
     @DynamoDBRangeKey(attributeName = "name")
     public String getName() {
@@ -45,23 +45,21 @@ public class Activity{
         this.type = type;
     }
 
-    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
     @DynamoDBAttribute(attributeName = "kid_friendly")
-    public Boolean getKidFriendly() {
+    public String getKidFriendly() {
         return kidFriendly;
     }
 
-    public void setKidFriendly(Boolean kidFriendly) {
+    public void setKidFriendly(String kidFriendly) {
         this.kidFriendly = kidFriendly;
     }
 
-    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
     @DynamoDBAttribute(attributeName = "weather_permitting")
-    public Boolean getWeatherPermitting() {
+    public String getWeatherPermitting() {
         return weatherPermitting;
     }
 
-    public void setWeatherPermitting(Boolean weatherPermitting) {
+    public void setWeatherPermitting(String weatherPermitting) {
         this.weatherPermitting = weatherPermitting;
     }
 

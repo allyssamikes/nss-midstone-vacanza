@@ -42,14 +42,17 @@ class CreateActivity extends BindingClass {
 
             const cityCountry = document.getElementById('activity-cityCountry').value;
             const name = document.getElementById('activity-name').value;
+            const address = document.getElementById('activity-address').value;
+            const type = document.getElementById("activity-type").value;
+            const kidFriendly = document.getElementById("activity-kidFriendly").value;
+            const weatherPermitting = document.getElementById("activity-weatherPermitting").value;
 
-            const activity = await this.client.createActivity(cityCountry, name, (error) => {
-                createButton.innerText = origButtonText;
-                errorMessageDisplay.innerText = `Error: ${error.message}`;
-                errorMessageDisplay.classList.remove('hidden');
-            });
+            const activity = await this.client.createActivity(cityCountry, name, address, type, kidFriendly, weatherPermitting);
+            createButton.innerText = origButtonText;
+            errorMessageDisplay.innerText = `Error: ${error.message}`;
+            errorMessageDisplay.classList.remove('hidden');
+
             this.dataStore.set('activity', activity);
-            //can't really see this, is there a way to add a couple milliseconds?
             createButton.innerText = 'Complete';
             createButton.innerText = 'Create New Vacation Activity';
         }
