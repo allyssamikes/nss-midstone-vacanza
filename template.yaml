@@ -263,6 +263,8 @@ Resources:
           Properties:
             Path: /itineraries/{email}/{tripName}
             Method: get
+            Auth:
+              Authorizer: 'NONE'
 
 
   SearchPlaylistsLambda:

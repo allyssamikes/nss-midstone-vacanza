@@ -67,7 +67,6 @@ class SearchItineraries extends BindingClass {
 
         if (email && tripName) {
             const results = await this.client.getItinerary(email, tripName);
-
             this.dataStore.setState({
                 [SEARCH_CRITERIA_EMAIL]: email,
                   [SEARCH_CRITERIA_TRIP_NAME]: tripName,
@@ -81,10 +80,10 @@ class SearchItineraries extends BindingClass {
     /**
      * Pulls search results from the datastore and displays them on the html page.
      */
-    displaySearchResults() {
-        const email = this.dataStore.get(SEARCH_CRITERIA_EMAIL);
-        const tripName = this.dataStore.get(SEARCH_CRITERIA_TRIP_NAME);
-        const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
+    async displaySearchResults() {
+        const email = await this.dataStore.get(SEARCH_CRITERIA_EMAIL);
+        const tripName = await this.dataStore.get(SEARCH_CRITERIA_TRIP_NAME);
+        const searchResults = await this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
@@ -98,7 +97,7 @@ class SearchItineraries extends BindingClass {
             searchResultsContainer.classList.remove('hidden');
             searchCriteriaDisplay.innerHTML = `"${email}"`;
             searchCriteriaDisplay.innerHTML = `"${tripName}"`;
-            searchResultsDisplay.innerHTML = this.getHTMLForSearchResults(searchResults);
+            searchResultsDisplay.innerHTML = await this.getHTMLForSearchResults(searchResults);
         }
     }
 
@@ -107,7 +106,7 @@ class SearchItineraries extends BindingClass {
      * @param searchResults An array of playlists objects to be displayed on the page.
      * @returns A string of HTML suitable for being dropped on the page.
      */
-    getHTMLForSearchResults(searchResults) {
+    async getHTMLForSearchResults(searchResults) {
             if (searchResults === undefined){
                          return '<h4>No results found</h4>';
              }
