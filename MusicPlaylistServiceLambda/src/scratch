@@ -13,3 +13,6 @@ COGNITO_USER_POOL_CLIENT_ID="42i1j67l6uo9a4mm69giia1q71"
 
 API_BASE_URL="https://5jay4yx7c0.execute-api.us-east-2.amazonaws.com/Prod/"
 https://yul54w96n3.execute-api.us-east-2.amazonaws.com/Prod/
+working paths:
+    createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
+    viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),

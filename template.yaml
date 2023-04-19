@@ -427,6 +427,7 @@ Resources:
           Properties:
             Path: /itineraries
             Method: post
+
   GetItineraryActivitiesLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -446,7 +447,8 @@ Resources:
           Properties:
             Path: /itineraries/{email}/{tripName}/activities
             Method: get
-
+            Auth:
+              Authorizer: 'NONE'
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------

@@ -16,7 +16,8 @@ export default class MusicPlaylistClient extends BindingClass {
         super();
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
-        'getItinerary', 'getItineraryActivities', 'createItinerary', 'search', 'createActivity'];
+        'getItinerary', 'getItineraryActivities', 'createItinerary',
+        'search', 'createActivity'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -78,6 +79,7 @@ export default class MusicPlaylistClient extends BindingClass {
      * @returns The playlist's metadata.
      */
     async getItinerary(email, tripName, errorCallback) {
+
           try {
               const response = await this.axiosClient.get(`itineraries/${email}/${tripName}`);
               return response.data.itinerary;
@@ -90,12 +92,14 @@ export default class MusicPlaylistClient extends BindingClass {
      * Get the songs on a given playlist by the playlist's identifier.
      * @param id Unique identifier for a playlist
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The list of songs on a playlist.
+     * @returns The list of activities in an itinerary.
      */
-    async getItineraryActivities(email, errorCallback) {
+    async getItineraryActivities(email, tripName, errorCallback) {
+
         try {
-            const response = await this.axiosClient.get(`playlists/${id}/songs`);
-            return response.data.songList;
+           // const response = await this.axiosClient.get(`itineraries/${id}/activities`);
+           const response = await this.axiosClient.get(`itineraries/${email}/${tripName}/activities`);
+            return response.data.activities;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
@@ -127,10 +131,12 @@ export default class MusicPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
+
         async createActivity(cityCountry, name, address, type, kidFriendly, weatherPermitting, errorCallback) {
 
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can create activities.");
+
                 const response = await this.axiosClient.post(`activities`, {
                     cityCountry: cityCountry,
                     name: name,

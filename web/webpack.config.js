@@ -18,16 +18,18 @@ module.exports = {
       ],
     }),
     new Dotenv({ path: dotenvFile }),
-
   ],
   optimization: {
     usedExports: true
   },
   entry: {
-     createItinerary: path.resolve(__dirname, 'src','pages', 'createItinerary.js'),
-     viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
-     searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
-     createActivity: path.resolve(__dirname, 'src','pages', 'createActivity.js'),
+
+    createActivity: path.resolve(__dirname, 'src', 'pages', 'createActivity.js'),
+    createItinerary: path.resolve(__dirname, 'src','pages', 'createItinerary.js'),
+    getItineraryActivities: path.resolve(__dirname, 'src','pages', 'getItineraryActivities.js'),
+    searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
+    viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
+
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

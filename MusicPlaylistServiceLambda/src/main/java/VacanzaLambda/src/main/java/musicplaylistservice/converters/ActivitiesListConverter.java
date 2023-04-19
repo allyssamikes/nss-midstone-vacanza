@@ -14,7 +14,7 @@ import java.util.List;
  * DynamoDBMapper converts lists to {@link java.util.ArrayList}s by default, but for our project,
  * we want to convert to a {@link LinkedList}
  */
-public class ActivitiesLinkedListConverter implements DynamoDBTypeConverter<String, List> {
+public class ActivitiesListConverter implements DynamoDBTypeConverter<String, List> {
     private static final Gson GSON = new Gson();
     private final Logger log = LogManager.getLogger();
     @Override
@@ -24,6 +24,6 @@ public class ActivitiesLinkedListConverter implements DynamoDBTypeConverter<Stri
     @Override
     public List unconvert(String dynamoDbRepresentation) {
         // need to provide the type parameter of the list to convert correctly
-        return GSON.fromJson(dynamoDbRepresentation, new TypeToken<LinkedList<Activity>>() { } .getType());
+        return GSON.fromJson(dynamoDbRepresentation, new TypeToken<List<Activity>>() { } .getType());
     }
 }

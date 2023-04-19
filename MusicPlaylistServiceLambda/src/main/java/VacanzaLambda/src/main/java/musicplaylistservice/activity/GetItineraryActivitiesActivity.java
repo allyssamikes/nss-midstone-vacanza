@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
-
+import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 public class GetItineraryActivitiesActivity {
     private final Logger log = LogManager.getLogger();
     private final ItineraryDao itineraryDao;
@@ -23,7 +23,9 @@ public class GetItineraryActivitiesActivity {
     }
 
     public GetItineraryActivitiesResult handleRequest(final GetItineraryActivitiesRequest getItineraryActivitiesRequest){
+
         log.info("Received GetItinerarayActivitiesRequest {}", getItineraryActivitiesRequest);
+
         return GetItineraryActivitiesResult.builder().withActivityList(Collections.singletonList(ActivityModel.builder().build()))
                 .build();
     }

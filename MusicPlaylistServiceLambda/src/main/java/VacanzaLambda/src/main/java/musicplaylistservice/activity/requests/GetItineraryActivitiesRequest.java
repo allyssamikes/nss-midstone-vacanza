@@ -4,8 +4,8 @@ public class GetItineraryActivitiesRequest {
     private final String email;
     private final String tripName;
 
-    private GetItineraryActivitiesRequest(String cityCountry, String tripName) {
-        this.email = cityCountry;
+    private GetItineraryActivitiesRequest(String email, String tripName) {
+        this.email = email;
         this.tripName = tripName;
     }
 
