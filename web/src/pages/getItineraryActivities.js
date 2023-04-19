@@ -22,7 +22,7 @@ class GetItineraryActivities extends BindingClass {
      */
     mount() {
         document.getElementById('activities-of-itinerary').addEventListener('click', this.submit);
-console.log("mount");
+
         this.header.addHeaderToPage();
 
         this.client = new MusicPlaylistClient();
@@ -33,33 +33,34 @@ console.log("mount");
          */
         async submit(evt) {
             evt.preventDefault();
-console.log("submit");
+
             const errorMessageDisplay = document.getElementById('error-message');
             errorMessageDisplay.innerText = ``;
             errorMessageDisplay.classList.add('hidden');
+
             const getButton = document.getElementById('activities-of-itinerary');
             const origButtonText = getButton.innerText;
             getButton.innerText = 'Loading...';
+            //user input
             const tripName = document.getElementById('tripName').value;
             const email = document.getElementById('email').value;
- console.log(email);
- console.log(tripName);
+            //get itinerary from database
             const itinerary = await this.client.getItinerary(email, tripName, (error) => {
                 getButton.innerText = origButtonText;
                 const errorMessageDisplay = document.getElementById('error-message');
                 errorMessageDisplay.innerText = `Error: ${error.message}`;
                 errorMessageDisplay.classList.remove('hidden');
             });
+            this.dataStore.set('itinerary', itinerary);
+            //get Activities of Itinerary, not working
             const activities = await this.client.getItineraryActivities(email, tripName, (error) => {
                 getButton.innerText = origButtonText;
                 const errorMessageDisplay = document.getElementById('error-message');
                 errorMessageDisplay.innerText = `Error: ${error.message}`;
                 errorMessageDisplay.classList.remove('hidden');
             });
-console.log(itinerary);
-            this.dataStore.set('itinerary', itinerary);
-console.log(activities);
-            this.dataStore.set('activities', activities);
+         this.dataStore.set('activities', activities);
+         //remove nonworking section above
             getButton.innerText = 'Complete';
             getButton.innerText = 'Submit to View';
         }
@@ -70,17 +71,16 @@ console.log(activities);
                 }
                 document.getElementById('tripName').innerText = itinerary.tripName;
 
- console.log(itinerary.tripName);
- console.log(itinerary.activities);
+           const submitResultsContainer = document.getElementById('submit-results-container');
+           const submitCriteriaDisplay  =   document.getElementById('submit-criteria-display');
+           const submitResultsDisplay  =   document.getElementById('submit-results-display');
 
-            const submitResultsContainer = document.getElementById('submit-results-container');
-            const submitCriteriaDisplay  =   document.getElementById('submit-criteria-display');
-             const submitResultsDisplay  =   document.getElementById('submit-results-display');
-            const submitUsersDisplay  =   document.getElementById('users-display');
-             const activitiesContainer = document.getElementById('activities-container');
-             activitiesContainer.classList.remove('hidden');
+           const submitUsersDisplay  =   document.getElementById('users-display');
+           const activityTableContainer = document.getElementById('activities-table-container');
+           const activitiesContainer = document.getElementById('activities-container');
+           activitiesContainer.classList.remove('hidden');
              //document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities);
-             document.getElementById('submit-results-display').innerHTML = itinerary.activities;
+           //document.getElementById('submit-results-display').innerHTML = itinerary.activities;
 
 console.log(itinerary.users);
                 activitiesContainer.classList.remove('hidden');
@@ -88,14 +88,13 @@ console.log(itinerary.users);
                 submitResultsDisplay.innerHTML = itinerary.cities;
                 //submitCriteriaDisplay.innerHTML = itinerary.cities;
                 submitUsersDisplay.innerHTML = itinerary.users;
-                          // const activities = this.dataStore.get('activities');
-                          const activities = itinerary.activities
-                           console.log(activities);
 
-                          if (activities == null) {
-                                return;
-                          }
+                const activities = itinerary.activities
+                console.log(activities);
 
+                if (activities == null) {
+                     return;
+                }
                           let activityHtml = '';
                           let activity;
                               for (activity of activities) {
