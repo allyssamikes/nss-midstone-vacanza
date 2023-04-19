@@ -9,10 +9,9 @@ import DataStore from '../util/DataStore';
 class GetItineraryActivities extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'addItineraryToPage', 'addActivitiesToPage'], this);
+        this.bindClassMethods(['mount', 'submit', 'addItineraryToPage'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.addActivitiesToPage);
-        //listener is not a function error with a dud listener as above and with out this?
+
         this.dataStore.addChangeListener(this.addItineraryToPage);
         this.header = new Header(this.dataStore);
     }
@@ -52,15 +51,7 @@ class GetItineraryActivities extends BindingClass {
                 errorMessageDisplay.classList.remove('hidden');
             });
             this.dataStore.set('itinerary', itinerary);
-            //get Activities of Itinerary, not working
-            const activities = await this.client.getItineraryActivities(email, tripName, (error) => {
-                getButton.innerText = origButtonText;
-                const errorMessageDisplay = document.getElementById('error-message');
-                errorMessageDisplay.innerText = `Error: ${error.message}`;
-                errorMessageDisplay.classList.remove('hidden');
-            });
-         this.dataStore.set('activities', activities);
-         //remove nonworking section above
+
             getButton.innerText = 'Complete';
             getButton.innerText = 'Submit to View';
         }
@@ -78,22 +69,19 @@ class GetItineraryActivities extends BindingClass {
            const submitUsersDisplay  =   document.getElementById('users-display');
            const activityTableContainer = document.getElementById('activities-table-container');
            const activitiesContainer = document.getElementById('activities-container');
+
            activitiesContainer.classList.remove('hidden');
-             //document.getElementById('activities').innerHTML = JSON.stringify(itinerary.activities);
-           //document.getElementById('submit-results-display').innerHTML = itinerary.activities;
+           submitResultsContainer.classList.remove('hidden');
 
-console.log(itinerary.users);
-                activitiesContainer.classList.remove('hidden');
-                submitResultsContainer.classList.remove('hidden');
-                submitResultsDisplay.innerHTML = itinerary.cities;
-                //submitCriteriaDisplay.innerHTML = itinerary.cities;
-                submitUsersDisplay.innerHTML = itinerary.users;
+           submitResultsDisplay.innerHTML = itinerary.cities;
 
-                const activities = itinerary.activities
-                console.log(activities);
+           submitUsersDisplay.innerHTML = itinerary.users;
+
+           const activities = itinerary.activities
+           console.log(activities);
 
                 if (activities == null) {
-                     return;
+                     return '<h4>No activities found</h4>';
                 }
                           let activityHtml = '';
                           let activity;
@@ -113,27 +101,6 @@ console.log(itinerary.users);
             }
 
 
-     addActivitiesToPage() {
-
-           const activities = this.dataStore.get('activities');
-           console.log(activities);
-          if (activities == null) {
-                return;
-          }
-
-          let activityHtml = '';
-          let activity;
-              for (activity of activities) {
-              console.log(activity);
-                 activityHtml += `
-                <li class="activity">
-                 <span class="name">${activity.tripName}</span>
-                 <span class="place">${activity.cityCountry}</span>
-                  </li>
-                        `;
-              }
-          document.getElementById('activities-table').innerHTML = activityHtml;
-     }
 }
 /**
  * Main method to run when the page contents have loaded.
