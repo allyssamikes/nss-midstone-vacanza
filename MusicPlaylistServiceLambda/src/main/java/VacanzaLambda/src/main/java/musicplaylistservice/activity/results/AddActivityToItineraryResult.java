@@ -36,8 +36,6 @@ public class AddActivityToItineraryResult {
 
         }
 
-
-
         public AddActivityToItineraryResult build() {
             return new AddActivityToItineraryResult(activityModelList);
         }

@@ -28,7 +28,6 @@ public class AddActivityToItineraryActivity {
     public AddActivityToItineraryResult handleRequest(
             final AddActivityToItineraryRequest addActivityToItineraryRequest) {
 
-
         String tripName = addActivityToItineraryRequest.getTripName();
         String email = addActivityToItineraryRequest.getEmail();
 
@@ -38,19 +37,15 @@ public class AddActivityToItineraryActivity {
             throw new ItineraryNotFoundException("Itinerary is not in our database.");
         }
 
-        String cityCountry = addActivityToItineraryRequest.getCityCountry();
-        String name = addActivityToItineraryRequest.getName();
         Activity activityToAdd;
 
         try {
-            activityToAdd = activityDao.getActivity(cityCountry, name);
+            activityToAdd = activityDao.getActivity(addActivityToItineraryRequest.getCityCountry(),
+                    addActivityToItineraryRequest.getName());
         } catch (ActivityNotFoundException ex) {
             throw new ActivityNotFoundException("Activity is not in our database.");
         }
-        List<Activity> activityList = new ArrayList<>(  itinerary.getActivities());
-        if(activityList == null || activityList.size() ==0){
-            activityList = new ArrayList<>();
-        }
+        List<Activity> activityList = new ArrayList<>(itinerary.getActivities());
 
         activityList.add(activityToAdd);
         itinerary.setActivities(activityList);
