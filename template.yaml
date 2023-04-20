@@ -389,12 +389,12 @@ Resources:
             Path: /playlists/{id}
             Method: put
 
-  AddSongToPlaylistLambda:
+  AddActivityToItineraryLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.AddSongToPlaylistLambda::handleRequest
+      Handler: VacanzaLambda.src.main.java.musicplaylistservice.lambda.CreateItineraryLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -406,8 +406,10 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /playlists/{id}/songs
+            Path: /itineraries/{email}/{tripName}/activities
             Method: post
+            Auth:
+              Authorizer: 'NONE'
   CreateItineraryLambda:
     Type: AWS::Serverless::Function
     Properties:

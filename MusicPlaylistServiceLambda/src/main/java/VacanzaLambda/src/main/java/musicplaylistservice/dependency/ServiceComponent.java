@@ -42,4 +42,6 @@ public interface ServiceComponent {
     CreateActivityActivity provideCreateActivityActivity();
 
     GetItineraryActivitiesActivity provideGetItineraryActivitiesActivity();
+
+    AddActivityToItineraryActivity provideAddActivityToItineraryActivity();
 }
