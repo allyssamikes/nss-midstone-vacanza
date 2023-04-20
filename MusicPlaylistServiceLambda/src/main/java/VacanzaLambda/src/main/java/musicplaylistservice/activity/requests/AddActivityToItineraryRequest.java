@@ -34,11 +34,6 @@ public class AddActivityToItineraryRequest {
     }
 
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
     @Override
     public String toString() {
         return "AddActivityToItineraryRequest{" +
@@ -49,12 +44,16 @@ public class AddActivityToItineraryRequest {
                 '}';
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @JsonPOJOBuilder
     public static class Builder {
         private String email;
         private String tripName;
         private String cityCountry;
-        private String activityName;
+        private String name;
 
         public Builder withEmail(String email) {
             this.email = email;
@@ -69,12 +68,12 @@ public class AddActivityToItineraryRequest {
             return this;
         }
         public Builder withName(String name) {
-            this.activityName = name;
+            this.name = name;
             return this;
         }
 
         public AddActivityToItineraryRequest build() {
-            return new AddActivityToItineraryRequest(email, tripName, cityCountry, activityName);
+            return new AddActivityToItineraryRequest(email, tripName, cityCountry, name);
         }
 
     }
