@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 public class GetItineraryActivitiesActivity {
     private final Logger log = LogManager.getLogger();
     private final ItineraryDao itineraryDao;
@@ -27,6 +27,7 @@ public class GetItineraryActivitiesActivity {
     }
 
     public GetItineraryActivitiesResult handleRequest(final GetItineraryActivitiesRequest getItineraryActivitiesRequest){
+
         log.info("Received GetItineraryActivitiesRequest {}", getItineraryActivitiesRequest);
         String email = getItineraryActivitiesRequest.getEmail();
         String tripName= getItineraryActivitiesRequest.getTripName();
@@ -40,6 +41,7 @@ public class GetItineraryActivitiesActivity {
         }
         return GetItineraryActivitiesResult.builder()
                 .withActivityList(activityModels)
+
                 .build();
     }
 

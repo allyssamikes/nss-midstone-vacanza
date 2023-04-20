@@ -84,7 +84,7 @@ public class CreateItineraryActivity {
         newItinerary.setTags(itineraryTags);
         newItinerary.setUsers(itineraryUsers);
         newItinerary.setCities(itineraryCities);
-        newItinerary.setActivities(new ArrayList<>());
+        //newItinerary.setActivities(new ArrayList<>());
 
         itineraryDao.saveItinerary(newItinerary);
 

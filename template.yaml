@@ -411,6 +411,7 @@ Resources:
             Method: post
             Auth:
               Authorizer: 'NONE'
+              
   CreateItineraryLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -430,6 +431,7 @@ Resources:
           Properties:
             Path: /itineraries
             Method: post
+
   GetItineraryActivitiesLambda:
     Type: AWS::Serverless::Function
     Properties:

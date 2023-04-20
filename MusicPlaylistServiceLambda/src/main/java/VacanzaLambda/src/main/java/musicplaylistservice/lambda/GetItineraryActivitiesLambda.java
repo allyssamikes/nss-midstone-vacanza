@@ -18,6 +18,7 @@ public class GetItineraryActivitiesLambda
                                 .withEmail(path.get("email"))
                                 .withTripName(path.get("tripName"))
                                 .build()),
+
                 (request, serviceComponent) ->
                         serviceComponent.provideGetItineraryActivitiesActivity().handleRequest(request)
         );
