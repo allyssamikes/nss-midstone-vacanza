@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="assets/createItinerary.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/erinStyle.css"></head>
+
+<body class="background">
+<header class="header" id="header"></header>
+<div class="card">
+    <h2>Add Activity to an Itinerary</h2>
+    <form class="card-content" id="create-playlist-form">
+        <p class="hidden error" id="error-message"> </p>
+        <p class="form-field">
+            <label>Itinerary Name</label>
+            <input type="text" required class="validated-field" id="itinerary-name" placeholder="NealGermany2023"
+                   autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Email</label>
+            <input type="text" id="email" required class="validated-field" placeholder="john.smith@abc.edu"
+                   data-tip="Must be the email address of the user that created the itinerary.">
+        </p>
+        <p class="form-field">
+            <label>Activity Name</label>
+            <input type="text" id="name" required class="validated-field"  placeholder="Pergamon Museum"
+                   data-tip="">
+        </p>
+        <p class="form-field">
+            <label>City, Country of Activity</label>
+            <input type="text" id="cityCountry" required class="validated-field"  placeholder="Berlin, Germany"
+                   data-tip="Must be formatted as City, Country">
+        </p>
+        <p>
+            <a href="createItinerary.html" class="button" id="create-itinerary">Create Itinerary</a>
+        </p>
+        <p>
+            <a href="getItineraryActivities.html" class="button" id="get-itinerary-activity">View Itinerary Details</a>
+        </p>
+        <p>
+            <a href="#" class="button" id="find-activity">Add Activities</a>
+        </p>
+        <p>
+            <a href="createActivity.html" class="button">Create New Activity</a>
+        </p>
+        <p>
+            <a href="index.html" class="button" id="get-itinerary">View Itineraries</a>
+        </p>
+        <p>
+            <a href="getItineraryActivities.html" class="button" id="get-itinerary-activities">View Itinerary Details</a>
+        </p>
+    </form>
+</div>
+</body>
+</html>
+
