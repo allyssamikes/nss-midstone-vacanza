@@ -3,18 +3,17 @@ import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
+
+
 /**
  * Logic needed for the view playlist page of the website.
  */
 class ViewItinerary extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addItineraryToPage', 'addActivitiesToPage'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addItineraryToPage', 'addCitiesToPage'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.addItineraryToPage);
-        this.dataStore.addChangeListener(this.addActivitiesToPage);
         this.header = new Header(this.dataStore);
-        console.log("viewItinerary constructor");
     }
 
     /**
@@ -22,23 +21,23 @@ class ViewItinerary extends BindingClass {
      */
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
-        const email = urlParams.get('email');
-        document.getElementById('itinerary-email').innerText = "Loading Itinerary...";
-        const itinerary = await this.client.getItinerary(email);
+        const email = urlParams.get("email");
+        const tripName = urlParams.get("tripName");
+        const itinerary = await this.client.getItinerary(email, tripName);
         this.dataStore.set('itinerary', itinerary);
-        document.getElementById('activities').innerText = "(loading activities...)";
-        const songs = await this.client.getPlaylistSongs(playlistId);
-        this.dataStore.set('songs', songs);
+       // document.getElementById('activities').innerText = activitiesHtml;
+      //  const activities = await this.client.getItineraryActivities(email, tripName);
+       // this.dataStore.set('activities', activities);
+        const cities = itinerary.cities;
+        this.dataStore.set('cities', cities);
     }
 
     /**
      * Add the header to the page and load the MusicPlaylistClient.
      */
     mount() {
-        document.getElementById('add-song').addEventListener('click', this.addSong);
-
+        document.getElementById('viewItinerary')
         this.header.addHeaderToPage();
-
         this.client = new MusicPlaylistClient();
         this.clientLoaded();
     }
@@ -46,78 +45,86 @@ class ViewItinerary extends BindingClass {
     /**
      * When the itinerary  is updated in the datastore, update the itinerary metadata on the page.
      */
-    addItineraryToPage() {
+    async addItineraryToPage() {
         const itinerary = this.dataStore.get('itinerary');
-        if (itinerary == null) {
-            return;
-        }
 
-        document.getElementById('itinerary-tripName').innerText = itinerary.tripName;
-        document.getElementById('itinerary-email').innerText = itinerary.email;
+        document.getElementById('tripName').innerHTML = itinerary.tripName
 
-        let tagHtml = '';
-        let tag;
-        for (tag of itinerary.tags) {
-            tagHtml += '<div class="tag">' + tag + '</div>';
-        }
-        document.getElementById('tags').innerHTML = tagHtml;
+//        let activityHtml = '';
+//        let activity;
+//        for (activity of activities) {
+//            activityHtml += '<div class="activity">' + activity + '</div>';
+//        }
+//        document.getElementById('activities').innerHTML = activityHtml;
     }
 
     /**
      * When the activities are updated in the datastore, update the list of activities on the page.
      */
-    addActivitiesToPage() {
-        const activities = this.dataStore.get('activities')
+//    async addActivitiesToPage() {
+//        const activities = this.dataStore.get('activities')
+//
+//        let activitiesHtml = '';
+//        let activity;
+//        for (activity of activities) {
+//            activityHtml += `
+//                <li class="activity">
+//                    <span class="name">$(activity.name}</span>
+//                    <span class="cityCountry">${activity.cityCountry}</span>
+//                </li>
+//            `;
+//        }
+//        document.getElementById('activities').innerHTML = activitiesHtml;
+//    }
 
-        if (activities == null) {
-            return;
+     addCitiesToPage() {
+            const cities = this.dataStore.get('cities');
+
+            let cityHtml = '';
+            let city;
+            for (city of cities) {
+                cityHtml += `
+                    <li class="city">
+                        <span>$(city}</span>
+                    </li>
+                `;
+            }
+            document.getElementById('cities').innerHTML = cityHtml;
         }
-
-        let songHtml = '';
-        let song;
-        for (activity of activities) {
-            songHtml += `
-                <li class="activity">
-                    <span class="title">$(activity.name}</span>
-                    <span class="album">${activity.cityCountry}</span>
-
-                </li>
-            `;
-        }
-        document.getElementById('activities').innerHTML = songHtml;
-    }
 
     /**
      * Method to run when the add activity Itinerary submit button is pressed. Call the MusicPlaylistService to add an activity to the
      * itinerary.
      */
-    async addActivity() {
-
-        const errorMessageDisplay = document.getElementById('error-message');
-        errorMessageDisplay.innerText = ``;
-        errorMessageDisplay.classList.add('hidden');
-
-        const itinerary = this.dataStore.get('itinerary');
-        if (itinerary == null) {
-            return;
-        }
-
-        document.getElementById('add-activity').innerText = 'Adding...';
-        const name = document.getElementById('activity-name').value;
-        const cityCountry = document.getElementById('cityCountry').value;
-        const email = email;
-
-        const songList = await this.client.addSongToPlaylist(playlistId, asin, trackNumber, (error) => {
-            errorMessageDisplay.innerText = `Error: ${error.message}`;
-            errorMessageDisplay.classList.remove('hidden');
-        });
-
-        this.dataStore.set('songs', songList);
-
-        document.getElementById('add-activity').innerText = 'Add Activity';
-        document.getElementById("add-activity-form").reset();
-    }
+//    async addActivity() {
+//
+//        const errorMessageDisplay = document.getElementById('error-message');
+//        errorMessageDisplay.innerText = ``;
+//        errorMessageDisplay.classList.add('hidden');
+//
+//        const itinerary = this.dataStore.get('itinerary');
+//        if (itinerary == null) {
+//            return;
+//        }
+//
+//        document.getElementById('add-activity').innerText = 'Adding...';
+//        const name = document.getElementById('activity-name').value;
+//        const cityCountry = document.getElementById('cityCountry').value;
+//        const email = email;
+//
+//        const activities = await this.client.addActivityToItinerary(name, cityCountry, (error) => {
+//            errorMessageDisplay.innerText = `Error: ${error.message}`;
+//            errorMessageDisplay.classList.remove('hidden');
+//        });
+//
+//        this.dataStore.set('activities', activities);
+//
+//        document.getElementById('add-activity').innerText = 'Add Activity';
+//        document.getElementById("add-activity-form").reset();
+//    }
 }
+
+
 
 /**
  * Main method to run when the page contents have loaded.
