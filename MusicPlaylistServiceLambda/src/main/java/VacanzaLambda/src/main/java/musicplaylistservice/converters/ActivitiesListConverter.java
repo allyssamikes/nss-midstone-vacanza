@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * PARTICIPANTS: The class should NOT be touched when working on the project!
  * DynamoDBMapper converts lists to {@link java.util.ArrayList}s by default, but for our project,
- * we want to convert to a {@link LinkedList}
+ * we want to convert to a {@link List}
  */
 public class ActivitiesListConverter implements DynamoDBTypeConverter<String, List> {
     private static final Gson GSON = new Gson();

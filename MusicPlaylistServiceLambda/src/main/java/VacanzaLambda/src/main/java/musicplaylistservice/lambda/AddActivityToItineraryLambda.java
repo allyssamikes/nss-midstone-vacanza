@@ -11,7 +11,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.lambda.LambdaResponse;
 
 public class AddActivityToItineraryLambda
         extends LambdaActivityRunner<AddActivityToItineraryRequest, AddActivityToItineraryResult>
-        implements RequestHandler<AuthenticatedLambdaRequest<AddActivityToItineraryRequest>, LambdaResponse> {
+        implements RequestHandler<AuthenticatedLambdaRequest<AddActivityToItineraryRequest> , LambdaResponse> {
 
     /**
      * Handles a Lambda Function request

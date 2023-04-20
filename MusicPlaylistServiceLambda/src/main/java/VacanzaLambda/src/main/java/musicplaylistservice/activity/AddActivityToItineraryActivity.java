@@ -47,7 +47,7 @@ public class AddActivityToItineraryActivity {
         } catch (ActivityNotFoundException ex) {
             throw new ActivityNotFoundException("Activity is not in our database.");
         }
-        List<Activity> activityList = itinerary.getActivities();
+        List<Activity> activityList = new ArrayList<>(  itinerary.getActivities());
         if(activityList == null || activityList.size() ==0){
             activityList = new ArrayList<>();
         }
