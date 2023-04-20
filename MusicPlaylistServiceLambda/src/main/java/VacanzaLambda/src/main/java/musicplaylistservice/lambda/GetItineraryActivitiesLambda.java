@@ -13,10 +13,10 @@ public class GetItineraryActivitiesLambda
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetItineraryActivitiesRequest> input, Context context) {
         return super.runActivity(
-                () -> input.fromPathAndQuery((path, query) ->
+                () -> input.fromPath(path ->
                         GetItineraryActivitiesRequest.builder()
                                 .withEmail(path.get("email"))
-                                .withTripName(query.get("tripName"))
+                                .withTripName(path.get("tripName"))
                                 .build()),
 
                 (request, serviceComponent) ->

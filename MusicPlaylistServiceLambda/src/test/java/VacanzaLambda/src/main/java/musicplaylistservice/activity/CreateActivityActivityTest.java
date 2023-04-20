@@ -9,6 +9,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.TYPE_OF_
 import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.InvalidAttributeValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import java.util.List;
@@ -23,7 +24,7 @@ import static org.mockito.MockitoAnnotations.openMocks;
 public class CreateActivityActivityTest {
     @Mock
     private ActivityDao activityDao;
-
+@InjectMocks
     private CreateActivityActivity createActivityActivity;
 
     @BeforeEach

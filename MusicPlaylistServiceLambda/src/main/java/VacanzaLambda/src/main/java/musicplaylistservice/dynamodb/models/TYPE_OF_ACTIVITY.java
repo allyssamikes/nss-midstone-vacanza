@@ -1,7 +1,7 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
-public enum TYPE_OF_ACTIVITY{
+public enum TYPE_OF_ACTIVITY {
 
-    MUSEUM, RESTAURANT, PARK, BEACH, SKIING, HIKING, THEATER, MUSIC, COMEDY
+    MUSEUM, RESTAURANT, PARK, BEACH, SKIING, HIKING, THEATER, MUSIC, COMEDY, TEMPLE, CHURCH
 
 }
