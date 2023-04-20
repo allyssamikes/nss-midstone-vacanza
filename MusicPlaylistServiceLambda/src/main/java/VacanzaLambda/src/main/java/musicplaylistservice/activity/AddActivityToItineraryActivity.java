@@ -32,15 +32,19 @@ public class AddActivityToItineraryActivity {
         String tripName = addActivityToItineraryRequest.getTripName();
         String email = addActivityToItineraryRequest.getEmail();
 
-        Itinerary itinerary = itineraryDao.getItinerary(email, tripName);
-        if (itinerary == null) {
+        Itinerary itinerary;
+        try {itinerary = itineraryDao.getItinerary(email, tripName);
+        } catch (ItineraryNotFoundException ex) {
             throw new ItineraryNotFoundException("Itinerary is not in our database.");
         }
+
         String cityCountry = addActivityToItineraryRequest.getCityCountry();
         String name = addActivityToItineraryRequest.getName();
+        Activity activityToAdd;
 
-        Activity activityToAdd = activityDao.getActivity(cityCountry, name);
-        if (activityToAdd == null) {
+        try {
+            activityToAdd = activityDao.getActivity(cityCountry, name);
+        } catch (ActivityNotFoundException ex) {
             throw new ActivityNotFoundException("Activity is not in our database.");
         }
         List<Activity> activityList = itinerary.getActivities();
