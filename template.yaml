@@ -263,7 +263,8 @@ Resources:
           Properties:
             Path: /itineraries/{email}/{tripName}
             Method: get
-
+            Auth:
+              Authorizer: 'NONE'
 
   SearchPlaylistsLambda:
     Type: AWS::Serverless::Function
@@ -448,6 +449,8 @@ Resources:
           Properties:
             Path: /itineraries/{email}/{tripName}/activities
             Method: get
+            Auth:
+              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration

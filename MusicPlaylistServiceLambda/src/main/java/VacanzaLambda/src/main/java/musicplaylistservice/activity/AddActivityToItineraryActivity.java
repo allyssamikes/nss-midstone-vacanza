@@ -54,8 +54,15 @@ public class AddActivityToItineraryActivity {
 
         activityList.add(activityToAdd);
         itinerary.setActivities(activityList);
+        itineraryDao.saveItinerary(itinerary);
 
-        List<ActivityModel> activityModels = new VModelConverter().toActivityModelList(itinerary.getActivities());
+        List<ActivityModel> activityModels = new ArrayList<>();
+        for(Activity activity: activityList) {
+            ActivityModel model = new VModelConverter().toActivityModel(activity);
+            activityModels.add(model);
+        }
+
+        //List<ActivityModel> activityModels = new VModelConverter().toActivityModelList(itinerary.getActivities());
         return AddActivityToItineraryResult.builder()
                 .withActivitiesList(activityModels)
                 .build();

@@ -28,6 +28,8 @@ public class GetItineraryActivitiesResult {
         return new Builder();
     }
 
+
+
     public static class Builder {
         private List<ActivityModel> activityList;
 
