@@ -94,8 +94,8 @@ class GetItineraryActivities extends BindingClass {
                               const a = activity.weatherPermitting === "True";
                               const j = activity.address != null;
                                 console.log(x);
-                                if(x == true) { var y = 'kid-friendly'} else {var y = ' '}
-                                if(a == true) { var b = 'weather-permitting'} else {var b = ' '}
+                                if(x == true) { var y = 'kid-friendly'} else {var y = 'not child-friendly'}
+                                if(a == true) { var b = 'weather-permitting'} else {var b = 'rain-or-shine'}
                                 if(activity.address != null) {
                                     var c = activity.address;
 
@@ -106,15 +106,15 @@ class GetItineraryActivities extends BindingClass {
                                  <span class="space">${" : "}</span>
                                  <span class="place">${activity.cityCountry}</span>
 
-                                 <span class="space">${"  :  "}</span>
+                                 <span class="space">${"   :   "}</span>
                                  <span class="kidFriendly">${y}</span>
 
-                                 <span class="space">${"  :  "}</span>
+                                 <span class="space">${"   :   "}</span>
                                  <span class="weatherPermitting">${b}</span>
 
-                                 <span class="space">${"  :  "}</span>
-                                 <span href = "//https://www.google.com/maps/search/?api=1&parameters"
-                                 class="address">${c}</span>
+                                 <span class="space">${"   :   "}</span>
+
+                                <span class="address">${c}</span>
 
 
                                   </li>

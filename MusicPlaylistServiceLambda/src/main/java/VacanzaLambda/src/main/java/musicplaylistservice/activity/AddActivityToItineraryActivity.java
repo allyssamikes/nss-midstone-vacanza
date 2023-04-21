@@ -13,7 +13,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ItineraryNotF
 import VacanzaLambda.src.main.java.musicplaylistservice.models.ActivityModel;
 
 import javax.inject.Inject;
-import java.sql.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +64,6 @@ public class AddActivityToItineraryActivity {
             activityModels.add(model);
         }
 
-        //List<ActivityModel> activityModels = new VModelConverter().toActivityModelList(itinerary.getActivities());
         return AddActivityToItineraryResult.builder()
                 .withActivitiesList(activityModels)
                 .build();
