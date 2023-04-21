@@ -24,7 +24,6 @@ const EMPTY_DATASTORE_STATE = {
    [SEARCH_RESULTS_KEY]: '',
 };
 
-
 /**
  * Logic needed for the view itinerary page of the website.
  */
@@ -83,7 +82,7 @@ class SearchItineraries extends BindingClass {
     async displaySearchResults() {
         const email = await this.dataStore.get(SEARCH_CRITERIA_EMAIL);
         const tripName = await this.dataStore.get(SEARCH_CRITERIA_TRIP_NAME);
-        const searchResults = await this.dataStore.get(SEARCH_RESULTS_KEY);
+        const searchResult = await this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
@@ -97,8 +96,9 @@ class SearchItineraries extends BindingClass {
             searchResultsContainer.classList.remove('hidden');
             searchCriteriaDisplay.innerHTML = `"${email}"`;
             searchCriteriaDisplay.innerHTML = `"${tripName}"`;
-            searchResultsDisplay.innerHTML = await this.getHTMLForSearchResults(searchResults);
+            searchResultsDisplay.innerHTML = await this.getHTMLForSearchResults(searchResult);
         }
+        document.getElementById("search-itineraries-form").reset();
     }
 
     /**
@@ -106,29 +106,27 @@ class SearchItineraries extends BindingClass {
      * @param searchResults An array of playlists objects to be displayed on the page.
      * @returns A string of HTML suitable for being dropped on the page.
      */
-    async getHTMLForSearchResults(searchResults) {
-            if (searchResults === undefined){
+    async getHTMLForSearchResults(searchResult) {
+            if (searchResult === undefined){
                          return '<h4>No results found</h4>';
              }
 
-            let html = '<table><tr><th>Email</th><th>TripName</th><th>Cities</th><th>Activities</th></tr>';
-           if ((searchResults.email != email) || (searchResults.tripName != tripName)) {
-                               html += `
-                               <tr>
-                                   <td>
-                                       <a href="itinerary.html/email=${searchResults.email}">${searchResults.email}</a>
-                                   </td>
-                                    <td>${searchResults.tripName}</td>
-                                   <td>${searchResults.cities?.join(', ')}</td>
-                                   <td>${searchResults.activities?.join(', ')}</td>
-                               </tr>`;
-                           }
-                           html += '</table>';
+     let html = '<table><tr><th>TripName</th><th>Email</th></tr>';
+                if ((searchResult.email != email) || (searchResult.tripName != tripName)) {
+                                    html += `
+                                    <tr>
+                                        <p> Click on Trip Name to View Cities and Activities </p>
+                                        <td>
+                                            <a href="viewItinerary.html?email=${searchResult.email}&tripName=${searchResult.tripName}&cities=${searchResult.cities}&activities=${searchResult.activities}">${searchResult.tripName}</a>
+                                        </td>
+                                         <td>${searchResult.email}</td>
+                                          </tr>`;
+                                }
+                                html += '</table>';
 
-                           return html;
-           }
-    }
-
+                                return html;
+                }
+                            }
 
 /**
  * Main method to run when the page contents have loaded.
