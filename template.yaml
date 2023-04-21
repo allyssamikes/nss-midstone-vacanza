@@ -409,8 +409,6 @@ Resources:
           Properties:
             Path: /itineraries/{email}/{tripName}/activities
             Method: post
-            Auth:
-              Authorizer: 'NONE'
               
   CreateItineraryLambda:
     Type: AWS::Serverless::Function
