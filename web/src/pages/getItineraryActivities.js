@@ -100,7 +100,6 @@ class GetItineraryActivities extends BindingClass {
                           document.getElementById('activities').innerHTML = activityHtml;
             }
 
-
 }
 /**
  * Main method to run when the page contents have loaded.

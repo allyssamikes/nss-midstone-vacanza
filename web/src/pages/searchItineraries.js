@@ -117,7 +117,7 @@ class SearchItineraries extends BindingClass {
                                     <tr>
                                         <p> Click on Trip Name to View Cities and Activities </p>
                                         <td>
-                                            <a href="viewItinerary.html?email=${searchResult.email}&tripName=${searchResult.tripName}">${searchResult.tripName}</a>
+                                            <a href="viewItinerary.html?email=${searchResult.email}&tripName=${searchResult.tripName}&cities=${searchResult.cities}&activities=${searchResult.activities}">${searchResult.tripName}</a>
                                         </td>
                                          <td>${searchResult.email}</td>
                                           </tr>`;
