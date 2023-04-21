@@ -107,8 +107,10 @@ export default class MusicPlaylistClient extends BindingClass {
 
         /**
          * Create a new itinerary owned by the current user.
-         * @param name The name of the itinerary to create.
+         * @param tripName String The name of the itinerary to create.
          * @param tags Metadata tags to associate with a itinerary.
+         * @param users Metadata users to associate with a itinerary.
+         * @param users Metadata cities to associate with a itinerary.
          * @param errorCallback (Optional) A function to execute if the call fails.
          * @returns The itinerary that has been created.
          */
@@ -179,8 +181,16 @@ export default class MusicPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
+        /**
+         * Adds requested activity to requested itinerary's list of activities.
+         * @param email A string containing partition key for itinerary to pass to the API.
+         * @param tripName A string containing sort key for itinerary to pass to the API.
+         * @param cityCountry A string containing partition key for activity to pass to the API.
+         * @param name A string containing sort key for activity to pass to the API.
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The list of activities that have been updated in the itinerary.
+         */
     async addActivityToItinerary(email, tripName, cityCountry, name, errorCallback) {
-    //missing authentication token error via curl and could not get user info from front end
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
                 const response = await this.axiosClient.post(`itineraries/${email}/${tripName}/activities`, {

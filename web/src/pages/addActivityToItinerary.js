@@ -4,14 +4,13 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 /**
- * Logic needed for the create playlist page of the website.
+ * Logic needed for the AddActivityToItinerary page of the website.
  */
 class AddActivityToItinerary extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewPlaylist'], this);
+        this.bindClassMethods(['mount', 'submit'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToViewPlaylist);
         this.header = new Header(this.dataStore);
     }
     /**
@@ -25,7 +24,7 @@ class AddActivityToItinerary extends BindingClass {
         this.client = new MusicPlaylistClient();
     }
         /**
-         * Method to run when the create activity submit button is pressed. Call the MusicPlaylistService to create the
+         * Method to run when the add activity submit button is pressed. Calls the VacanzaService to add the
          * activity.
          */
         async submit(evt) {
@@ -55,20 +54,13 @@ class AddActivityToItinerary extends BindingClass {
             this.dataStore.set('activityList', activities);
             const itinerary = await this.client.getItinerary(email, tripName);
             this.dataStore.set('itinerary', itinerary);
+            let activityInput1 = document.getElementById('activity-cityCountry');
+            activityInput1.value = "";
+            let activityInput2 = document.getElementById('activity-name');
+            activityInput2.value = "";
             createButton.innerText = 'Complete';
             createButton.innerText = 'Add Another Activity';
         }
-   /**
-     * When the playlist is updated in the datastore, redirect to the view playlist page.
-     //this will be two redirects to activities and view itinerary pages
-     */
-    redirectToViewPlaylist() {
-
-        const itinerary = this.dataStore.get('itinerary');
-        if (itinerary != null) {
-            window.location.href = `/getItineraryActivities.html/${itinerary.email}/${itinerary.tripName}`;
-        }
-    }
 }
 
 /**
