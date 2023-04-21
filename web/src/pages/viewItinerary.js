@@ -68,7 +68,7 @@ class ViewItinerary extends BindingClass {
         for (activity of activities) {
             activitiesHtml += `
                 <li class="activity">
-                    <span class="name">$(activity.name}</span>
+                    <span class="name">${activity.name}</span>
                     <span class="cityCountry">${activity.cityCountry}</span>
                 </li>
             `;
