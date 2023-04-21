@@ -14,7 +14,7 @@
             <p class="hidden error" id="error-message"> </p>
             <p class="form-field">
                 <label>Activity CityCountry</label>
-                <input type="text" required class="validated-field" id="activity-cityCountry" placeholder="BarcelonaSpain"
+                <input type="text" required class="validated-field" id="activity-cityCountry" placeholder="Barcelona, Spain"
                    autofocus>
             </p>
             <p class="form-field">
@@ -27,15 +27,32 @@
             </p>
             <p class="form-field">
                 <label>Activity Type</label>
-                <input type="text" id="activity-type" class="type" placeholder="PARK">
+                <select name="activity-type" id="activity-type" class="type">
+                    <option value="PARK">PARK</option>
+                    <option value="MUSEUM">MUSEUM</option>
+                    <option value="RESTAURANT">RESTAURANT</option>
+                    <option value="BEACH">BEACH</option>
+                    <option value="SKIING">SKIING</option>
+                    <option value="HIKING">HIKING</option>
+                    <option value="THEATRE">THEATRE</option>
+                    <option value="MUSIC">MUSIC</option>
+                    <option value="COMEDY">COMEDY</option>
+                </select>
+            </p>
             </p>
             <p class="form-field">
                 <label>Activity KidFriendly</label>
-                <input type="text" id="activity-kidFriendly" class="kidFriendly" placeholder="True">
+                <select name="activity-kidFriendly" id="activity-kidFriendly" class="kidFriendly">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
             </p>
             <p class="form-field">
                 <label>Activity WeatherPermitting</label>
-                <input type="text" id="activity-weatherPermitting" class="weatherPermitting" placeholder="True">
+                <select name="activity-weatherPermitting" id="activity-weatherPermitting" class="weatherPermitting">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
             </p>
             <p>
                 <a href="#" class="button" id="create-activity">Create Vacation Activity</a>
