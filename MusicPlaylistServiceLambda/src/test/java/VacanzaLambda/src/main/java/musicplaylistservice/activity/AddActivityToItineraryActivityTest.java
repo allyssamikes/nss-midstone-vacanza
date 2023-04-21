@@ -32,8 +32,8 @@ class AddActivityToItineraryActivityTest {
     @BeforeEach
     void setup() {
         openMocks(this);
-        activity = new AddActivityToItineraryActivity(itineraryDao, activityDao);
-        this.activity = activity;
+        this.activity = new AddActivityToItineraryActivity(itineraryDao, activityDao);
+
     }
 
     @Test
@@ -58,7 +58,7 @@ class AddActivityToItineraryActivityTest {
                 .build();
 
         //WHen
-     //   AddActivityToItineraryResult result1 = activity.handleRequest(request1);
+//        AddActivityToItineraryResult result1 = activity.handleRequest(request1);
        // verify(itineraryDao).saveItinerary(any(Itinerary.class));
         //verify(itineraryDao).getItinerary(expectedEmail, expectedName);
         //verify(activityDao).getActivity(expectedCity, "MOMA");

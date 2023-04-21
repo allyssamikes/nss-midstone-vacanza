@@ -9,9 +9,9 @@ import DataStore from '../util/DataStore';
 class CreateItinerary extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewPlaylist'], this);
+        this.bindClassMethods(['mount', 'submit', 'redirectToViewItinerary'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToViewPlaylist);
+        this.dataStore.addChangeListener(this.redirectToViewItinerary);
         this.header = new Header(this.dataStore);
     }
     /**
@@ -19,6 +19,7 @@ class CreateItinerary extends BindingClass {
      //do we need another client??
      */
     mount() {
+
         document.getElementById('create-itinerary').addEventListener('click', this.submit);
 
         this.header.addHeaderToPage();
@@ -79,10 +80,10 @@ class CreateItinerary extends BindingClass {
      * When the playlist is updated in the datastore, redirect to the view playlist page.
      //this will be two redirects to activities and view itinerary pages
      */
-    redirectToViewPlaylist() {
-        const playlist = this.dataStore.get('playlist');
-        if (playlist != null) {
-            window.location.href = `/playlist.html?id=${playlist.id}`;
+    redirectToViewItinerary() {
+        const itinerary = this.dataStore.get('itinerary');
+        if (itinerary != null) {
+            window.location.href = `/itinerary.html?email=${itinerary.email}`;
         }
     }
 }

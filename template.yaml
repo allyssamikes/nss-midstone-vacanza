@@ -395,7 +395,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: MusicPlaylistServiceLambda
-      Handler: VacanzaLambda.src.main.java.musicplaylistservice.lambda.CreateItineraryLambda::handleRequest
+      Handler: VacanzaLambda.src.main.java.musicplaylistservice.lambda.AddActivityToItineraryLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
