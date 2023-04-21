@@ -61,10 +61,11 @@ class ViewItinerary extends BindingClass {
     addActivitiesToPage() {
        const itinerary = this.dataStore.get('itinerary');
        const activities = itinerary.activities;
+       console.log(activities)
 
         let activitiesHtml = '';
         let activity;
-        for (activity in activities) {
+        for (activity of activities) {
             activitiesHtml += `
                 <li class="activity">
                     <span class="name">$(activity.name}</span>
@@ -77,17 +78,14 @@ class ViewItinerary extends BindingClass {
 
     async addCitiesToPage() {
             const cities = this.dataStore.get('cities');
-            console.log(cities);
 
             let cityHtml = '';
             let city;
-           for (city in cities) {
                 cityHtml += `
                     <li class="city">
-                        <span class="city">${city}</span>
+                        <span class="city">${cities}</span>
                     </li>
                 `;
-            }
             document.getElementById("cities").innerHTML = cityHtml;
         }
 }
