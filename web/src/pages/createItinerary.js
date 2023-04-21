@@ -83,7 +83,7 @@ class CreateItinerary extends BindingClass {
     redirectToViewItinerary() {
         const itinerary = this.dataStore.get('itinerary');
         if (itinerary != null) {
-            window.location.href = `/itinerary.html?email=${itinerary.email}`;
+            window.location.href = `/addActivityToItinerary.html?email=${itinerary.email}`;
         }
     }
 }

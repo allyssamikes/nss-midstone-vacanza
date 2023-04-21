@@ -89,17 +89,41 @@ class GetItineraryActivities extends BindingClass {
                               console.log(activity);
                               console.log(activity.name);
                               console.log(activity.cityCountry);
+                              console.log(activity.kidFriendly);
+                              const x = activity.kidFriendly === "True";
+                              const a = activity.weatherPermitting === "True";
+                              const j = activity.address != null;
+                                console.log(x);
+                                if(x == true) { var y = 'kid-friendly'} else {var y = ' '}
+                                if(a == true) { var b = 'weather-permitting'} else {var b = ' '}
+                                if(activity.address != null) {
+                                    var c = activity.address;
+
+                                    } else {var c = ' ';}
                                  activityHtml += `
                                 <li class="activity">
                                  <span class="name">${activity.name}</span>
                                  <span class="space">${" : "}</span>
                                  <span class="place">${activity.cityCountry}</span>
+
+                                 <span class="space">${"  :  "}</span>
+                                 <span class="kidFriendly">${y}</span>
+
+                                 <span class="space">${"  :  "}</span>
+                                 <span class="weatherPermitting">${b}</span>
+
+                                 <span class="space">${"  :  "}</span>
+                                 <span href = "//https://www.google.com/maps/search/?api=1&parameters"
+                                 class="address">${c}</span>
+
+
                                   </li>
                                         `;
                               }
                           document.getElementById('activities').innerHTML = activityHtml;
                           document.getElementById('view-itinerary-activities-form').reset;
             }
+
 
 
 }
