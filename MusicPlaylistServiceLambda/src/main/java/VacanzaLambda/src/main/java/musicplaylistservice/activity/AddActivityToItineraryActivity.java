@@ -13,6 +13,7 @@ import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ItineraryNotF
 import VacanzaLambda.src.main.java.musicplaylistservice.models.ActivityModel;
 
 import javax.inject.Inject;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,13 @@ public class AddActivityToItineraryActivity {
         } catch (ActivityNotFoundException ex) {
             throw new ActivityNotFoundException("Activity is not in our database.");
         }
-        List<Activity> activityList = new ArrayList<>(itinerary.getActivities());
+        List<Activity> activityList;
+
+        if (itinerary.getActivities() == null) {
+            activityList = new ArrayList<>();
+        } else  {
+            activityList = new ArrayList<>(itinerary.getActivities());
+        }
 
         activityList.add(activityToAdd);
         itinerary.setActivities(activityList);

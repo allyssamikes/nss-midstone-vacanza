@@ -45,10 +45,12 @@ class AddActivityToItinerary extends BindingClass {
             const email = document.getElementById("email").value;
             const tripName = document.getElementById("itinerary-name").value;
 
-            const activities = await this.client.addActivityToItinerary(email, tripName, cityCountry, name);
-            createButton.innerText = origButtonText;
-            errorMessageDisplay.innerText = `Error: ${error.message}`;
-            errorMessageDisplay.classList.remove('hidden');
+            const activities = await this.client.addActivityToItinerary(email, tripName, cityCountry, name, (error) => {
+                createButton.innerText = origButtonText;
+                const errorMessageDisplay = document.getElementById('error-message');
+                errorMessageDisplay.innerText = `Error: ${error.message}`;
+                errorMessageDisplay.classList.remove('hidden');
+            });
 
             this.dataStore.set('activityList', activities);
             const itinerary = await this.client.getItinerary(email, tripName);
@@ -63,8 +65,8 @@ class AddActivityToItinerary extends BindingClass {
     redirectToViewPlaylist() {
 
         const itinerary = this.dataStore.get('itinerary');
-        if (playlist != null) {
-            window.location.href = `/index.html?email=${itinerary.email}?tripName=${itinerary.tripName}`;
+        if (itinerary != null) {
+            window.location.href = `/getItineraryActivities.html/${itinerary.email}/${itinerary.tripName}`;
         }
     }
 }
