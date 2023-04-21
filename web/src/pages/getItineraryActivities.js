@@ -98,6 +98,7 @@ class GetItineraryActivities extends BindingClass {
                                         `;
                               }
                           document.getElementById('activities').innerHTML = activityHtml;
+                          document.getElementById('view-itinerary-activities-form').reset;
             }
 
 
