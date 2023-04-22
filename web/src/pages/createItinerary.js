@@ -9,9 +9,8 @@ import DataStore from '../util/DataStore';
 class CreateItinerary extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewItinerary'], this);
+        this.bindClassMethods(['mount', 'submit'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToViewItinerary);
         this.header = new Header(this.dataStore);
     }
     /**
@@ -27,8 +26,8 @@ class CreateItinerary extends BindingClass {
         this.client = new MusicPlaylistClient();
     }
         /**
-         * Method to run when the create itinerary submit button is pressed. Call the MusicPlaylistService to create the
-         * playlist.
+         * Method to run when the create itinerary submit button is pressed. Call the VacanzaService to create the
+         * itinerary.
          */
         async submit(evt) {
             evt.preventDefault();
@@ -74,18 +73,12 @@ class CreateItinerary extends BindingClass {
             createButton.innerText = 'Complete';
             createButton.innerText = 'Complete';
             createButton.innerText = 'Complete';
+                        createButton.innerText = 'Complete';
+                        createButton.innerText = 'Complete';
+                        createButton.innerText = 'Complete';
             createButton.innerText = 'Create New Vacation Plan';
         }
-   /**
-     * When the playlist is updated in the datastore, redirect to the view playlist page.
-     //this will be two redirects to activities and view itinerary pages
-     */
-    redirectToViewItinerary() {
-        const itinerary = this.dataStore.get('itinerary');
-        if (itinerary != null) {
-            window.location.href = `/addActivityToItinerary.html?email=${itinerary.email}`;
-        }
-    }
+
 }
 
 /**

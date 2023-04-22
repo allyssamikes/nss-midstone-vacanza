@@ -41,6 +41,9 @@ public class RemoveActivityFromItineraryRequest {
                 ", name='" + name + '\'' +
                 '}';
     }
+    public static Builder builder() {
+        return new Builder();
+    }
 
     @JsonPOJOBuilder
         public static class Builder {
