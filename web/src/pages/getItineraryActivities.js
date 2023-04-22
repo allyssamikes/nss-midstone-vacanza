@@ -4,7 +4,7 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 /**
- * Logic needed for the create playlist page of the website.
+ * Logic needed display the page of the website which displays the details of an itinerary.
  */
 class GetItineraryActivities extends BindingClass {
     constructor() {
@@ -17,7 +17,6 @@ class GetItineraryActivities extends BindingClass {
     }
     /**
      * Add the header to the page and load the MusicPlaylistClient.
-     //do we need another client??
      */
     mount() {
         document.getElementById('activities-of-itinerary').addEventListener('click', this.submit);
@@ -27,8 +26,8 @@ class GetItineraryActivities extends BindingClass {
         this.client = new MusicPlaylistClient();
     }
         /**
-         * Method to run when the create itinerary submit button is pressed. Call the MusicPlaylistService to create the
-         * playlist.
+         * Method to run when the submit button is pressed. Call the VacanzaService to see the
+         * details of an itinerary.
          */
         async submit(evt) {
             evt.preventDefault();
@@ -78,6 +77,7 @@ class GetItineraryActivities extends BindingClass {
            submitUsersDisplay.innerHTML = itinerary.users;
 
            const activities = itinerary.activities
+
            console.log(activities);
 
                 if (activities == null) {
@@ -87,40 +87,40 @@ class GetItineraryActivities extends BindingClass {
                           let activity;
                               for (activity of activities) {
                               console.log(activity);
-                              console.log(activity.name);
-                              console.log(activity.cityCountry);
-                              console.log(activity.kidFriendly);
-                              const x = activity.kidFriendly === "True";
-                              const a = activity.weatherPermitting === "True";
-                              const j = activity.address != null;
-                                console.log(x);
-                                if(x == true) { var y = 'kid-friendly'} else {var y = ' '}
-                                if(a == true) { var b = 'weather-permitting'} else {var b = ' '}
+                              console.log(activity.type);
+
+                              const isKidFriendly = activity.kidFriendly === "Yes";
+                              const isWeatherPermitting = activity.weatherPermitting === "Yes";
+
+                                if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
+                                if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
                                 if(activity.address != null) {
-                                    var c = activity.address;
+                                    var addressString = activity.address;
+                                    } else {var addressString = ' ';}
 
-                                    } else {var c = ' ';}
                                  activityHtml += `
-                                <li class="activity">
-                                 <span class="name">${activity.name}</span>
-                                 <span class="space">${" : "}</span>
-                                 <span class="place">${activity.cityCountry}</span>
+                                    <li class="activity">
+                                        <span class="name">${activity.name}</span>
+                                        <span class="space">${" : "}</span>
+                                        <span class="place">${activity.cityCountry}</span>
+                                        <span class="space">${"   :   "}</span>
 
-                                 <span class="space">${"  :  "}</span>
-                                 <span class="kidFriendly">${y}</span>
+                                        <span class="kidFriendly">${kidFriendlyText}</span>
 
-                                 <span class="space">${"  :  "}</span>
-                                 <span class="weatherPermitting">${b}</span>
+                                        <span class="space">${"    :    "}</span>
+                                        <span class="weatherPermitting">${weatherPermittingText}</span>
 
-                                 <span class="space">${"  :  "}</span>
-                                 <span href = "//https://www.google.com/maps/search/?api=1&parameters"
-                                 class="address">${c}</span>
+                                        <span class="space">${"   :   "}</span>
 
+                                        <span class="address">${addressString}</span>
 
-                                  </li>
-                                        `;
+                                   </li>
+                                   <br>
+                                         `;
+
                               }
                           document.getElementById('activities').innerHTML = activityHtml;
+                          document.getElementById('activities-table').innerHTML = activityHtml;
                           document.getElementById('view-itinerary-activities-form').reset;
             }
 

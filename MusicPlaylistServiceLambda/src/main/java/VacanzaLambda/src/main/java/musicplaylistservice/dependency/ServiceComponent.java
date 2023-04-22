@@ -44,4 +44,5 @@ public interface ServiceComponent {
     GetItineraryActivitiesActivity provideGetItineraryActivitiesActivity();
 
     AddActivityToItineraryActivity provideAddActivityToItineraryActivity();
+    RemoveActivityFromItineraryActivity provideRemoveActivityFromItineraryActivity();
 }
