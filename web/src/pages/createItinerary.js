@@ -4,7 +4,7 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 /**
- * Logic needed for the create playlist page of the website.
+ * Logic needed for the create itinerary page of the website.
  */
 class CreateItinerary extends BindingClass {
     constructor() {
@@ -14,8 +14,7 @@ class CreateItinerary extends BindingClass {
         this.header = new Header(this.dataStore);
     }
     /**
-     * Add the header to the page and load the MusicPlaylistClient.
-     //do we need another client??
+     * Add the header to the page and load the Client.
      */
     mount() {
 
@@ -69,14 +68,19 @@ class CreateItinerary extends BindingClass {
                 errorMessageDisplay.innerText = `Error: ${error.message}`;
                 errorMessageDisplay.classList.remove('hidden');
             });
+            //This can be used to trigger another event, a redirect, for example.
             this.dataStore.set('itinerary', itinerary);
+
             createButton.innerText = 'Complete';
-            createButton.innerText = 'Complete';
-            createButton.innerText = 'Complete';
-                        createButton.innerText = 'Complete';
-                        createButton.innerText = 'Complete';
-                        createButton.innerText = 'Complete';
-            createButton.innerText = 'Create New Vacation Plan';
+
+            //Set up for another itinerary creation
+            setTimeout(function(){
+                 createButton.innerText = 'Create New Vacation Plan';
+                 let itineraryInput = document.getElementById('create-playlist-form');
+                 itineraryInput.reset();
+                        }, 800);
+
+
         }
 
 }
