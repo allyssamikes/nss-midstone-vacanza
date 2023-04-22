@@ -54,12 +54,12 @@ class GetItineraryActivities extends BindingClass {
             getButton.innerText = 'Complete';
             getButton.innerText = 'Submit to View';
         }
-     addItineraryToPage() {
+    addItineraryToPage() {
            const itinerary = this.dataStore.get('itinerary');
                 if (itinerary == null) {
                     return;
                 }
-                document.getElementById('tripName').innerText = itinerary.tripName;
+           document.getElementById('tripName').innerText = itinerary.tripName;
 
            const submitResultsContainer = document.getElementById('submit-results-container');
            const submitCriteriaDisplay  =   document.getElementById('submit-criteria-display');
@@ -79,24 +79,24 @@ class GetItineraryActivities extends BindingClass {
            const activities = itinerary.activities
 
 
-                if (activities == null) {
-                     return '<h4>No activities found</h4>';
-                }
-                          let activityHtml = '';
-                          let activity;
-                              for (activity of activities) {
+           if (activities == null) {
+                return '<h4>No activities found</h4>';
+           }
+           let activityHtml = '';
+           let activity;
+                for (activity of activities) {
 
-                              const isKidFriendly = activity.kidFriendly === "Yes";
-                              const isWeatherPermitting = activity.weatherPermitting === "Yes";
+                     const isKidFriendly = activity.kidFriendly === "Yes";
+                     const isWeatherPermitting = activity.weatherPermitting === "Yes";
 
-                                if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
-                                if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
-                                if(activity.address != null) {
-                                    var addressString = activity.address;
-                                    } else {var addressString = ' ';}
+                     if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
+                     if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
+                     if(activity.address != null) {
+                          var addressString = activity.address;
+                     } else {var addressString = ' ';}
 
-                                 activityHtml += `
-                                    <li class="activity">
+                     activityHtml += `
+                           <li class="activity">
                                         <span class="name">${activity.name}</span>
                                         <span class="space">${" : "}</span>
                                         <span class="place">${activity.cityCountry}</span>
@@ -112,12 +112,13 @@ class GetItineraryActivities extends BindingClass {
 
                                         <span class="address">${addressString}</span>
 
-                                   </li>
-                                   <br>
-                                         `;
+                           </li>
+                            <br>
+                      `;
 
-                              }
-                          document.getElementById('activities').innerHTML = activityHtml;
+                }
+                document.getElementById('activities').innerHTML = activityHtml;
+
                           let activityTableHtml = '';
 
                               for (activity of activities) {
@@ -146,8 +147,8 @@ class GetItineraryActivities extends BindingClass {
 
 
                               }
-                          document.getElementById('activities-table').innerHTML = activityTableHtml;
-                          document.getElementById('view-itinerary-activities-form').reset;
+                document.getElementById('activities-table').innerHTML = activityTableHtml;
+                document.getElementById('view-itinerary-activities-form').reset;
             }
 
 }
