@@ -7,26 +7,45 @@
 </head>
 
 <body class="background">
-        <header class="header" id="header"></header>
+
+
+<header class="header"> <img src="images/header.jpg" width=99% length=99% align=left/></header>
+<nav>
+    <div class="navbar">
+    <ul>
+        <tr>
+            <a href="index.html"> Home | </a>
+        </tr>
+        <tr>
+            <a href="createItinerary.html"> Create Itinerary | </a>
+        </tr>
+        <tr>
+            <a href="createActivity.html"> Create Activity | </a>
+        </tr>
+        <tr> <a href="getItineraryActivities.html"> View Itinerary Activities | </a>
+        </tr>
+        <tr> <a href="addActivityToItinerary.html"> Add Activity to Itinerary | </a>
+        </tr>
+        <tr>
+            <a href="aboutUs.html"> About Us </a>
+        </tr>
+    </ul>
+    </div>
+</nav>
         <div class="card">
-              <h2>Get An Itinerary</h2>
+              <h2>Find An Itinerary</h2>
              <form class="card-content" id="search-itineraries-form">
                    <p class="form-field">
-                        <label>Enter user's email</label>
+                        <label>Enter User's Email</label>
                          <input type="text" class="validated-field" id="email" placeholder="" autofocus>
                 </p><p class="form-field">
-               <label>Enter tripName</label>
+               <label>Enter Trip Name</label>
                <input type="text" class="validated-field" id="tripName" placeholder="" autofocus>
               </p>
              </form>
              <p class="button-group">
                     <a href="" class="button" id="search-button">Search </a>
-                    <a href="createItinerary.html" class="button">New Itinerary</a>
             </p>
-        </p>
-        <p class="button-group">
-            <a href="getItineraryActivities.html" class="button" id="search-btn">View Itinerary Activities</a>
-            <a href="createActivity.html" class="button">New Activity</a>
         </p>
     </div>
     <div class="card hidden" id='search-results-container'>
@@ -34,5 +53,13 @@
         <div id="search-results-display">
         </div>
     </div>
+<footer>
+    <div class= "footer">
+        <div class= "center">
+            <h4> NSS SE Cohort 2 MidStone Project</h4>
+            <h6> GitHub Repository <a href= "https://www.github.com"> here</a> </h6>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

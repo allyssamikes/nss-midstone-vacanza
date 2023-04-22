@@ -124,7 +124,6 @@ class GetItineraryActivities extends BindingClass {
                           document.getElementById('view-itinerary-activities-form').reset;
             }
 
-
 }
 /**
  * Main method to run when the page contents have loaded.
