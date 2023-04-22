@@ -78,7 +78,6 @@ class GetItineraryActivities extends BindingClass {
 
            const activities = itinerary.activities
 
-           console.log(activities);
 
                 if (activities == null) {
                      return '<h4>No activities found</h4>';
@@ -86,8 +85,6 @@ class GetItineraryActivities extends BindingClass {
                           let activityHtml = '';
                           let activity;
                               for (activity of activities) {
-                              console.log(activity);
-                              console.log(activity.type);
 
                               const isKidFriendly = activity.kidFriendly === "Yes";
                               const isWeatherPermitting = activity.weatherPermitting === "Yes";
@@ -104,7 +101,8 @@ class GetItineraryActivities extends BindingClass {
                                         <span class="space">${" : "}</span>
                                         <span class="place">${activity.cityCountry}</span>
                                         <span class="space">${"   :   "}</span>
-
+                                        <span class="type">${activity.type_OF_ACTIVITY}</span>
+                                        <span class="space">${"   :   "}</span>
                                         <span class="kidFriendly">${kidFriendlyText}</span>
 
                                         <span class="space">${"    :    "}</span>
@@ -130,7 +128,6 @@ class GetItineraryActivities extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-console.log("main");
     const getItineraryActivities = new GetItineraryActivities();
     getItineraryActivities.mount();
 };
