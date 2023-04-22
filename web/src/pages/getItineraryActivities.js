@@ -16,7 +16,7 @@ class GetItineraryActivities extends BindingClass {
         this.header = new Header(this.dataStore);
     }
     /**
-     * Add the header to the page and load the MusicPlaylistClient.
+     * Add the header to the page and load the Client.
      */
     mount() {
         document.getElementById('activities-of-itinerary').addEventListener('click', this.submit);
@@ -54,12 +54,12 @@ class GetItineraryActivities extends BindingClass {
             getButton.innerText = 'Complete';
             getButton.innerText = 'Submit to View';
         }
-     addItineraryToPage() {
+    addItineraryToPage() {
            const itinerary = this.dataStore.get('itinerary');
                 if (itinerary == null) {
                     return;
                 }
-                document.getElementById('tripName').innerText = itinerary.tripName;
+           document.getElementById('tripName').innerText = itinerary.tripName;
 
            const submitResultsContainer = document.getElementById('submit-results-container');
            const submitCriteriaDisplay  =   document.getElementById('submit-criteria-display');
@@ -78,33 +78,31 @@ class GetItineraryActivities extends BindingClass {
 
            const activities = itinerary.activities
 
-           console.log(activities);
 
-                if (activities == null) {
-                     return '<h4>No activities found</h4>';
-                }
-                          let activityHtml = '';
-                          let activity;
-                              for (activity of activities) {
-                              console.log(activity);
-                              console.log(activity.type);
+           if (activities == null) {
+                return '<h4>No activities found</h4>';
+           }
+           let activityHtml = '';
+           let activity;
+                for (activity of activities) {
 
-                              const isKidFriendly = activity.kidFriendly === "Yes";
-                              const isWeatherPermitting = activity.weatherPermitting === "Yes";
+                     const isKidFriendly = activity.kidFriendly === "Yes";
+                     const isWeatherPermitting = activity.weatherPermitting === "Yes";
 
-                                if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
-                                if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
-                                if(activity.address != null) {
-                                    var addressString = activity.address;
-                                    } else {var addressString = ' ';}
+                     if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
+                     if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
+                     if(activity.address != null) {
+                          var addressString = activity.address;
+                     } else {var addressString = ' ';}
 
-                                 activityHtml += `
-                                    <li class="activity">
+                     activityHtml += `
+                           <li class="activity">
                                         <span class="name">${activity.name}</span>
                                         <span class="space">${" : "}</span>
                                         <span class="place">${activity.cityCountry}</span>
                                         <span class="space">${"   :   "}</span>
-
+                                        <span class="type">${activity.type_OF_ACTIVITY}</span>
+                                        <span class="space">${"   :   "}</span>
                                         <span class="kidFriendly">${kidFriendlyText}</span>
 
                                         <span class="space">${"    :    "}</span>
@@ -114,12 +112,13 @@ class GetItineraryActivities extends BindingClass {
 
                                         <span class="address">${addressString}</span>
 
-                                   </li>
-                                   <br>
-                                         `;
+                           </li>
+                            <br>
+                      `;
 
-                              }
-                          document.getElementById('activities').innerHTML = activityHtml;
+                }
+                document.getElementById('activities').innerHTML = activityHtml;
+
                           let activityTableHtml = '';
 
                               for (activity of activities) {
@@ -148,8 +147,8 @@ class GetItineraryActivities extends BindingClass {
 
 
                               }
-                          document.getElementById('activities-table').innerHTML = activityTableHtml;
-                          document.getElementById('view-itinerary-activities-form').reset;
+                document.getElementById('activities-table').innerHTML = activityTableHtml;
+                document.getElementById('view-itinerary-activities-form').reset;
             }
 
 }
@@ -157,7 +156,6 @@ class GetItineraryActivities extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-console.log("main");
     const getItineraryActivities = new GetItineraryActivities();
     getItineraryActivities.mount();
 };
