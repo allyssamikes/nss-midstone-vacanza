@@ -55,7 +55,7 @@ public class RemoveActivityFromItineraryActivity {
 
         }
         for (Activity activity:activityList) {
-            if(!activityToRemove.equals(activity)) {
+            if(!(activityToRemove.getName().equals(activity.getName())&&activityToRemove.getCityCountry().equals(activity.getCityCountry()))) {
                 newActivityList.add(activity);
             }
         }
