@@ -5,8 +5,10 @@ import VacanzaLambda.src.main.java.musicplaylistservice.activity.CreateItinerary
 
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.*;
 
+import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.SearchActivitiesRequest;
 import VacanzaLambda.src.main.java.musicplaylistservice.dependency.DaoModule;
 import VacanzaLambda.src.main.java.musicplaylistservice.dependency.MetricsModule;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -45,4 +47,5 @@ public interface ServiceComponent {
 
     AddActivityToItineraryActivity provideAddActivityToItineraryActivity();
     RemoveActivityFromItineraryActivity provideRemoveActivityFromItineraryActivity();
+    SearchActivitiesActivity provideSearchActivitiesActivity();
 }
