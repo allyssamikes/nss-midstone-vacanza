@@ -8,10 +8,10 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class GetItineraryActivitiesLambda
         extends LambdaActivityRunner<GetItineraryActivitiesRequest, GetItineraryActivitiesResult>
-        implements RequestHandler<AuthenticatedLambdaRequest<GetItineraryActivitiesRequest>, LambdaResponse> {
+        implements RequestHandler<LambdaRequest<GetItineraryActivitiesRequest>, LambdaResponse> {
 
     @Override
-    public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetItineraryActivitiesRequest> input, Context context) {
+    public LambdaResponse handleRequest(LambdaRequest<GetItineraryActivitiesRequest> input, Context context) {
         return super.runActivity(
                 () -> input.fromPath(path ->
                         GetItineraryActivitiesRequest.builder()

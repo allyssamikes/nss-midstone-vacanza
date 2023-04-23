@@ -49,7 +49,8 @@ public class SearchActivitiesActivity {
      * @return searchActivitiesResult result object containing the API defined {@link ActivityModel}
      */
     public SearchActivitiesResult handleRequest(final SearchActivitiesRequest searchActivitiesRequest) {
-        log.info("Received SearchActivitiesRequest {}", searchActivitiesRequest);
+        log.info("Received SearchActivitiesRequest {}{}", searchActivitiesRequest, searchActivitiesRequest.getCityCountry());
+
         List<Activity> activityList;
         try {
             activityList = activityDao.getActivitiesByCityCountry(searchActivitiesRequest.getCityCountry());

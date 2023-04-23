@@ -17,7 +17,7 @@ export default class MusicPlaylistClient extends BindingClass {
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
         'getItinerary', 'getItineraryActivities', 'createItinerary',
-        'search', 'createActivity', 'addActivityToItinerary','removeActivityFromItinerary'];
+        'search', 'createActivity', 'addActivityToItinerary','removeActivityFromItinerary','searchActivities'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -244,6 +244,18 @@ export default class MusicPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
 
+    }
+    async searchActivities(cityCountry, errorCallback) {
+        try{
+            const queryString = cityCountry;
+  console.log(queryString);
+
+            const response = await this.axiosClient.get('activities/search?cityCountry=${cityCountry}');
+
+            return response.data.activities;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
     }
 
     /**

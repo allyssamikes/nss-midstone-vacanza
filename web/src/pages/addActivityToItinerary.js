@@ -9,7 +9,7 @@ import DataStore from '../util/DataStore';
 class AddActivityToItinerary extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit','submitRemove'], this);
+        this.bindClassMethods(['mount', 'submit','submitRemove', 'searchActivities'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
     }
@@ -19,6 +19,7 @@ class AddActivityToItinerary extends BindingClass {
     mount() {
         document.getElementById('add-activity').addEventListener('click', this.submit);
         document.getElementById('remove-activity').addEventListener('click', this.submitRemove);
+        document.getElementById('search-activity').addEventListener('click', this.searchActivities);
         this.header.addHeaderToPage();
 
         this.client = new MusicPlaylistClient();
@@ -98,6 +99,28 @@ class AddActivityToItinerary extends BindingClass {
             activityInput2.value = "";
             createButton.innerText = 'Complete';
             createButton.innerText = 'Remove Another Activity';
+        }
+        async searchActivities(evt) {
+           evt.preventDefault();
+
+            const errorMessageDisplay = document.getElementById('error-message');
+            errorMessageDisplay.innerText = ``;
+            errorMessageDisplay.classList.add('hidden');
+
+            const createButton = document.getElementById('search-activity');
+            const origButtonText = createButton.innerText;
+            createButton.innerText = 'Loading...';
+
+            const cityCountry = document.getElementById('search-activity-cityCountry').value;
+  console.log(cityCountry);
+            const activitiesFound = await this.client.searchActivities(cityCountry, (error) => {
+                  createButton.innerText = origButtonText;
+                  const errorMessageDisplay = document.getElementById('error-message');
+                  errorMessageDisplay.innerText = `Error: ${error.message}`;
+                  errorMessageDisplay.classList.remove('hidden');
+                  });
+  console.log(activitiesFound);
+            this.dataStore.set('activitiesFound', activitiesFound);
         }
 }
 
