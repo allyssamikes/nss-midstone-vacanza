@@ -308,6 +308,27 @@ Resources:
             Method: get
             Auth:
               Authorizer: 'NONE'
+  SearchActivitiesByCityCountryLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: MusicPlaylistServiceLambda
+      Handler: VacanzaLambda.src.main.java.musicplaylistservice.lambda.SearchActivitiesByCityCountryLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /activities/search/{cityCountry}
+            Method: get
+            Auth:
+              Authorizer: 'NONE'
 
   SearchItinerariesLambda:
     Type: AWS::Serverless::Function
