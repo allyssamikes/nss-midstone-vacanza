@@ -1,7 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity.results;
 
-
-
 import VacanzaLambda.src.main.java.musicplaylistservice.models.ItineraryModel;
 
 public class CreateItineraryResult {

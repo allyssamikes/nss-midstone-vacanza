@@ -37,10 +37,11 @@ public class ItineraryDao {
     }
 
     /**
-     * Returns the {@link Itinerary} corresponding to the specified id.
+     * Returns the {@link Itinerary} corresponding to the specified email and tripName/
      *
      * @param email the Itinerary email
-     * @return the stored Itinerary, or null if none was found.
+     * @param tripName the Itinerary tripName
+     * @return the stored Itinerary,
      */
     public Itinerary getItinerary(String email, String tripName) {
         Itinerary itinerary = this.dynamoDbMapper.load(Itinerary.class, email, tripName);
@@ -63,7 +64,7 @@ public class ItineraryDao {
         return itinerary;
     }
     /**
-     * Perform a search (via a "scan") of the itinerary table for itineraries  matching the given criteria.
+     * Perform a search (via a "scan") of the itinerary table for itineraries matching the given criteria.
      *
      * Both "tripName" and "cities" attributes are searched.
      * The criteria are an array of Strings. Each element of the array is search individually.

@@ -11,10 +11,14 @@ import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
+
+/**
+ * Implementation of the GetItineraryActivity for VACANZA's GetItinerary API.
+ *
+ * This API allows the customer to get one of their saved itineraries.
+ */
 public class GetItineraryActivity {
-
     private final Logger log = LogManager.getLogger();
-
     private final ItineraryDao itineraryDao;
 
     /**
@@ -31,8 +35,6 @@ public class GetItineraryActivity {
      * This method handles the incoming request by retrieving the  itinerary from the database.
      * <p>
      * It then returns the itinerary
-     * <p>
-     * If the itinerary does not exist, this should throw a ItineraryNotFoundException.
      *
      * @param getItineraryRequest request object containing the itinerary email and tripName
      * @return getItineraryResult result object containing the API defined {@link ItineraryModel}

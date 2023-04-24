@@ -1,6 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.models;
 
-
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.TYPE_OF_ACTIVITY;
 
 import java.util.Objects;
@@ -21,7 +20,6 @@ public class ActivityModel {
         this.kidFriendly = kidFriendly;
         this.weatherPermitting = weatherPermitting;
     }
-
 
     public String getName() {
         return name;
@@ -47,11 +45,6 @@ public class ActivityModel {
         return weatherPermitting;
     }
 
-    //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,10 +52,14 @@ public class ActivityModel {
         ActivityModel that = (ActivityModel) o;
         return Objects.equals(name, that.name) && Objects.equals(cityCountry, that.cityCountry) && Objects.equals(address, that.address) && Objects.equals(type, that.type) && Objects.equals(kidFriendly, that.kidFriendly) && Objects.equals(weatherPermitting, that.weatherPermitting);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(name, cityCountry, address, type, kidFriendly, weatherPermitting);
+    }
+
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder {

@@ -21,21 +21,16 @@ public class AddActivityToItineraryResult {
                 '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
-
     public static class Builder {
         private List<ActivityModel> activityModelList;
-        public Builder() {
-            this.activityModelList = activityModelList;
-        }
         public Builder withActivitiesList(List<ActivityModel> list) {
             this.activityModelList = new ArrayList<>(list);
             return this;
-
         }
-
         public AddActivityToItineraryResult build() {
             return new AddActivityToItineraryResult(activityModelList);
         }

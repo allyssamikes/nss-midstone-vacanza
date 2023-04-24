@@ -20,7 +20,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Implementation of the CreateItineraryActivity for the MusicPlaylistService's CreateItinerary API.
+ * Implementation of the CreateItineraryActivity for VACANZA's CreateItinerary API.
  * <p>
  * This API allows the customer to create a new itinerary with no activities.
  */
@@ -31,7 +31,7 @@ public class CreateItineraryActivity {
     /**
      * Instantiates a new CreateItineraryActivity object.
      *
-     * @param itineraryDao ItineraryDao to access the playlists table.
+     * @param itineraryDao ItineraryDao to access the itineraries table.
      */
     @Inject
     public CreateItineraryActivity(ItineraryDao itineraryDao) {
@@ -47,7 +47,7 @@ public class CreateItineraryActivity {
      * If the provided name has invalid characters, throws an
      * InvalidAttributeValueException
      *
-     * @param createItineraryRequest request object containing the playlist name and customer ID
+     * @param createItineraryRequest request object containing the itinerary name and customer email
      *                              associated with it
      * @return createItineraryResult result object containing the API defined {@link ItineraryModel}
      */

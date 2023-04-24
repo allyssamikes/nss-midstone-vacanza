@@ -1,6 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity;
 
-import VacanzaLambda.src.main.java.musicplaylistservice.activity.CreateActivityActivity;
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.CreateActivityRequest;
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.CreateActivityResult;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ActivityDao;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import java.util.List;
 
 import static VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.TYPE_OF_ACTIVITY.MUSEUM;
 import static org.junit.jupiter.api.Assertions.*;

@@ -10,8 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * PARTICIPANTS: The class should NOT be touched when working on the project!
- * DynamoDBMapper converts lists to {@link java.util.ArrayList}s by default, but for our project,
+ * DynamoDBMapper converts lists to {@link java.util.ArrayList}s by default, but for VACANZA
  * we want to convert to a {@link LinkedList}
  */
 public class ActivitiesListConverter implements DynamoDBTypeConverter<String, List> {
@@ -23,7 +22,6 @@ public class ActivitiesListConverter implements DynamoDBTypeConverter<String, Li
     }
     @Override
     public List unconvert(String dynamoDbRepresentation) {
-        // need to provide the type parameter of the list to convert correctly
         return GSON.fromJson(dynamoDbRepresentation, new TypeToken<List<Activity>>() { } .getType());
     }
 }

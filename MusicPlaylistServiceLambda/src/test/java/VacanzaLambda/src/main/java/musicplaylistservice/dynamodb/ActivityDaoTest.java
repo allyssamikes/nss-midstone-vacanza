@@ -1,6 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb;
 
-import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ActivityDao;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ActivityNotFoundException;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import java.util.IllegalFormatConversionException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyDouble;
@@ -61,7 +59,6 @@ public class ActivityDaoTest {
         // WHEN + THEN
         assertThrows(ActivityNotFoundException.class, () -> activityDao.getActivity(nonexistentCityCountry, nonexistentName));
         verify(metricsPublisher).addCount(eq(MetricsConstants.GETACTIVITY_ACTIVITYNOTFOUND_COUNT), anyDouble());
-        //Check VConverter for null conversion, should throw a ActivityNotFoundException not an IllegalFormatConversionException
     }
 
     @Test

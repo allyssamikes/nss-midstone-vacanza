@@ -2,6 +2,11 @@ package VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
+import java.util.Objects;
+
+/**
+ * Represents a record in the activities table.
+ */
 @DynamoDBTable(tableName = "activities")
 public class Activity{
     private String name;
@@ -63,6 +68,18 @@ public class Activity{
         this.weatherPermitting = weatherPermitting;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Activity activity = (Activity) o;
+        return Objects.equals(name, activity.name) && Objects.equals(cityCountry, activity.cityCountry);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, cityCountry);
+    }
     @Override
     public String toString() {
         return "Activity{" +

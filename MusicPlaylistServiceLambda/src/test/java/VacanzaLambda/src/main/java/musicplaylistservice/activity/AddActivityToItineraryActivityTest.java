@@ -1,12 +1,8 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.AddActivityToItineraryRequest;
-import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.CreateItineraryRequest;
-import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.AddActivityToItineraryResult;
-import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.CreateItineraryResult;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ActivityDao;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ItineraryDao;
-import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Itinerary;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,8 +11,6 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 import static org.junit.jupiter.api.Assertions.*;

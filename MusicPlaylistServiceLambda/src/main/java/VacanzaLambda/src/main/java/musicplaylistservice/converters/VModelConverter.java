@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class VModelConverter {
 
+    /**
+     * Converts an itinerary to an ItineraryModels.
+     *
+     * @param itinerary the Itinerary to convert to ItineraryModel.
+     * @return the converted ItineraryModel
+     */
     public ItineraryModel toItineraryModel(Itinerary itinerary) {
 
         return ItineraryModel.builder()
@@ -24,7 +30,12 @@ public class VModelConverter {
                 .withTags(itinerary.getTags())
                 .build();
     }
-
+    /**
+     * Converts an activity to an ActivityModel.
+     *
+     * @param activity the activity  to convert to ActivityModel.
+     * @return The converted ActivityModel
+     */
     public ActivityModel toActivityModel(Activity activity) {
         return ActivityModel.builder()
                 .withName(activity.getName())
@@ -36,22 +47,6 @@ public class VModelConverter {
                 .build();
     }
 
-//    /**
-//     * Converts a list of AlbumTracks to a list of SongModels.
-//     *
-//     * @param albumTracks The AlbumTracks to convert to SongModels
-//     * @return The converted list of SongModels
-////     */
-//    public List<SongModel> toSongModelList(List<AlbumTrack> albumTracks) {
-//        List<SongModel> songModels = new ArrayList<>();
-//
-//        for (AlbumTrack albumTrack : albumTracks) {
-//            songModels.add(toSongModel(albumTrack));
-//        }
-//
-//        return songModels;
-//    }
-//
     /**
      * Converts a list of Itineraries to a list of ItineraryModels.
      *
@@ -68,7 +63,12 @@ public class VModelConverter {
         return itineraryModels;
     }
 
-    public List<ActivityModel> toActivityModelList(List<Activity> activities) {
+    /**
+     * Converts a list of activities to a list of ActivityModels.
+     *
+     * @param activities the activity  to convert to ActivityModels
+     * @return The converted list of ActivityModels
+     */public List<ActivityModel> toActivityModelList(List<Activity> activities) {
         List<ActivityModel> activitiesModels = new ArrayList<>();
 
         for (Activity a : activities) {

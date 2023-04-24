@@ -15,11 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implements a SearchActivitiesActivity for the SearchActivities API.
+ * Implementation of the GetItineraryActivity for VACANZA'sSearchActivitiesActivity  API.
  *
- *
+ * This API allows the customer to search for activities by city and country.
  */
-
 public class SearchActivitiesActivity {
     private final Logger log = LogManager.getLogger();
     private final ActivityDao activityDao;
@@ -36,17 +35,13 @@ public class SearchActivitiesActivity {
     }
 
     /**
-     * This method handles the incoming request by persisting a new itinerary
-     * with the provided name and customer email from the request.
+     * This method handles the incoming request by searching for  itinerary from the database.
      * <p>
-     * It then returns the newly created itinerary.
-     * <p>
-     * If the provided name has invalid characters, throws an
-     * InvalidAttributeValueException
+     * It then returns the matching activities, or if none are found, ActivitiesNotFoundException.
      *
-     * @param searchActivitiesRequest request object containing the playlist name and customer ID
-     *                              associated with it
-     * @return searchActivitiesResult result object containing the API defined {@link ActivityModel}
+     * @param searchActivitiesRequest request object containing the search criteria
+     * @return searchActivitiesResult result object containing the activities that match the
+     * search criteria.
      */
     public SearchActivitiesResult handleRequest(final SearchActivitiesRequest searchActivitiesRequest) {
         log.info("Received SearchActivitiesRequest {}{}", searchActivitiesRequest, searchActivitiesRequest.getCityCountry());

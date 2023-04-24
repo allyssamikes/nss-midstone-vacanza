@@ -15,16 +15,32 @@ import javax.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.List;
-public class RemoveActivityFromItineraryActivity {
+/**
+ * Implementation of theRemoveActivityFromItineraryActivity for VACANZA's RemoveActivityFromItineraryActivity API.
+ *
+ * This API allows the customer to remove an activity from a saved itinerary.
+ */public class RemoveActivityFromItineraryActivity {
 
     private final ItineraryDao itineraryDao;
     private final ActivityDao activityDao;
-   @Inject
+    /**
+     * Instantiates a new RemoveActivityFromItineraryActivity object.
+     *
+     * @param itineraryDao ItineraryDao  to access the itinerary table.
+     * @param activityDao ActivityDao to access the activities table.
+     */
+    @Inject
    public RemoveActivityFromItineraryActivity(ItineraryDao itineraryDao, ActivityDao activityDao) {
        this.itineraryDao = itineraryDao;
        this.activityDao = activityDao;
    }
-
+    /**
+     * This method handles the incoming request by retrieving both the itinerary and activity from the database.
+     *
+     * @param activityToItineraryRequest object containing the itinerary's email and tripName, and
+     *                                   the activity's name and cityCountry.
+     * @return removeActivityFromItineraryResult result object containing the API defined {@link ActivityModel}
+     */
     public RemoveActivityFromItineraryResult handleRequest(
             final RemoveActivityFromItineraryRequest activityToItineraryRequest) {
 

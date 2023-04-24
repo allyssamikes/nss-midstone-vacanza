@@ -1,7 +1,7 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.exceptions;
 
 /**
- * Exception to throw when a given playlist ID is not found in the database.
+ * Exception to throw when a given activity is not found in the database.
  */
 public class ActivityNotFoundException extends RuntimeException {
 
