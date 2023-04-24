@@ -4,7 +4,7 @@
 <head>
     <script type="text/javascript" src="assets/getItineraryActivities.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/am.css">
+    <link rel="stylesheet" type="text/css" href="css/vacanza.css">
 
 </head>
 
@@ -12,27 +12,25 @@
 <header class="header" id="header"></header>
 <nav>
     <div class="navbar">
-        <div class="card-centered">
-        <ul>
-            <tr>
-                <a href="index.html"> Home | </a>
-            </tr>
-            <tr>
-                <a href="createItinerary.html"> Create Itinerary | </a>
-            </tr>
-            <tr>
-                <a href="createActivity.html"> Create Activity | </a>
-
-            <tr>
-                <a href="#"> Itinerary Details | </a>
-            </tr>
-
-            <tr>
-                <a href="addActivityToItinerary.html"> Itinerary Activities | </a>
-            </tr>
-                <a href="aboutUs.html"> About Us </a>
-            </tr>
-        </ul>
+        <div class="center">
+            <ul>
+                <tr>
+                    <a href="index.html"> Home | </a>
+                </tr>
+                <tr>
+                    <a href="createItinerary.html"> Create Itinerary | </a>
+                </tr>
+                <tr>
+                    <a href="createActivity.html"> Create Activity | </a>
+                </tr>
+                <tr> <a href="getItineraryActivities.html"> Itinerary Details | </a>
+                </tr>
+                <tr> <a href="addActivityToItinerary.html"> Itinerary Activities | </a>
+                </tr>
+                <tr>
+                    <a href="aboutUs.html"> About Us </a>
+                </tr>
+            </ul>
         </div>
     </div>
 </nav>
@@ -42,16 +40,16 @@
     <form class="card-content" id="view-itinerary-activities-form">
         <p class="hidden error" id="error-message"> </p>
         <p class="form-field">
-            <label>Enter trip creator's email</label>
+            <label>Enter User's Email</label>
             <input type="text" class="email" id="email" placeholder="john.smith@gmail.com" autofocus>
         </p>
         <p class="form-field">
-            <label>Enter trip name</label>
-            <input type="text" class="tripName" id="tripName" placeholder="Spain2023" autofocus>
+            <label>Enter Trip Name</label>
+            <input type="text" class="tripName" id="tripName" placeholder="ErinSpain2023" autofocus>
         </p>
     </form>
         <p class="button-group">
-            <a href="#" class="button" id="activities-of-itinerary">Submit to View</a>
+            <a href="#" class="button" id="activities-of-itinerary">Submit</a>
         </p>
 
 </div>

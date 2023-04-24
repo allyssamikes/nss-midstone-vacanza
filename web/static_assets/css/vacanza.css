@@ -109,6 +109,28 @@
   text-align: center;
 }
 
+.square {
+  width: 30%;
+  height: 0;
+  padding-top: 30%;
+}
+
+.circular_image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: blue;
+  /* commented for demo
+  float: left;
+  margin-left: 125px;
+  margin-top: 20px;
+  */
+
+  /*for demo*/
+  display:inline-block;
+  vertical-align:middle;
+}
 
 /*
 Flexbox on a lists removes the numbers. We use a counter here to add them back.
