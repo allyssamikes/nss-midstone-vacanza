@@ -58,7 +58,7 @@ class SearchItineraries extends BindingClass {
      * @param evt The "event" object representing the user-initiated event that triggered this method.
      */
     async search(evt) {
-        // Prevent submitting the from from reloading the page.
+        // Prevent submitting the form from reloading the page.
         evt.preventDefault();
 
         const email = document.getElementById('email').value;
