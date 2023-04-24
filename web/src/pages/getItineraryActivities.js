@@ -124,8 +124,6 @@ console.log(itinerary.tags);
                           let activityTableHtml = '';
 
                               for (activity of activities) {
-                              console.log(activity);
-                              console.log(activity.type);
 
                               const isKidFriendly = activity.kidFriendly === "Yes";
                               const isWeatherPermitting = activity.weatherPermitting === "Yes";
