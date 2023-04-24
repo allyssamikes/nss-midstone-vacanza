@@ -15,7 +15,6 @@ public class AddActivityToItineraryRequest {
         this.cityCountry = cityCountry;
         this.name = activityName;
     }
-
     public String getEmail() {
         return email;
     }
@@ -71,7 +70,5 @@ public class AddActivityToItineraryRequest {
         public AddActivityToItineraryRequest build() {
             return new AddActivityToItineraryRequest(email, tripName, cityCountry, name);
         }
-
     }
-
 }

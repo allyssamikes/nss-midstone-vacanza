@@ -8,7 +8,6 @@ import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -24,7 +23,7 @@ public class ActivityDao {
     /**
      * Instantiates an ActivityDao object.
      *
-     * @param dynamoDbMapper the {@link DynamoDBMapper} used to interact with the album_track table
+     * @param dynamoDbMapper the {@link DynamoDBMapper} used to interact with the activities table
      */
     @Inject
     public ActivityDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
@@ -32,9 +31,9 @@ public class ActivityDao {
         this.metricsPublisher = metricsPublisher;
     }
     /**
-     * Retrieves an Activity by city and name.
+     * Retrieves an Activity by cityCountry and name.
      *
-     * If not found, throws ItineraryNotFoundException.
+     * If not found, throws ActivityNotFoundException.
      *
      * @param cityCountry The cityCountry to look up
      * @param name The activity name to look up
@@ -51,10 +50,21 @@ public class ActivityDao {
         return activity;
 
     }
+    /**
+     * Saves (creates or updates) the given activities
+     * @param activity The activity to save
+     * @return The Activity object that was saved
+     */
     public Activity saveActivity(Activity activity) {
         this.dynamoDbMapper.save(activity);
         return activity;
     }
+
+    /**
+     * Searches the activities table by cityCountry
+     * @param cityCountry The cityCountry to search for
+     * @return activityList the activities that were found
+     */
     public List<Activity> getActivitiesByCityCountry(String cityCountry) {
         Activity activity = new Activity();
         activity.setCityCountry(cityCountry);

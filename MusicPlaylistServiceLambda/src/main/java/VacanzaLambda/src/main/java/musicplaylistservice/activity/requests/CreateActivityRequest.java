@@ -4,7 +4,6 @@ import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.TYPE_OF_
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-
 @JsonDeserialize(builder = CreateActivityRequest.Builder.class)
 public class CreateActivityRequest {
     private final String name;

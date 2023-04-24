@@ -4,18 +4,17 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = RemoveActivityFromItineraryRequest.Builder.class)
 public class RemoveActivityFromItineraryRequest {
+    private final String email;
+    private final String tripName;
+    private final String cityCountry;
+    private final String name;
+
     public RemoveActivityFromItineraryRequest(String email, String tripName, String cityCountry, String name) {
         this.email = email;
         this.tripName = tripName;
         this.cityCountry = cityCountry;
         this.name = name;
     }
-
-    private final String email;
-        private final String tripName;
-        private final String cityCountry;
-        private final String name;
-
     public String getEmail() {
         return email;
     }
@@ -41,6 +40,7 @@ public class RemoveActivityFromItineraryRequest {
                 ", name='" + name + '\'' +
                 '}';
     }
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
@@ -72,9 +72,5 @@ public class RemoveActivityFromItineraryRequest {
             public RemoveActivityFromItineraryRequest build() {
                 return new RemoveActivityFromItineraryRequest(email, tripName, cityCountry, name);
             }
-
         }
-
-
-
 }

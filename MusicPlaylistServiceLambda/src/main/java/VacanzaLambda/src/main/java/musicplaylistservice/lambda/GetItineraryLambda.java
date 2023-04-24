@@ -9,20 +9,12 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-
 public class GetItineraryLambda
         extends LambdaActivityRunner<GetItineraryRequest, GetItineraryResult>
         implements RequestHandler<LambdaRequest<GetItineraryRequest>, LambdaResponse> {
 
     private final Logger log = LogManager.getLogger();
-    /**
-     * Handles a Lambda Function request
-     *
-     * @param input   The Lambda Function input
-     * @param context The Lambda execution environment context object.
-     * @return The Lambda Function output
-     */
+
     @Override
     public LambdaResponse handleRequest(LambdaRequest<GetItineraryRequest> input, Context context) {
         log.info("handleRequest");

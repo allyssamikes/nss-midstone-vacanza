@@ -1,6 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity;
 
-
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.AddActivityToItineraryRequest;
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.AddActivityToItineraryResult;
 import VacanzaLambda.src.main.java.musicplaylistservice.converters.VModelConverter;
@@ -17,15 +16,41 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the AddActivityToItineraryActivity to VACANZA's AddActivityToItinerary API.
+ *
+ * This API allows the customer to add an activity  to their existing itinerary.
+ */
 public class AddActivityToItineraryActivity {
     private final ItineraryDao itineraryDao;
     private final ActivityDao activityDao;
+
+    /**
+     * Instantiates a new AddActivityToItineraryActivity object.
+     *
+     * @param itineraryDao ItineraryDao to access the itinerary table.
+     * @param activityDao ActivityDao to access the activity table.
+     */
     @Inject
     public AddActivityToItineraryActivity(ItineraryDao itineraryDao, ActivityDao activityDao) {
         this.itineraryDao = itineraryDao;
         this.activityDao = activityDao;
     }
-
+    /**
+     * This method handles the incoming request by adding an additional activity
+     * to an itinerary and persisting the updated itinerary
+     * <p>
+     * It then returns the updated activity list of the itinerary..
+     * <p>
+     * If the itinerary does not exist, this should throw a ItineraryNotFoundException.
+     * <p>
+     * If the activity does not exist, this should throw an ActivityNotFoundException.
+     *
+     * @param addActivityToItineraryRequest request object containing the email and tripName
+     *                                 to retrieve the itinerary data
+     * @return AddActivityToItineraryResult result object containing the itinerary's updated list of
+     *                                 API defined {@link ActivityModel}s
+     */
     public AddActivityToItineraryResult handleRequest(
             final AddActivityToItineraryRequest addActivityToItineraryRequest) {
 

@@ -14,7 +14,7 @@ private final Logger log = LogManager.getLogger();
     @Override
     public LambdaResponse handleRequest(LambdaRequest<SearchActivitiesRequest> input, Context context) {
         log.info("Lambda handleRequest");
-        //       SearchActivitiesRequest unauthenticatedRequest = input.fromBody(SearchActivitiesRequest.class);
+
         return super.runActivity(
                 () -> input.fromQuery(query ->
                         SearchActivitiesRequest.builder()
@@ -22,6 +22,5 @@ private final Logger log = LogManager.getLogger();
                 (SearchActivitiesRequest request, ServiceComponent serviceComponent) ->
                         serviceComponent.provideSearchActivitiesActivity().handleRequest(request)
         );
-
     }
 }

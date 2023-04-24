@@ -2,7 +2,6 @@ package VacanzaLambda.src.main.java.musicplaylistservice.lambda;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import VacanzaLambda.src.main.java.musicplaylistservice.lambda.LambdaRequest;
 
 import java.util.Base64;
 import java.util.HashMap;

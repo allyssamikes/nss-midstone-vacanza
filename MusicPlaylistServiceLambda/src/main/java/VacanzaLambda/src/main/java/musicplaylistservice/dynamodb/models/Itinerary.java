@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents a record in the itineraries table.
+ */
 @DynamoDBTable(tableName = "itineraries")
 public class  Itinerary {
     private String tripName;
@@ -63,6 +66,11 @@ public class  Itinerary {
         this.users = users;
     }
 
+    /**
+     * Returns the set of tags associated with this Itinerary, null if there are none.
+     *
+     * @return Set of tags for this itinerary.
+     */
     @DynamoDBAttribute(attributeName = "tags")
     public List<String> getTags() {
 
@@ -74,9 +82,9 @@ public class  Itinerary {
     }
 
     /**
-     * Sets the tags for this Playlist as a copy of input, or null if input is null.
+     * Sets the tags for this Itinerary as a copy of input, or null if input is null.
      *
-     * @param tags Set of tags for this playlist
+     * @param tags Set of tags for this itinerary
      */
     public void setTags(List<String> tags) {
         // see comment in getTags()
@@ -85,7 +93,6 @@ public class  Itinerary {
         } else {
             this.tags = new ArrayList<>(tags);
         }
-
         this.tags = tags;
     }
     @Override
@@ -110,5 +117,4 @@ public class  Itinerary {
                 ", users=" + users +
                 '}';
     }
-
 }

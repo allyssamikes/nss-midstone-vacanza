@@ -62,7 +62,6 @@ public class CreateItineraryRequest {
             return this;
         }
 
-
         public Builder withEmail(String email) {
             this.email = email;
             return this;

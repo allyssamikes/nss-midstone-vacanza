@@ -15,7 +15,6 @@ public class SearchItinerariesLambda
         implements RequestHandler<LambdaRequest<SearchItinerariesRequest>, LambdaResponse> {
 
     private final Logger log = LogManager.getLogger();
-
     @Override
     public LambdaResponse handleRequest(LambdaRequest<SearchItinerariesRequest> input, Context context) {
         log.info("handleRequest");

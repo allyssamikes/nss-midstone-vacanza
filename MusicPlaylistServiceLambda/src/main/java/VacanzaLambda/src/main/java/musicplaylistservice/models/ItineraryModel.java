@@ -50,12 +50,6 @@ public class ItineraryModel {
         return users;
     }
 
-
-    //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,6 +61,11 @@ public class ItineraryModel {
     @Override
     public int hashCode() {
         return Objects.hash(tripName, email);
+    }
+
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder {

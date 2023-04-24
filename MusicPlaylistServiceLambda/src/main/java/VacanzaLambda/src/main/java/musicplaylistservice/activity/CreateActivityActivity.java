@@ -16,9 +16,9 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 
 /**
- * Implementation of the CreatePlaylistActivity for the MusicPlaylistService's CreatePlaylist API.
+ * Implementation of the CreateActivityActivity for VACANZA's CreateActivityAPI.
  * <p>
- * This API allows the customer to create a new playlist with no songs.
+ * This API allows the customer to create a new activity.
  */
 public class CreateActivityActivity {
     private final Logger log = LogManager.getLogger();
@@ -27,7 +27,7 @@ public class CreateActivityActivity {
     /**
      * Instantiates a new CreateActivityActivity object.
      *
-     * @param activityDao ActivityDao to access the playlists table.
+     * @param activityDao ActivityDao to access the activities table.
      */
     @Inject
     public CreateActivityActivity(ActivityDao activityDao) {
@@ -35,17 +35,17 @@ public class CreateActivityActivity {
     }
 
     /**
-     * This method handles the incoming request by persisting a new playlist
-     * with the provided playlist name and customer ID from the request.
+     * This method handles the incoming request by persisting a new activity
+     * with the provided name and  cityCountry from the request.
      * <p>
-     * It then returns the newly created playlist.
+     * It then returns the newly created activity.
      * <p>
-     * If the provided playlist name or customer ID has invalid characters, throws an
+     * If the provided name or cityCountry  has invalid characters, throws an
      * InvalidAttributeValueException
      *
-     * @param createActivityRequest request object containing the playlist name and customer ID
+     * @param createActivityRequest request object containing the name and cityCountry
      *                              associated with it
-     * @return createPlaylistResult result object containing the API defined {@link ActivityModel}
+     * @return createActivityResult result object containing the API defined {@link ActivityModel}
      */
     public CreateActivityResult handleRequest(final CreateActivityRequest createActivityRequest) {
         log.info("Received CreateActivityRequest {}", createActivityRequest);
@@ -59,8 +59,6 @@ public class CreateActivityActivity {
             throw new InvalidAttributeValueException("Activity cityCountry [" + createActivityRequest.getCityCountry() +
                     "] contains illegal characters");
         }
-
-//        Do we need to check for illegal characters for the other none-searching entries?
 
         Activity newActivity = new Activity();
         newActivity.setName(createActivityRequest.getName());

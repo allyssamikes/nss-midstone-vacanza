@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = SearchActivitiesRequest.Builder.class)
 public class SearchActivitiesRequest {
-
     private String cityCountry;
 
     public SearchActivitiesRequest(String cityCountry) {
@@ -21,6 +20,7 @@ public class SearchActivitiesRequest {
                 "cityCountry='" + cityCountry + '\'' +
                 '}';
     }
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
@@ -34,8 +34,6 @@ public class SearchActivitiesRequest {
              return this;
          }
         public SearchActivitiesRequest build() {
-            System.out.println(cityCountry+"searchActivitiesRequest");
-
             return new SearchActivitiesRequest(cityCountry);
         }
     }

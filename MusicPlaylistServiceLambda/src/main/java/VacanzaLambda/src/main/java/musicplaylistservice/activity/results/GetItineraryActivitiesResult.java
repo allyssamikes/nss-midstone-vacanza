@@ -1,6 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity.results;
 
-import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 import VacanzaLambda.src.main.java.musicplaylistservice.models.ActivityModel;
 
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.List;
 
 public class GetItineraryActivitiesResult {
     private final List<ActivityModel> activityList;
-
     private GetItineraryActivitiesResult(List<ActivityModel> activityList) {
         this.activityList = activityList;
     }
@@ -24,11 +22,10 @@ public class GetItineraryActivitiesResult {
                 '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
-
-
 
     public static class Builder {
         private List<ActivityModel> activityList;
@@ -37,7 +34,6 @@ public class GetItineraryActivitiesResult {
             this.activityList = activityList;
             return this;
         }
-
         public GetItineraryActivitiesResult build() {
             return new GetItineraryActivitiesResult(activityList);
         }

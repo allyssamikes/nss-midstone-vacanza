@@ -1,6 +1,5 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity;
 
-import VacanzaLambda.src.main.java.musicplaylistservice.activity.GetItineraryActivity;
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.requests.GetItineraryRequest;
 import VacanzaLambda.src.main.java.musicplaylistservice.activity.results.GetItineraryResult;
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.ItineraryDao;

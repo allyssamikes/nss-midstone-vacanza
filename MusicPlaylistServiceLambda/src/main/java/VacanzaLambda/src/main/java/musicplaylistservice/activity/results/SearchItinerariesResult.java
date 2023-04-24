@@ -1,7 +1,6 @@
 package VacanzaLambda.src.main.java.musicplaylistservice.activity.results;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.models.ItineraryModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
