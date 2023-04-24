@@ -60,21 +60,24 @@ class GetItineraryActivities extends BindingClass {
                     return;
                 }
            document.getElementById('tripName').innerText = itinerary.tripName;
-
+console.log(itinerary.tags);
            const submitResultsContainer = document.getElementById('submit-results-container');
-           const submitCriteriaDisplay  =   document.getElementById('submit-criteria-display');
-           const submitResultsDisplay  =   document.getElementById('submit-results-display');
+           const submitCriteriaDisplay  =   document.getElementById('city-title-display');
+           const cityResultsDisplay  =   document.getElementById('city-results-display');
 
            const submitUsersDisplay  =   document.getElementById('users-display');
            const activityTableContainer = document.getElementById('activities-table-container');
            const activitiesContainer = document.getElementById('activities-container');
+           const tagsResultsDisplay = document.getElementById('tags-results-display');
 
            activitiesContainer.classList.remove('hidden');
            submitResultsContainer.classList.remove('hidden');
 
-           submitResultsDisplay.innerHTML = itinerary.cities;
+           cityResultsDisplay.innerHTML = itinerary.cities;
 
            submitUsersDisplay.innerHTML = itinerary.users;
+           tagsResultsDisplay.innerHTML = itinerary.tags;
+
 
            const activities = itinerary.activities
 
