@@ -248,7 +248,6 @@ export default class MusicPlaylistClient extends BindingClass {
     async searchActivities(cityCountry, errorCallback) {
         try{
             const queryString = cityCountry;
-  console.log(queryString);
             const response = await this.axiosClient.get(`activities/search?cityCountry=${queryString}`);
             return response.data.activityModelsList;
         } catch (error) {
