@@ -228,9 +228,9 @@ export default class MusicPlaylistClient extends BindingClass {
         }
 
     /**
-     * Search for a song.
+     * Search for itineraries that match the search criteria.
      * @param criteria A string containing search criteria to pass to the API.
-     * @returns The playlists that match the search criteria.
+     * @returns The itineraries that match the search criteria.
      */
     async search(criteria, errorCallback) {
         try {
