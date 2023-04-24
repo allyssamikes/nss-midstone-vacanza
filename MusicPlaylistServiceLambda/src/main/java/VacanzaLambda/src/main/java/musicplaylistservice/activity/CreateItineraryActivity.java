@@ -20,18 +20,18 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Implementation of the CreatePlaylistActivity for the MusicPlaylistService's CreatePlaylist API.
+ * Implementation of the CreateItineraryActivity for the MusicPlaylistService's CreateItinerary API.
  * <p>
- * This API allows the customer to create a new playlist with no songs.
+ * This API allows the customer to create a new itinerary with no activities.
  */
 public class CreateItineraryActivity {
     private final Logger log = LogManager.getLogger();
     private final ItineraryDao itineraryDao;
 
     /**
-     * Instantiates a new CreatePlaylistActivity object.
+     * Instantiates a new CreateItineraryActivity object.
      *
-     * @param itineraryDao PlaylistDao to access the playlists table.
+     * @param itineraryDao ItineraryDao to access the playlists table.
      */
     @Inject
     public CreateItineraryActivity(ItineraryDao itineraryDao) {
@@ -39,28 +39,23 @@ public class CreateItineraryActivity {
     }
 
     /**
-     * This method handles the incoming request by persisting a new playlist
-     * with the provided playlist name and customer ID from the request.
+     * This method handles the incoming request by persisting a new itinerary
+     * with the provided name and customer email from the request.
      * <p>
-     * It then returns the newly created playlist.
+     * It then returns the newly created itinerary.
      * <p>
-     * If the provided playlist name or customer ID has invalid characters, throws an
+     * If the provided name has invalid characters, throws an
      * InvalidAttributeValueException
      *
      * @param createItineraryRequest request object containing the playlist name and customer ID
      *                              associated with it
-     * @return createPlaylistResult result object containing the API defined {@link ItineraryModel}
+     * @return createItineraryResult result object containing the API defined {@link ItineraryModel}
      */
     public CreateItineraryResult handleRequest(final CreateItineraryRequest createItineraryRequest) {
         log.info("Received CreateRequest {}", createItineraryRequest);
 
         if (!MusicPlaylistServiceUtils.isValidString(createItineraryRequest.getTripName())) {
             throw new InvalidAttributeValueException("Itinerary name [" + createItineraryRequest.getTripName() +
-                    "] contains illegal characters");
-        }
-
-        if (!MusicPlaylistServiceUtils.isValidString(createItineraryRequest.getEmail())) {
-            throw new InvalidAttributeValueException("Playlist customer ID [" + createItineraryRequest.getEmail() +
                     "] contains illegal characters");
         }
 
@@ -84,7 +79,6 @@ public class CreateItineraryActivity {
         newItinerary.setTags(itineraryTags);
         newItinerary.setUsers(itineraryUsers);
         newItinerary.setCities(itineraryCities);
-        //newItinerary.setActivities(new ArrayList<>());
 
         itineraryDao.saveItinerary(newItinerary);
 

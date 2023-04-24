@@ -6,8 +6,14 @@ import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ActivityNotFo
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import org.checkerframework.checker.units.qual.A;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.List;
+
 /**
  * Accesses data for an activity using {@link Activity} to represent the model in DynamoDB.
  */
@@ -48,6 +54,22 @@ public class ActivityDao {
     public Activity saveActivity(Activity activity) {
         this.dynamoDbMapper.save(activity);
         return activity;
+    }
+    public List<Activity> getActivitiesByCityCountry(String cityCountry) {
+        Activity activity = new Activity();
+        activity.setCityCountry(cityCountry);
+
+        DynamoDBQueryExpression<Activity> queryExpression = new DynamoDBQueryExpression<Activity>()
+                .withHashKeyValues(activity);
+        PaginatedQueryList<Activity> activityList = dynamoDbMapper.query(Activity.class, queryExpression);
+
+        if (null == activityList||activityList.size() == 0) {
+            metricsPublisher.addCount(MetricsConstants.SEARCHACTIVITIES_ACTIVITYNOTFOUND_COUNT, 1);
+            throw new ActivityNotFoundException(
+                    String.format("Could not find Activity with cityCountry '%s'", cityCountry));
+        }
+        metricsPublisher.addCount(MetricsConstants.SEARCHACTIVITIES_ACTIVITYNOTFOUND_COUNT, 0);
+        return activityList;
     }
 }
 
