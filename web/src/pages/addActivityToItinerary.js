@@ -9,8 +9,10 @@ import DataStore from '../util/DataStore';
 class AddActivityToItinerary extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit','submitRemove', 'searchActivities'], this);
+        this.bindClassMethods(['mount', 'submit','submitRemove', 'searchActivities', 'addActivitiesToPage'], this);
         this.dataStore = new DataStore();
+        this.dataStoreSearch = new DataStore();
+        this.dataStoreSearch.addChangeListener(this.addActivitiesToPage);
         this.header = new Header(this.dataStore);
     }
     /**
@@ -112,16 +114,69 @@ class AddActivityToItinerary extends BindingClass {
             createButton.innerText = 'Loading...';
 
             const cityCountry = document.getElementById('search-activity-cityCountry').value;
-  console.log(cityCountry);
-            const activitiesFound = await this.client.searchActivities(cityCountry, (error) => {
+
+            const activities = await this.client.searchActivities(cityCountry, (error) => {
                   createButton.innerText = origButtonText;
                   const errorMessageDisplay = document.getElementById('error-message');
                   errorMessageDisplay.innerText = `Error: ${error.message}`;
                   errorMessageDisplay.classList.remove('hidden');
                   });
-  console.log(activitiesFound);
-            this.dataStore.set('activitiesFound', activitiesFound);
+
+            this.dataStoreSearch.set('activities', activities);
         }
+
+        addActivitiesToPage() {
+
+            const activities = this.dataStoreSearch.get('activities');
+
+            const activitiesContainer = document.getElementById('activities-search-container');
+
+            activitiesContainer.classList.remove('hidden');
+
+            let activityHtml = '';
+            let activity;
+                  for (activity of activities) {
+
+                             const isKidFriendly = activity.kidFriendly === "Yes";
+                             const isWeatherPermitting = activity.weatherPermitting === "Yes";
+
+                             if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
+                             if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
+                             if(activity.address != null) {
+                                  var addressString = activity.address;
+                             } else {var addressString = ' ';}
+
+                             activityHtml += `
+                                   <li class="activity">
+                                                <span class="name">${activity.name}</span>
+                                                <span class="space">${" : "}</span>
+                                                <span class="place">${activity.cityCountry}</span>
+                                                <span class="space">${"   :   "}</span>
+                                                <span class="type">${activity.type_OF_ACTIVITY}</span>
+                                                <span class="space">${"   :   "}</span>
+                                                <span class="kidFriendly">${kidFriendlyText}</span>
+
+                                                <span class="space">${"    :    "}</span>
+                                                <span class="weatherPermitting">${weatherPermittingText}</span>
+
+                                                <span class="space">${"   :   "}</span>
+
+                                                <span class="address">${addressString}</span>
+
+                                   </li>
+                                    <br>
+                              `;
+
+                        }
+                    document.getElementById('activities').innerHTML = activityHtml;
+                    document.getElementById('search-activity-cityCountry').reset;
+                    const createButton = document.getElementById('search-activity');
+
+                    let activityInput1 = document.getElementById('search-activity-cityCountry');
+                    activityInput1.value = "";
+                    createButton.innerText = 'Complete';
+                    createButton.innerText = 'Search Another City';
+                        }
 }
 
 /**

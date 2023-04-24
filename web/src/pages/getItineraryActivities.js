@@ -78,7 +78,6 @@ class GetItineraryActivities extends BindingClass {
 
            const activities = itinerary.activities
 
-
            if (activities == null) {
                 return '<h4>No activities found</h4>';
            }

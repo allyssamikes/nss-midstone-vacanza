@@ -249,10 +249,8 @@ export default class MusicPlaylistClient extends BindingClass {
         try{
             const queryString = cityCountry;
   console.log(queryString);
-
-            const response = await this.axiosClient.get('activities/search?cityCountry=${cityCountry}');
-
-            return response.data.activities;
+            const response = await this.axiosClient.get(`activities/search?cityCountry=${queryString}`);
+            return response.data.activityModelsList;
         } catch (error) {
             this.handleError(error, errorCallback);
         }

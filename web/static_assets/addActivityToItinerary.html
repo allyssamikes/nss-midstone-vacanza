@@ -3,7 +3,7 @@
 <head>
     <script type="text/javascript" src="assets/addActivityToItinerary.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/am.css"></head>
+    <link rel="stylesheet" type="text/css" href="css/erinStyle.css"></head>
 
 <body class="background">
 <header class="header" id="header"></header>
@@ -60,15 +60,24 @@
         <p>
             <a href="#" class="button" id="remove-activity">Remove Activity</a>
         </p>
-        <p class="form-field">
-            <label>City, Country of Activity</label>
-            <input type="text" id="search-activity-cityCountry" required class="validated-field"  placeholder="Berlin, Germany"
-                   data-tip="Must be formatted as City, Country">
-        </p>
-        <p>
-            <a href="#" class="button" id="search-activity">Search Activities</a>
-        </p>
     </form>
+</div>
+<div class="card">
+    <p class="form-field">
+        <label>City, Country of Activity</label>
+        <br>
+        <input type="text" id="search-activity-cityCountry" required class="validated-field"  placeholder="Berlin, Germany"
+               data-tip="Must be formatted as City, Country">
+    </p>
+    <p>
+        <a href="#" class="button" id="search-activity">Search Activities</a>
+    </p>
+    <div class="card hidden" id='activities-search-container'>
+        <h3>Activities </h3>
+        <h2 class="itinerary-name"></h2>
+        <div class="activities" id="activities"></div>
+    </div>
+
 </div>
 </body>
 </html>
