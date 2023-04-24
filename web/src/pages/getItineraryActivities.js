@@ -54,13 +54,15 @@ class GetItineraryActivities extends BindingClass {
             getButton.innerText = 'Complete';
             getButton.innerText = 'Submit to View';
         }
+    /**
+     * Displays the details of an itinerary by embedding a list of all activities, as well as other attributes.
+      */
     addItineraryToPage() {
            const itinerary = this.dataStore.get('itinerary');
                 if (itinerary == null) {
                     return;
                 }
            document.getElementById('tripName').innerText = itinerary.tripName;
-console.log(itinerary.tags);
            const submitResultsContainer = document.getElementById('submit-results-container');
            const submitCriteriaDisplay  =   document.getElementById('city-title-display');
            const cityResultsDisplay  =   document.getElementById('city-results-display');
