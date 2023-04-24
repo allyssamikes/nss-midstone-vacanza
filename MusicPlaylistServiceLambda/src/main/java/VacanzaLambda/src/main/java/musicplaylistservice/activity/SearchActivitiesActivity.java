@@ -50,7 +50,7 @@ public class SearchActivitiesActivity {
         try {
             activityList = activityDao.getActivitiesByCityCountry(searchActivitiesRequest.getCityCountry());
         } catch (ActivityNotFoundException ex) {
-            throw new ActivityNotFoundException("No activities found for this place.");
+            throw new ActivityNotFoundException("No activities found for this city.");
         }
         List<ActivityModel> activityModelList = new ArrayList<>();
         for(Activity activity: activityList) {
