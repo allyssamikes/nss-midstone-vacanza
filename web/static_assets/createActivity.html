@@ -3,31 +3,33 @@
 
 <head>
     <script type="text/javascript" src="assets/createActivity.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/am.css">
+    <link rel="stylesheet" type="text/css" href="css/vacanza.css">
 </head>
 
 <body class="background">
     <header class="header" id="header"></header>
     <nav>
         <div class="navbar">
-            <ul>
-                <tr>
-                    <a href="index.html"> Home | </a>
-                </tr>
-                <tr>
-                    <a href="createItinerary.html"> Create Itinerary  | </a>
-                </tr>
-                <tr>
-                    <a href="createActivity.html"> Create Activity  | </a>
-                </tr>
-                <tr> <a href="getItineraryActivities.html"> Itinerary Details  | </a>
-                </tr>
-                <tr> <a href="addActivityToItinerary.html"> Itinerary Activities  | </a>
-                </tr>
-                <tr>
-                    <a href="aboutUs.html"> About Us </a>
-                </tr>
-            </ul>
+            <div class="center">
+                <ul>
+                    <tr>
+                        <a href="index.html"> Home | </a>
+                    </tr>
+                    <tr>
+                        <a href="createItinerary.html"> Create Itinerary | </a>
+                    </tr>
+                    <tr>
+                        <a href="createActivity.html"> Create Activity | </a>
+                    </tr>
+                    <tr> <a href="getItineraryActivities.html"> Itinerary Details | </a>
+                    </tr>
+                    <tr> <a href="addActivityToItinerary.html"> Itinerary Activities | </a>
+                    </tr>
+                    <tr>
+                        <a href="aboutUs.html"> About Us </a>
+                    </tr>
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="card">
@@ -41,15 +43,16 @@
             </p>
             <p class="form-field">
                 <label>Activity Name</label>
-                <input type="text" id="activity-name" class="name" placeholder="Park Guell">
+                <input type="text" id="activity-name" class="name" placeholder="Casa Battlo">
             </p>
             <p class="form-field">
                 <label>Activity Address</label>
-                <input type="text" id="activity-address" class="address" placeholder="08024 Barcelona, Spain">
+                <input type="text" id="activity-address" class="address" placeholder="Passeig de Gracia, 43, 08007 Barcelona, Spain">
             </p>
             <p class="form-field">
                 <label>Activity Type</label>
                 <select name="activity-type" id="activity-type" class="type">
+                    <option value="CULTURE">CULTURE</option>
                     <option value="PARK">PARK</option>
                     <option value="MUSEUM">MUSEUM</option>
                     <option value="RESTAURANT">RESTAURANT</option>
@@ -61,7 +64,6 @@
                     <option value="MUSIC">MUSIC</option>
                     <option value="COMEDY">COMEDY</option>
                     <option value="NATURE">NATURE</option>
-                    <option value="CULTURE">CULTURE</option>
                     <option value="SPORTS">SPORTS</option>
                     <option value="OTHER">OTHER</option>
                 </select>
@@ -77,8 +79,8 @@
             <p class="form-field">
                 <label>Activity WeatherPermitting</label>
                 <select name="activity-weatherPermitting" id="activity-weatherPermitting" class="weatherPermitting">
-                    <option value="Yes">Yes</option>
                     <option value="No">No</option>
+                    <option value="Yes">Yes</option>
                 </select>
             </p>
             <p>
