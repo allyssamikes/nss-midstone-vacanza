@@ -43,10 +43,14 @@ class AddActivityToItinerary extends BindingClass {
 
             const cityCountry = document.getElementById('activity-cityCountry').value;
             const name = document.getElementById('activity-name').value;
-
+            if(name == null || name === ''|| cityCountry == null || cityCountry === '') {
+            createButton.innerText = origButtonText;
+            return;}
             const email = document.getElementById("email").value;
             const tripName = document.getElementById("itinerary-name").value;
-
+            if(tripName == null || tripName === ''|| email == null || email === '') {
+            createButton.innerText = origButtonText;
+            return;}
             const activities = await this.client.addActivityToItinerary(email, tripName, cityCountry, name, (error) => {
                 createButton.innerText = origButtonText;
                 const errorMessageDisplay = document.getElementById('error-message');
@@ -81,9 +85,14 @@ class AddActivityToItinerary extends BindingClass {
 
             const cityCountry = document.getElementById('activity-cityCountry').value;
             const name = document.getElementById('activity-name').value;
-
+            if(name == null || name === ''|| cityCountry == null || cityCountry === '') {
+            createButton.innerText = origButtonText;
+            return;}
             const email = document.getElementById("email").value;
             const tripName = document.getElementById("itinerary-name").value;
+            if(tripName == null || tripName === ''|| email == null || email === '') {
+            createButton.innerText = origButtonText;
+            return;}
 
             const activities = await this.client.removeActivityFromItinerary(email, tripName, cityCountry, name, (error) => {
                 createButton.innerText = origButtonText;
