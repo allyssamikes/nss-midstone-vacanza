@@ -130,7 +130,7 @@ class GetItineraryActivities extends BindingClass {
             async submitItinerarySearch(evt) {
                         evt.preventDefault();
 
-                        const errorMessageDisplay = document.getElementById('error-message');
+                        const errorMessageDisplay = document.getElementById('search-error-message');
                         errorMessageDisplay.innerText = ``;
                         errorMessageDisplay.classList.add('hidden');
 
@@ -139,11 +139,11 @@ class GetItineraryActivities extends BindingClass {
                         getButton.innerText = 'Loading...';
                         //user input
 
-                        const email = document.getElementById('email').value;
+                        const email = document.getElementById('email-search').value;
                         //get itinerary from database
                         const itinerariesFound = await this.client.search(email, (error) => {
                             getButton.innerText = origButtonText;
-                            const errorMessageDisplay = document.getElementById('error-message');
+                            const errorMessageDisplay = document.getElementById('search-error-message');
                             errorMessageDisplay.innerText = `Error: ${error.message}`;
                             errorMessageDisplay.classList.remove('hidden');
                         });
