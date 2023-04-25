@@ -42,6 +42,9 @@ class GetItineraryActivities extends BindingClass {
             //user input
             const tripName = document.getElementById('tripName').value;
             const email = document.getElementById('email').value;
+            if(tripName == null || tripName === ''|| email == null || email === '') {
+            getButton.innerText = origButtonText;
+            return;}
             //get itinerary from database
             const itinerary = await this.client.getItinerary(email, tripName, (error) => {
                 getButton.innerText = origButtonText;
