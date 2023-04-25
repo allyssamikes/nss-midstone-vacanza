@@ -6,7 +6,9 @@ import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ItineraryNotF
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsConstants;
 import VacanzaLambda.src.main.java.musicplaylistservice.metrics.MetricsPublisher;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.util.HashMap;
@@ -110,5 +112,16 @@ public class ItineraryDao {
                 .append(", ")
                 .append(valueMapNamePrefix).append(position)
                 .append(") ");
+    }
+    public List<Itinerary> searchItinerariesByEmail(String email) {
+        Itinerary itinerary = new Itinerary();
+        itinerary.setEmail(email);
+        DynamoDBQueryExpression<Itinerary> queryExpression = new DynamoDBQueryExpression<Itinerary>()
+                .withHashKeyValues(itinerary);
+        PaginatedQueryList<Itinerary> itineraries = dynamoDbMapper.query(Itinerary.class, queryExpression);
+        if(null == itineraries||itineraries.size() == 0){
+            throw new ItineraryNotFoundException("Could not find any itineraries associated with this email");
+        }
+        return itineraries;
     }
 }

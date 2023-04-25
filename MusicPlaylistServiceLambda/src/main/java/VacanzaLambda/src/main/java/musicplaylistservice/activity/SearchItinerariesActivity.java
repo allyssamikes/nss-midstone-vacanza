@@ -41,9 +41,9 @@ public class SearchItinerariesActivity {
     public SearchItinerariesResult handleRequest(final SearchItinerariesRequest searchItinerariesRequest) {
         log.info("Received SearchItinerariesRequest {}", searchItinerariesRequest);
         String criteria = ifNull(searchItinerariesRequest.getCriteria(), "");
-        String[] criteriaArray = criteria.isBlank() ? new String[0] : criteria.split("\\s");
+       // String[] criteriaArray = criteria.isBlank() ? new String[0] : criteria.split("\\s");
 
-        List<Itinerary> results = itineraryDao.searchItinerary(criteriaArray);
+        List<Itinerary> results = itineraryDao.searchItinerariesByEmail(criteria);
         List<ItineraryModel> itineraryModels = new VModelConverter().toItineraryModelList(results);
 
         return SearchItinerariesResult.builder()

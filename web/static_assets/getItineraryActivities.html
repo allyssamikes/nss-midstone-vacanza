@@ -49,11 +49,24 @@
         </p>
     </form>
         <p class="button-group">
-            <a href="#" class="button" id="activities-of-itinerary">Submit</a>
+            <a href="#" class="button" id="activities-of-itinerary">View Itinerary Details</a>
         </p>
 
 </div>
-    <div class="card hidden" id='activities-container'>
+<div class="card">
+    <h2>Find Trips by Email</h2>
+    <form class="card-content" id="search-itineraries-form">
+        <p class="hidden error" id="search-error-message"> </p>
+        <p class="form-field">
+            <label>Enter User's Email</label>
+            <input type="text" class="email" id="email-search" placeholder="john.smith@gmail.com" autofocus>
+        </p>
+    </form>
+        <p class="button-group">
+            <a href="#" class="button" id="search-itineraries">Search for Trips</a>
+        </p>
+ </div>
+><div class="card hidden" id='activities-container'>
         <h3>Activities </h3>
         <h2 class="itinerary-name"></h2>
         <div class="activities" id="activities"></div>
@@ -78,6 +91,13 @@
         <ol class="users" id ="user"></ol>
 
     </div>
+
+<div class="card hidden" id='search-results-container'>
+    <h3>Itineraries </h3>
+    <div class="itineraries" id="itineraries"></div>
+</div>
+
+</div>
 </body>
 <footer>
     <div class= "footer">

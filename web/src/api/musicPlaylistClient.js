@@ -236,7 +236,7 @@ export default class MusicPlaylistClient extends BindingClass {
         try {
             const queryParams = new URLSearchParams({ q: criteria })
             const queryString = queryParams.toString();
-
+console.log(queryString);
             const response = await this.axiosClient.get(`itineraries/search?${queryString}`);
 
             return response.data.itineraries;
@@ -247,8 +247,7 @@ export default class MusicPlaylistClient extends BindingClass {
     }
     async searchActivities(cityCountry, errorCallback) {
         try{
-            const queryString = cityCountry;
-            const response = await this.axiosClient.get(`activities/search?cityCountry=${queryString}`);
+            const response = await this.axiosClient.get(`activities/search?cityCountry=${cityCountry}`);
             return response.data.activityModelsList;
         } catch (error) {
             this.handleError(error, errorCallback);
