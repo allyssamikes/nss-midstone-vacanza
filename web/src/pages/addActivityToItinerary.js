@@ -114,7 +114,10 @@ class AddActivityToItinerary extends BindingClass {
             createButton.innerText = 'Loading...';
 
             const cityCountry = document.getElementById('search-activity-cityCountry').value;
-
+                if (cityCountry == null || cityCountry === '') {
+                    createButton.innerText = origButtonText;
+                    return;
+                }
             const activities = await this.client.searchActivities(cityCountry, (error) => {
                   createButton.innerText = origButtonText;
                   const errorMessageDisplay = document.getElementById('error-message');
@@ -128,6 +131,9 @@ class AddActivityToItinerary extends BindingClass {
         addActivitiesToPage() {
 
             const activities = this.dataStoreSearch.get('activities');
+                if (activities == null) {
+                    return;
+                }
 
             const activitiesContainer = document.getElementById('activities-search-container');
 
