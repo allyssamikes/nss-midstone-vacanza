@@ -114,7 +114,7 @@ class GetItineraryActivities extends BindingClass {
 
                                         <span class="space">${"   :   "}</span>
 
-                                        <span class="address">${addressString}</span>
+                                        <span class="address"><a href= "https://www.google.com/maps/place/${addressString}"> ${addressString}</a></span>
 
                            </li>
                             <br>
@@ -123,34 +123,7 @@ class GetItineraryActivities extends BindingClass {
                 }
                 document.getElementById('activities').innerHTML = activityHtml;
 
-                          let activityTableHtml = '';
-
-                              for (activity of activities) {
-
-                              const isKidFriendly = activity.kidFriendly === "Yes";
-                              const isWeatherPermitting = activity.weatherPermitting === "Yes";
-
-                                if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
-                                if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
-                                if(activity.address != null) {
-                                    var addressString = activity.address;
-                                    } else {var addressString = ' ';}
-
-                                 activityTableHtml += `
-                                    <table>
-                                      <tr>
-                                        <td>${activity.name}</td>
-                                        <td>${activity.cityCountry}</td>
-                                        <td>${kidFriendlyText}</td>
-                                        <td class="weatherPermitting">${weatherPermittingText}</td>
-                                        <td class="address">${addressString}</td>
-                                      </tr>
-                                    </table>`;
-
-
-                              }
-                document.getElementById('activities-table').innerHTML = activityTableHtml;
-                document.getElementById('view-itinerary-activities-form').reset;
+                 document.getElementById('view-itinerary-activities-form').reset;
             }
 
 }
