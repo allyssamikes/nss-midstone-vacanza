@@ -328,6 +328,8 @@ Resources:
           Properties:
             Path: /itineraries/search
             Method: get
+            Auth:
+              Authorizer: 'NONE'
 
   CreateActivityLambda:
     Type: AWS::Serverless::Function

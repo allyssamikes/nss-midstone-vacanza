@@ -9,10 +9,12 @@ import DataStore from '../util/DataStore';
 class GetItineraryActivities extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'addItineraryToPage'], this);
+        this.bindClassMethods(['mount', 'submit', 'addItineraryToPage','submitItinerarySearch','addItinerariesToPage'], this);
         this.dataStore = new DataStore();
 
         this.dataStore.addChangeListener(this.addItineraryToPage);
+        this.dataStoreSearch = new DataStore;
+        this.dataStoreSearch.addChangeListener(this.addItinerariesToPage);
         this.header = new Header(this.dataStore);
     }
     /**
@@ -20,7 +22,7 @@ class GetItineraryActivities extends BindingClass {
      */
     mount() {
         document.getElementById('activities-of-itinerary').addEventListener('click', this.submit);
-
+        document.getElementById('search-itineraries').addEventListener('click', this.submitItinerarySearch);
         this.header.addHeaderToPage();
 
         this.client = new MusicPlaylistClient();
@@ -124,6 +126,58 @@ class GetItineraryActivities extends BindingClass {
                 document.getElementById('activities').innerHTML = activityHtml;
 
                  document.getElementById('view-itinerary-activities-form').reset;
+            }
+            async submitItinerarySearch(evt) {
+                        evt.preventDefault();
+
+                        const errorMessageDisplay = document.getElementById('error-message');
+                        errorMessageDisplay.innerText = ``;
+                        errorMessageDisplay.classList.add('hidden');
+
+                        const getButton = document.getElementById('search-itineraries');
+                        const origButtonText = getButton.innerText;
+                        getButton.innerText = 'Loading...';
+                        //user input
+
+                        const email = document.getElementById('email').value;
+                        //get itinerary from database
+                        const itinerariesFound = await this.client.search(email, (error) => {
+                            getButton.innerText = origButtonText;
+                            const errorMessageDisplay = document.getElementById('error-message');
+                            errorMessageDisplay.innerText = `Error: ${error.message}`;
+                            errorMessageDisplay.classList.remove('hidden');
+                        });
+                        this.dataStoreSearch.set('itineraries', itinerariesFound);
+console.log(itinerariesFound);
+                        }
+addItinerariesToPage() {
+           const itineraries = this.dataStoreSearch.get('itineraries');
+console.log(itineraries);
+           const searchResultsContainer = document.getElementById('search-results-container');
+
+            searchResultsContainer.classList.remove('hidden');
+           if (itineraries == null) {
+                return '<h4>No itineraries found</h4>';
+           }
+           let itinerariesHtml = '';
+           let itinerary;
+                for (itinerary of itineraries) {
+
+                     itinerariesHtml += `
+                           <li class="itinerary">
+                                        <span class="name">${itinerary.tripName}</span>
+                                        <span class="space">${" : "}</span>
+                                        <span class="cities">${itinerary.cities}</span>
+
+                           </li>
+                            <br>
+                      `;
+
+                }
+                document.getElementById('itineraries').innerHTML = itinerariesHtml;
+                const getButton = document.getElementById('search-itineraries');
+                getButton.innerText = "Search for Trips";
+                document.getElementById('view-itinerary-activities-form').reset;
             }
 
 }
