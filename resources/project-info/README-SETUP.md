@@ -53,7 +53,7 @@ sudo apt-get install -y nodejs
 brew install node
 ```
 
-You also need to modify the default value for `CognitoDomain` in the [template.yaml](./template.yaml). When you first checkout this project it's set to `music-playlist-service`, but this needs to be different for everyone (if you don't change this you will get an error message when you try to deploy it). If you are deploying this for the Unit 5 Midstone project you should change it to something like `NAME_OF_YOUR_PROJECT-NAME_OF_YOUR_TEAM` (e.g. `better-playlist-greenteam`). If you are deploying this for your final class Capstone project you should change it to something like `NAME_OF_YOUR_PROJECT-YOUR_NAME` (e.g. `leaderboard-service-johnwark`).
+You also need to modify the default value for `CognitoDomain` in the [template.yaml](../../template.yaml). When you first checkout this project it's set to `music-playlist-service`, but this needs to be different for everyone (if you don't change this you will get an error message when you try to deploy it). If you are deploying this for the Unit 5 Midstone project you should change it to something like `NAME_OF_YOUR_PROJECT-NAME_OF_YOUR_TEAM` (e.g. `better-playlist-greenteam`). If you are deploying this for your final class Capstone project you should change it to something like `NAME_OF_YOUR_PROJECT-YOUR_NAME` (e.g. `leaderboard-service-johnwark`).
 
 ### Scenario 1: Local Backend, Local Frontend
 
@@ -93,7 +93,7 @@ In this scenario you will run both the backend and frontend locally on your lapt
        > **TIP:** You only need to do this once - _unless_ you add/change Javascript dependencies.
    - Run the local server: `npm run run-local`
 
-After doing all of this, you will have a server running on port `8000` - you can access it by going to [http://localhost:8000](http://localhost:8000) in your browser. Create a playlist, add some songs to it (see [data.json](./data/data.json) for sample ASIN and track numbers you can use).
+After doing all of this, you will have a server running on port `8000` - you can access it by going to [http://localhost:8000](http://localhost:8000) in your browser. Create a playlist, add some songs to it (see [data.json](../../data/data.json) for sample ASIN and track numbers you can use).
 
 To stop either the local backend (the `sam local...` command) or local frontend (the `npm run...`) command, simply press `Ctrl-C` in the terminal where the process is running.
 
